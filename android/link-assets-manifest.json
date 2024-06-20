@@ -1,0 +1,29 @@
+{
+  "migIndex": 1,
+  "data": [
+    {
+      "path": "assets/fonts/TTInterfaces-Bold.ttf",
+      "sha1": "0ce824176da357006a8ff7096580fc78729208a0"
+    },
+    {
+      "path": "assets/fonts/TTInterfaces-ExtraLight.ttf",
+      "sha1": "569329713c2715ff8c896127953094e0329889bc"
+    },
+    {
+      "path": "assets/fonts/TTInterfaces-Light.ttf",
+      "sha1": "aa5095d5d16a0d3ee39dfd095683cbef401f0387"
+    },
+    {
+      "path": "assets/fonts/TTInterfaces-Medium.ttf",
+      "sha1": "045d0d7f25885d35e812a86579dcbf10b2c1f0ac"
+    },
+    {
+      "path": "assets/fonts/TTInterfaces-Regular.ttf",
+      "sha1": "c32d0d8006b6b7cf91cc26013cc73b12edc327e7"
+    },
+    {
+      "path": "assets/fonts/TTInterfaces-Thin.ttf",
+      "sha1": "b6b1e49b3453ed38bdce185a391a54ce40e85266"
+    }
+  ]
+}
