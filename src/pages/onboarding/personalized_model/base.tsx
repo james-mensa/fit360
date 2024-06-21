@@ -1,7 +1,7 @@
 import {UIResponsive} from '@layout/ResponsiveUi';
 import {AnimateView} from '@models/animation';
 import {ButtonThemes, PrimaryButton} from '@models/button';
-import {Pallete} from '@styles/BaseColor';
+import {Palette} from '@styles/BaseColor';
 import React from 'react';
 import {StyleSheet, View} from 'react-native';
 interface BaseProps {
@@ -9,6 +9,7 @@ interface BaseProps {
   goPrevious?: () => void;
   goNext?: () => void;
   progress?: number;
+  canGoNext?: boolean;
 }
 
 export const Base: React.FC<BaseProps> = ({
@@ -16,6 +17,7 @@ export const Base: React.FC<BaseProps> = ({
   goNext,
   goPrevious,
   progress = 10,
+  canGoNext,
 }) => {
   return (
     <View style={styles.container}>
@@ -43,6 +45,7 @@ export const Base: React.FC<BaseProps> = ({
               theme={ButtonThemes.Primary}
               size="small"
               title="Previous"
+              onPress={goPrevious}
             />
           </AnimateView>
         )}
@@ -52,6 +55,8 @@ export const Base: React.FC<BaseProps> = ({
               theme={ButtonThemes.Primary}
               size="small"
               title="Next"
+              onPress={goNext}
+              active={canGoNext}
             />
           </AnimateView>
         )}
@@ -63,7 +68,7 @@ export const Base: React.FC<BaseProps> = ({
 const styles = StyleSheet.create({
   container: {
     ...UIResponsive.FullScreen,
-    backgroundColor: Pallete.background.light[250],
+    backgroundColor: Palette.background.light[250],
     flexDirection: 'column',
     justifyContent: 'space-between',
   },
@@ -78,7 +83,7 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   progress_bar: {
-    backgroundColor: Pallete.background.light[200],
+    backgroundColor: Palette.background.light[200],
     height: 8,
     width: UIResponsive.Body.width - 50,
     borderRadius: 50,
@@ -95,7 +100,7 @@ const styles = StyleSheet.create({
   },
   progress_indicator: {
     width: 0,
-    backgroundColor: Pallete.ColorsFromImage.view1[100],
+    backgroundColor: Palette.Button[200],
     height: 8,
   },
 });

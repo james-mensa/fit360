@@ -4,7 +4,8 @@ import PersonalizedWorkout from './PersonalizedWorkout';
 import CommunityMotivation from './CommunityMotivation';
 import TrackFitness from './TrackFitness';
 import {GetStarted} from './GetStarted';
-import Gender from './personalized_model';
+import Gender, {Interest} from './personalized_model';
+import {BodyType} from './personalized_model/BodyType';
 const Stack = createNativeStackNavigator();
 const Onboarding = () => {
   return (
@@ -33,6 +34,16 @@ const Onboarding = () => {
         name="Gender"
         options={{headerShown: false}}
         component={Gender}
+      />
+      <Stack.Screen
+        name="Interest"
+        options={{headerShown: false}}
+        component={Interest}
+      />
+      <Stack.Screen
+        name="BodyType"
+        options={{headerShown: false}}
+        component={BodyType}
       />
     </Stack.Navigator>
   );

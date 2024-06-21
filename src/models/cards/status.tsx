@@ -3,7 +3,7 @@ import {UIResponsive} from '@layout/ResponsiveUi';
 import {Status} from '@models/alert';
 import {GapHorizontal} from '@models/gap';
 import {Label, LabelVarient} from '@models/label';
-import {Pallete} from '@styles/BaseColor';
+import {Palette} from '@styles/BaseColor';
 import React from 'react';
 import {StyleSheet, TouchableOpacity, View} from 'react-native';
 import FontAwesome from 'react-native-vector-icons/FontAwesome5';
@@ -27,7 +27,7 @@ export const StatusCard: React.FC<statusCardProps> = ({
   icon,
 }) => {
   if (!bg) {
-    bg = Pallete.background.light[550];
+    bg = Palette.background.light[550];
   }
   return (
     <TouchableOpacity onPress={onPress}>
@@ -48,7 +48,7 @@ export const StatusCard: React.FC<statusCardProps> = ({
           <FontAwesome
             name="location-arrow"
             size={15}
-            color={Pallete.background.dark[100]}
+            color={Palette.background.dark[100]}
           />
         </View>
       </View>
@@ -59,7 +59,7 @@ export const StatusCard: React.FC<statusCardProps> = ({
 const styles = StyleSheet.create({
   container: {
     ...UIResponsive.Card.status,
-    backgroundColor: Pallete.background.light[550],
+    backgroundColor: Palette.background.light[550],
     padding: 10,
     borderRadius: 20,
     flexDirection: 'column',

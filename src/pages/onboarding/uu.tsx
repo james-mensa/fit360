@@ -2,7 +2,7 @@ import {Icons} from '@assets/register';
 import {VectorIcons} from '@common/VectorIcons';
 import {UIResponsive} from '@layout/ResponsiveUi';
 import {Label, LabelVarient} from '@models/label';
-import {Pallete} from '@styles/BaseColor';
+import {Palette} from '@styles/BaseColor';
 import React, {useState} from 'react';
 import {
   ImageBackground,
@@ -53,11 +53,11 @@ export const Onboarding = () => {
             <Label
               varient={LabelVarient.H2_Bold.Roboto}
               title={steps[step].title}
-              color={Pallete.text.light[100]}
+              color={Palette.text.light[100]}
             />
             <Label
               varient={LabelVarient.H3_Bold.small.extra}
-              color={Pallete.text.light[300]}
+              color={Palette.text.light[300]}
               title={steps[step].details}
             />
             <Controls step={step} handleNext={handleNext} />
@@ -139,11 +139,11 @@ const styles = StyleSheet.create({
   indicator: {
     width: 5,
     height: 5,
-    backgroundColor: Pallete.background.light[400],
+    backgroundColor: Palette.background.light[400],
     borderRadius: 5,
   },
   button: {
-    backgroundColor: Pallete.background.light[200],
+    backgroundColor: Palette.background.light[200],
     paddingHorizontal: 10,
     paddingVertical: 15,
     borderRadius: 50,

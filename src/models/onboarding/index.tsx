@@ -1,6 +1,6 @@
 import {UIResponsive} from '@layout/ResponsiveUi';
 import {Label, LabelVarient} from '@models/label';
-import {Pallete} from '@styles/BaseColor';
+import {Palette} from '@styles/BaseColor';
 import React from 'react';
 import {
   GestureDetector,
@@ -71,7 +71,7 @@ export const OnBoardingUI: React.FC<onboardingProps> = ({
                 <MaterialIcons
                   name={'arrow-back-ios-new'}
                   size={UIResponsive.Card.icon}
-                  color={Pallete.ColorsFromImage.view1[100]}
+                  color={Palette.ColorsFromImage.view1[100]}
                 />
               </TouchableOpacity>
             </View>
@@ -90,7 +90,7 @@ export const OnBoardingUI: React.FC<onboardingProps> = ({
                     <Label
                       varient={LabelVarient.H2_Bold.Roboto}
                       title={data.title}
-                      color={Pallete.text.light[100]}
+                      color={Palette.text.light[100]}
                     />
                   </Animated.View>
                   <Animated.View
@@ -98,7 +98,7 @@ export const OnBoardingUI: React.FC<onboardingProps> = ({
                     entering={FadeIn.duration(500).easing(Easing.ease)}>
                     <Label
                       varient={LabelVarient.H3_Bold.small.extra}
-                      color={Pallete.text.light[300]}
+                      color={Palette.text.light[300]}
                       title={data.details}
                     />
                   </Animated.View>
@@ -189,16 +189,16 @@ const styles = StyleSheet.create({
   active_indicator: {
     width: 15,
     height: 7,
-    backgroundColor: Pallete.ColorsFromImage.view1[100],
+    backgroundColor: Palette.ColorsFromImage.view1[100],
   },
   indicator: {
     width: 5,
     height: 5,
-    backgroundColor: Pallete.background.light[400],
+    backgroundColor: Palette.background.light[400],
     borderRadius: 5,
   },
   button: {
-    backgroundColor: Pallete.background.light[200],
+    backgroundColor: Palette.background.light[200],
     paddingHorizontal: 10,
     paddingVertical: 15,
     borderRadius: 50,

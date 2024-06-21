@@ -11,4 +11,12 @@ export const Icons = {
   male_avater: require('./icons/male_icon.jpg'),
   female_avater: require('./icons/famale_icon.jpg'),
   female_avater_1: require('./icons/female.jpg'),
+  running1: require('./icons/running2.png'),
+  nutrition1: require('./icons/nutrition2.png'),
+  muscle4: require('./icons/muscle_4.jpg'),
+  gym: require('./icons/gym1.png'),
+  overweight: require('./icons/overweight.png'),
+  obese1: require('./icons/obese1.png'),
+  skinny: require('./icons/skinny1.png'),
+  normal_weight: require('./icons/normal1.png'),
 };

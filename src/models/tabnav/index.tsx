@@ -1,7 +1,7 @@
 import {GapHorizontal} from '@models/gap';
 import {Label, LabelVarient} from '@models/label';
 import {ScrollViewHorizontal} from '@models/ScrollView';
-import {Pallete} from '@styles/BaseColor';
+import {Palette} from '@styles/BaseColor';
 import React, {useState} from 'react';
 import {StyleSheet, View, TouchableOpacity} from 'react-native';
 
@@ -37,8 +37,8 @@ export const TabNav: React.FC<TabProps> = ({items}) => {
                   varient={LabelVarient.Sub2.TInterface}
                   color={
                     activePage === index
-                      ? Pallete.text.light[300]
-                      : Pallete.text.dark[400]
+                      ? Palette.text.light[300]
+                      : Palette.text.dark[400]
                   }
                   title={item.label}
                 />
@@ -63,7 +63,7 @@ const styles = StyleSheet.create({
   },
   item: {
     borderWidth: 1,
-    borderColor: Pallete.background.light[300],
+    borderColor: Palette.background.light[300],
     paddingVertical: 10,
     paddingHorizontal: 10,
     borderRadius: 50,
@@ -75,7 +75,7 @@ const styles = StyleSheet.create({
     shadowRadius: 3,
   },
   activeItem: {
-    backgroundColor: Pallete.background.dark[400],
+    backgroundColor: Palette.background.dark[400],
   },
   pageContainer: {
     flex: 1,

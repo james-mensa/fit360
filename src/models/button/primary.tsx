@@ -1,6 +1,6 @@
 import {UIResponsive} from '@layout/ResponsiveUi';
 import {Label, LabelVarient} from '@models/label';
-import {Pallete} from '@styles/BaseColor';
+import {Palette} from '@styles/BaseColor';
 import React from 'react';
 import {ActivityIndicator, StyleSheet, View} from 'react-native';
 import {TouchableOpacity} from 'react-native-gesture-handler';
@@ -10,6 +10,7 @@ interface buttonProps {
   onPress?: () => void;
   title: string;
   loadingState?: boolean;
+  active?: boolean;
 }
 
 interface buttonTheme {
@@ -21,24 +22,24 @@ interface buttonTheme {
 
 export const ButtonThemes = {
   Default: {
-    backgroundColor: Pallete.background.light[150],
-    color: Pallete.text.dark[100],
-    loaderColor: Pallete.background.light[550],
+    backgroundColor: Palette.background.light[150],
+    color: Palette.text.dark[100],
+    loaderColor: Palette.background.light[550],
   },
   Primary: {
-    backgroundColor: Pallete.Button[200],
-    color: Pallete.text.dark[100],
-    loaderColor: Pallete.ColorsFromImage.view1[150],
+    backgroundColor: Palette.Button[200],
+    color: Palette.text.dark[100],
+    loaderColor: Palette.ColorsFromImage.view1[150],
   },
   Light: {
-    backgroundColor: Pallete.Button[300],
-    color: Pallete.text.dark[100],
-    loaderColor: Pallete.background.light[550],
+    backgroundColor: Palette.Button[300],
+    color: Palette.text.dark[100],
+    loaderColor: Palette.background.light[550],
   },
   Dark: {
-    backgroundColor: Pallete.background.dark[200],
-    color: Pallete.text.light[200],
-    loaderColor: Pallete.background.light[550],
+    backgroundColor: Palette.background.dark[200],
+    color: Palette.text.light[200],
+    loaderColor: Palette.background.light[550],
   },
 };
 const PrimaryButton: React.FC<buttonProps> = ({
@@ -47,6 +48,7 @@ const PrimaryButton: React.FC<buttonProps> = ({
   onPress,
   title,
   loadingState,
+  active = true,
 }) => {
   const width =
     size === 'large'
@@ -54,13 +56,17 @@ const PrimaryButton: React.FC<buttonProps> = ({
       : size === 'medium'
       ? UIResponsive.Body.width / 2
       : UIResponsive.Body.width / 4;
+  const opacity = {
+    opacity: active ? 1 : 0.4,
+  };
   return (
-    <TouchableOpacity onPress={onPress}>
+    <TouchableOpacity onPress={() => active && onPress && onPress()}>
       <View
         style={{
           ...styles.button,
           width: width,
           backgroundColor: theme.backgroundColor,
+          ...opacity,
         }}>
         {loadingState ? (
           <ActivityIndicator color={theme.loaderColor} />

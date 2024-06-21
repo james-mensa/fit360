@@ -6,7 +6,7 @@ import RotationView from '@models/animation/rotate';
 import {ButtonThemes, PrimaryButton} from '@models/button';
 import {Label, LabelVarient} from '@models/label';
 import {useNavigation} from '@react-navigation/native';
-import {Pallete} from '@styles/BaseColor';
+import {Palette} from '@styles/BaseColor';
 import React from 'react';
 import {Image, StyleSheet, View} from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
@@ -19,9 +19,9 @@ export const GetStarted = () => {
     <LinearGradient
       style={styles.container}
       colors={[
-        Pallete.ColorsFromImage.view1[200],
-        Pallete.ColorsFromImage.view1[250],
-        Pallete.ColorsFromImage.view1[200],
+        Palette.ColorsFromImage.view1[200],
+        Palette.ColorsFromImage.view1[250],
+        Palette.ColorsFromImage.view1[200],
       ]}
       start={{x: 0.0, y: 0.25}}
       end={{x: 0.5, y: 1.0}}

@@ -13,7 +13,7 @@ import Plan from '@pages/nurition_plan';
 import Progress from '@pages/progress';
 import {StyleSheet} from 'react-native';
 import {UIResponsive} from '@layout/ResponsiveUi';
-import {Pallete} from '@styles/BaseColor';
+import {Palette} from '@styles/BaseColor';
 const Tab = createBottomTabNavigator();
 
 export function BaseTab() {
@@ -62,7 +62,7 @@ const tabsOption = (page: string): BottomTabNavigationOptions => {
               size={
                 focused ? UIResponsive.Tab.active : UIResponsive.Tab.inactive
               }
-              color={focused ? Pallete.text.dark[100] : Pallete.text.dark[300]}
+              color={focused ? Palette.text.dark[100] : Palette.text.dark[300]}
             />
           );
         case 'PlanPage':
@@ -72,7 +72,7 @@ const tabsOption = (page: string): BottomTabNavigationOptions => {
               size={
                 focused ? UIResponsive.Tab.active : UIResponsive.Tab.inactive
               }
-              color={focused ? Pallete.text.dark[100] : Pallete.text.dark[300]}
+              color={focused ? Palette.text.dark[100] : Palette.text.dark[300]}
             />
           );
         case 'ProgressPage':
@@ -82,7 +82,7 @@ const tabsOption = (page: string): BottomTabNavigationOptions => {
               size={
                 focused ? UIResponsive.Tab.active : UIResponsive.Tab.inactive
               }
-              color={focused ? Pallete.text.dark[100] : Pallete.text.dark[300]}
+              color={focused ? Palette.text.dark[100] : Palette.text.dark[300]}
             />
           );
         case 'SettingsPage':
@@ -92,7 +92,7 @@ const tabsOption = (page: string): BottomTabNavigationOptions => {
               size={
                 focused ? UIResponsive.Tab.active : UIResponsive.Tab.inactive
               }
-              color={focused ? Pallete.text.dark[100] : Pallete.text.dark[300]}
+              color={focused ? Palette.text.dark[100] : Palette.text.dark[300]}
             />
           );
       }

@@ -4,31 +4,35 @@ import {Base} from './base';
 import {Label, LabelVarient} from '@models/label';
 import {Icons} from '@assets/register';
 import {TouchableOpacity} from 'react-native-gesture-handler';
-import {Pallete} from '@styles/BaseColor';
+import {Palette} from '@styles/BaseColor';
 import {ImageSourcePropType} from 'react-native';
 import {AnimateView} from '@models/animation';
+import {useNavigation} from '@react-navigation/native';
+import {Navigation} from '@common/type';
 
 export const Gender = () => {
-  const [selectedAvatar, setSelectedAvatar] = useState<
-    'female' | 'male' | undefined
-  >(undefined);
-
+  const navigation = useNavigation<Navigation>();
+  const goNext = () => {
+    navigation.navigate('Interest');
+  };
+  const [gender, setGender] = useState<'female' | 'male' | undefined>(
+    undefined,
+  );
   const handleAvatarPress = (avatar: 'female' | 'male') => {
-    if (avatar === selectedAvatar) {
-      setSelectedAvatar(undefined);
+    if (avatar === gender) {
+      setGender(undefined);
     } else {
-      setSelectedAvatar(avatar);
+      setGender(avatar);
     }
-    console.log({selectedAvatar});
   };
 
   return (
-    <Base goNext={() => {}}>
+    <Base canGoNext={gender !== undefined} goNext={goNext}>
       <View style={styles.container}>
         <Label varient={LabelVarient.H3_Bold.extra} title={'Gender'} />
         <AvaterComponent
           img={Icons.female_avater}
-          isChecked={selectedAvatar === 'female'}
+          isChecked={gender === 'female'}
           onPress={() => handleAvatarPress('female')}
         />
         <Label varient={LabelVarient.H3_Bold.extra} title={'Female'} />
@@ -36,7 +40,7 @@ export const Gender = () => {
         <AnimateView order={0.4}>
           <AvaterComponent
             img={Icons.male_avater}
-            isChecked={selectedAvatar === 'male'}
+            isChecked={gender === 'male'}
             onPress={() => handleAvatarPress('male')}
           />
         </AnimateView>
@@ -73,7 +77,7 @@ const AvaterComponent: React.FC<AvaterProps> = ({
       style={{
         ...styles.avater_container,
         backgroundColor: isChecked
-          ? Pallete.background.dark[300]
+          ? Palette.background.dark[300]
           : 'transparent',
       }}
       onPress={onPress}>

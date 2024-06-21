@@ -1,7 +1,7 @@
 import {Icons} from '@assets/register';
 import {UIResponsive} from '@layout/ResponsiveUi';
 import {Avater} from '@models/Avater';
-import {Pallete} from '@styles/BaseColor';
+import {Palette} from '@styles/BaseColor';
 import Feather from 'react-native-vector-icons/Feather';
 import React from 'react';
 import {ImageBackground, StyleSheet, View} from 'react-native';
@@ -27,12 +27,12 @@ export const PrimaryCard: React.FC<PrimaryCardProps> = ({
               <Label
                 varient={LabelVarient.H3_Bold.small.Roboto}
                 title={title}
-                color={Pallete.text.light[800]}
+                color={Palette.text.light[800]}
               />
               <Label
                 varient={LabelVarient.H3_Bold.extra}
                 title={description ?? ''}
-                color={Pallete.text.light[100]}
+                color={Palette.text.light[100]}
               />
             </View>
           </View>
@@ -57,10 +57,10 @@ export const PrimaryCard: React.FC<PrimaryCardProps> = ({
                       <Feather
                         name="arrow-up-right"
                         size={20}
-                        color={Pallete.background.light[100]}
+                        color={Palette.background.light[100]}
                       />
                     }
-                    bg={Pallete.Button[100]}
+                    bg={Palette.Button[100]}
                     onPress={onPress}
                   />
                 </View>
@@ -93,7 +93,7 @@ const styles = StyleSheet.create({
   },
   actionBox: {
     height: 100,
-    backgroundColor: Pallete.background.light[100],
+    backgroundColor: Palette.background.light[100],
     width: UIResponsive.Card.primary.width * (0.15 / 1),
     flexDirection: 'column',
     justifyContent: 'flex-end',
@@ -112,7 +112,7 @@ const styles = StyleSheet.create({
   boxBottomSpace: {
     height: 30,
     width: UIResponsive.Card.primary.width * (0.15 / 1),
-    backgroundColor: Pallete.background.light[100],
+    backgroundColor: Palette.background.light[100],
     borderTopLeftRadius: 50,
   },
   labelBox: {
@@ -139,7 +139,7 @@ const styles = StyleSheet.create({
   labelRightSpace: {
     height: 30,
     width: UIResponsive.Card.primary.width * (0.1 / 1),
-    backgroundColor: Pallete.background.light[100],
+    backgroundColor: Palette.background.light[100],
   },
   labelRightBg: {
     height: 30,

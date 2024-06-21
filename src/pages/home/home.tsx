@@ -2,7 +2,7 @@ import {ScrollView, StyleSheet, Text, View} from 'react-native';
 import {PageBase} from '@models/pageBase';
 import {UIResponsive} from '@layout/ResponsiveUi';
 import React from 'react';
-import {Pallete} from '@styles/BaseColor';
+import {Palette} from '@styles/BaseColor';
 import {Label, LabelVarient} from '@models/label';
 import {PrimaryCard} from '@models/cards/primary';
 import {Icons} from '@assets/register';
@@ -28,14 +28,14 @@ export const Home = () => {
               title="Upper body"
               description="Simple Chect Workout only 5 mins"
               onPress={() => {}}
-              bgColor={Pallete.ColorsFromImage.fitness_1}
+              bgColor={Palette.ColorsFromImage.fitness_1}
             />
             <PrimaryCard
               title="Hand muscle"
               description="4 Ways To Improve your Hand Muscle "
               onPress={() => {}}
               image={Icons.muscle_1}
-              bgColor={Pallete.ColorsFromImage.muscle_1}
+              bgColor={Palette.ColorsFromImage.muscle_1}
             />
             <Label
               title="All Workouts"
@@ -95,7 +95,7 @@ export const Home = () => {
               description="4 Ways To Improve your Hand Muscle "
               onPress={() => {}}
               image={Icons.muscle_1}
-              bgColor={Pallete.ColorsFromImage.muscle_1}
+              bgColor={Palette.ColorsFromImage.muscle_1}
             />
           </View>
           <GapVertical h={70} />
@@ -108,7 +108,7 @@ export const Home = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: Pallete.background.light[100],
+    backgroundColor: Palette.background.light[100],
     flexDirection: 'column',
     justifyContent: 'center',
     borderTopLeftRadius: UIResponsive.Radius.bodyTop,

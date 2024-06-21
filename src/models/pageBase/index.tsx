@@ -9,7 +9,7 @@ import {
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import Feather from 'react-native-vector-icons/Feather';
 import {UIResponsive} from '@layout/ResponsiveUi';
-import {Pallete} from '@styles/BaseColor';
+import {Palette} from '@styles/BaseColor';
 import {FONTS} from '@common/fonts';
 import {UImage} from '@models/Icon';
 import {Icons} from '@assets/register';
@@ -46,7 +46,7 @@ export const PageBase: React.FC<PageBaseProps> = ({topNav, children}) => {
                     <Ionicons
                       name={'arrow-back'}
                       size={UIResponsive.Icons.medium}
-                      color={Pallete.Icons.default.dark}
+                      color={Palette.Icons.default.dark}
                     />
                   </View>
                 )}
@@ -63,7 +63,7 @@ export const PageBase: React.FC<PageBaseProps> = ({topNav, children}) => {
                     <Feather
                       name={'calendar'}
                       size={UIResponsive.Icons.small}
-                      color={Pallete.Icons.default.dark}
+                      color={Palette.Icons.default.dark}
                     />
                   </View>
                 </TouchableOpacity>
@@ -90,7 +90,7 @@ const styles = StyleSheet.create({
   },
   base: {
     flex: 1,
-    backgroundColor: Pallete.background.dark[100],
+    backgroundColor: Palette.background.dark[100],
     gap: 10,
   },
   nav: {
@@ -114,13 +114,13 @@ const styles = StyleSheet.create({
     gap: 10,
   },
   navTitle: {
-    color: Pallete.text.light[100],
+    color: Palette.text.light[100],
     fontSize: 18,
     textAlign: 'center',
     fontFamily: FONTS.TRegular,
   },
   IconContainer: {
-    backgroundColor: Pallete.background.light[100],
+    backgroundColor: Palette.background.light[100],
     height: 30,
     width: 30,
     borderRadius: 15,
@@ -134,7 +134,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   profileContainer: {
-    backgroundColor: Pallete.background.light[100],
+    backgroundColor: Palette.background.light[100],
     height: 35,
     width: 35,
     borderRadius: 18,
@@ -146,7 +146,7 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.9,
   },
   calenderCotainer: {
-    backgroundColor: Pallete.background.light[100],
+    backgroundColor: Palette.background.light[100],
     height: 30,
     width: 30,
     borderRadius: 15,

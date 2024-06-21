@@ -73,7 +73,7 @@ const ColorsFromImage = {
   },
 };
 
-export const Pallete = {
+export const Palette = {
   tab,
   tabContainer,
   background,
