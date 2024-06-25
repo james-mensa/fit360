@@ -1,3 +1,4 @@
+import React from 'react';
 import {VectorIcons} from '@common/VectorIcons';
 import {UIResponsive} from '@layout/ResponsiveUi';
 import {Label, LabelVarient} from '@models/label';
@@ -39,7 +40,24 @@ const CheckCard: React.FC<CardProps> = ({
       }}>
       <TouchableOpacity onPress={onPress}>
         <View style={{...styles.card, ...imgstyle}}>
-          <View style={styles.labelContainer}>
+          {title && description ? (
+            <View style={styles.labelContainer}>
+              <Label
+                color={
+                  isChecked ? Palette.text.light[100] : Palette.text.light[100]
+                }
+                title={title}
+                varient={LabelVarient.H3_Bold.extra}
+              />
+              <Label
+                color={
+                  isChecked ? Palette.text.light[100] : Palette.text.light[100]
+                }
+                title={description}
+                varient={LabelVarient.Sub3.Roboto}
+              />
+            </View>
+          ) : (
             <Label
               color={
                 isChecked ? Palette.text.light[100] : Palette.text.light[100]
@@ -47,14 +65,8 @@ const CheckCard: React.FC<CardProps> = ({
               title={title}
               varient={LabelVarient.H3_Bold.extra}
             />
-            <Label
-              color={
-                isChecked ? Palette.text.light[100] : Palette.text.light[100]
-              }
-              title={description}
-              varient={LabelVarient.Sub3.Roboto}
-            />
-          </View>
+          )}
+
           <View style={{...styles.image_container, height: imgstyle.height}}>
             <Image source={img} style={styles.image} />
           </View>
@@ -94,6 +106,10 @@ const styles = StyleSheet.create({
   labelContainer: {
     padding: 10,
     width: 200,
+    flexDirection: 'column',
+    alignItems: 'flex-start',
+    justifyContent: 'space-between',
+    gap: 10,
   },
   image_container: {
     overflow: 'hidden',

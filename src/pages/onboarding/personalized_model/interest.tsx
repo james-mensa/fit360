@@ -1,15 +1,39 @@
 import React, {useState} from 'react';
-import {StyleSheet, View} from 'react-native';
+import {View} from 'react-native';
 import {Base} from './base';
 import {Label, LabelVarient} from '@models/label';
 import {Icons} from '@assets/register';
-
 import {AnimateView} from '@models/animation';
-
 import {useNavigation} from '@react-navigation/native';
 import {Navigation} from '@common/type';
 import CheckCard from '@models/CheckCard/CheckCard';
+import {BaseStyles} from './BaseStyles';
+
 type ResponseType = 'gym' | 'nutrition' | 'running';
+
+const LABEL_TEXT = 'Please What you are interested in';
+
+const interestData = [
+  {
+    type: 'gym',
+    title: 'Body building and Gain weight',
+    description: 'Build muscle mass with targeted exercises.',
+    img: Icons.gym,
+  },
+  {
+    type: 'running',
+    title: 'Running',
+    description: 'Improve your cardiovascular health and endurance.',
+    img: Icons.running1,
+  },
+  {
+    type: 'nutrition',
+    title: 'Best diet Recommadation',
+    description: 'Get personalized dietary advice for your fitness goals.',
+    img: Icons.nutrition1,
+  },
+];
+
 export const Interest = () => {
   const navigation = useNavigation<Navigation>();
   const navigationBack = useNavigation();
@@ -34,49 +58,25 @@ export const Interest = () => {
       goNext={goNext}
       progress={20}
       goPrevious={goBack}>
-      <View style={styles.container}>
+      <View style={BaseStyles.container}>
         <Label
           varient={LabelVarient.H2.Roboto}
-          title={'Please What your are interested in'}
+          title={LABEL_TEXT}
           align="center"
           fullWidth
         />
-        <AnimateView order={0.4}>
-          <CheckCard
-            title="Body building and Gain weight"
-            description="Enhance your physique and build muscle mass with targeted exercises and nutrition plans."
-            img={Icons.gym}
-            isChecked={responses.includes('gym')}
-            onPress={() => handleUserOnPress('gym')}
-          />
-        </AnimateView>
-        <CheckCard
-          img={Icons.running1}
-          isChecked={responses.includes('running')}
-          title="Running"
-          description="Improve your cardiovascular health and endurance through running and jogging."
-          onPress={() => handleUserOnPress('running')}
-        />
-
-        <AnimateView order={0.4}>
-          <CheckCard
-            img={Icons.nutrition1}
-            title="Best diet Recommadation"
-            description="Receive personalized dietary advice to meet your fitness goals and maintain a healthy lifestyle."
-            isChecked={responses.includes('nutrition')}
-            onPress={() => handleUserOnPress('nutrition')}
-          />
-        </AnimateView>
+        {interestData.map((interest, index) => (
+          <AnimateView key={interest.type} order={index * 0.4}>
+            <CheckCard
+              title={interest.title}
+              description={interest.description}
+              img={interest.img}
+              isChecked={responses.includes(interest.type as ResponseType)}
+              onPress={() => handleUserOnPress(interest.type as ResponseType)}
+            />
+          </AnimateView>
+        ))}
       </View>
     </Base>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    alignItems: 'flex-start',
-    paddingVertical: 15,
-    paddingHorizontal: 20,
-    gap: 20,
-  },
-});

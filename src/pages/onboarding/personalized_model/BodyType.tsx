@@ -1,21 +1,20 @@
 import React, {useState} from 'react';
-import {StyleSheet, View} from 'react-native';
+import {View} from 'react-native';
 import {Base} from './base';
 import {Label, LabelVarient} from '@models/label';
 import {Icons} from '@assets/register';
-
 import {AnimateView} from '@models/animation';
-
 import {useNavigation} from '@react-navigation/native';
 import {Navigation} from '@common/type';
 import CheckCard from '@models/CheckCard/CheckCard';
+import {LocalStoreKeys} from '@core/data-types';
+import {setLocalData} from '@core/utils';
+import {BaseStyles} from './BaseStyles';
 type BodyType = 'skinny' | 'normal' | 'obese' | 'overweight';
+
 export const BodyType = () => {
   const navigation = useNavigation<Navigation>();
   const navigationBack = useNavigation();
-  const goNext = () => {
-    navigation.navigate('Interest');
-  };
 
   const goBack = () => {
     navigationBack.goBack();
@@ -29,14 +28,18 @@ export const BodyType = () => {
       setResponse(value);
     }
   };
+  const goNext = async () => {
+    setLocalData(LocalStoreKeys.BodyType, response);
+    navigation.navigate('TargetBodyType');
+  };
 
   return (
     <Base
       canGoNext={response !== undefined}
-      goNext={() => {}}
+      goNext={goNext}
       goPrevious={goBack}
       progress={20}>
-      <View style={styles.container}>
+      <View style={BaseStyles.container}>
         <Label
           varient={LabelVarient.H2.Roboto}
           title={'Please Choose your Body Type'}
@@ -86,12 +89,3 @@ export const BodyType = () => {
     </Base>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    alignItems: 'flex-start',
-    paddingVertical: 15,
-    paddingHorizontal: 20,
-    gap: 20,
-  },
-});

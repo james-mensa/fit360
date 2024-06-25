@@ -29,7 +29,7 @@ export const Gender = () => {
   return (
     <Base canGoNext={gender !== undefined} goNext={goNext}>
       <View style={styles.container}>
-        <Label varient={LabelVarient.H3_Bold.extra} title={'Gender'} />
+        <Label varient={LabelVarient.H2.Roboto} title={'Gender'} />
         <AvaterComponent
           img={Icons.female_avater}
           isChecked={gender === 'female'}

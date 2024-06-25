@@ -19,4 +19,10 @@ export const Icons = {
   obese1: require('./icons/obese1.png'),
   skinny: require('./icons/skinny1.png'),
   normal_weight: require('./icons/normal1.png'),
+  normal_body: require('./icons/normal_body.png'),
+  skinny_1: require('./icons/skinny_3.png'),
+  bulk_1: require('./icons/bulk.png'),
+  cut: require('./icons/body_cut.png'),
+  muscular_body: require('./icons/musclar.png'),
+  bodyZone: require('./icons/bodyzones.png'),
 };
