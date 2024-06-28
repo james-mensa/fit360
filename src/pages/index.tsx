@@ -1,9 +1,10 @@
 import * as React from 'react';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
+
 import InitializationStage from './fit-plan';
 import {BaseTab} from '@models/bottomTab';
+import {createStackNavigator} from '@react-navigation/stack';
 
-const Stack = createNativeStackNavigator();
+const Stack = createStackNavigator();
 
 const UIScreens = () => {
   return (

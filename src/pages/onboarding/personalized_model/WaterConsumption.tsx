@@ -6,53 +6,45 @@ import {AnimateView} from '@models/animation';
 import {useNavigation} from '@react-navigation/native';
 import {Navigation} from '@common/type';
 
-import {SleepTimeTypes} from '@core/data-types';
+import {WaterConsumptionType, WaterConsumptionTypes} from '@core/data-types';
 import {BasicCheckCard} from '@models/CheckCard';
 import {UIResponsive} from '@layout/ResponsiveUi';
 import {BaseStyles} from './BaseStyles';
 
 const pageContent = {
-  title: 'How long do you sleep on a typical day?',
+  title: 'Please what is your daily water consumption like ?',
   Cards: [
     {
-      title: SleepTimeTypes.LessThenFourHours,
-      value: SleepTimeTypes.LessThenFourHours,
+      title: WaterConsumptionTypes.LessThenTwoGlasses,
+      value: WaterConsumptionTypes.LessThenTwoGlasses,
     },
     {
-      title: SleepTimeTypes.FourTwoSixHours,
-      value: SleepTimeTypes.FourTwoSixHours,
+      title: WaterConsumptionTypes.TwoToFiveGlasses,
+      value: WaterConsumptionTypes.SixToTenGlasses,
     },
     {
-      title: SleepTimeTypes.SixToSevenHours,
-      value: SleepTimeTypes.SixToSevenHours,
-    },
-    {
-      title: SleepTimeTypes.SevenToEightHours,
-      value: SleepTimeTypes.SevenToEightHours,
-    },
-    {
-      title: SleepTimeTypes.MoreThanEight,
-      value: SleepTimeTypes.MoreThanEight,
+      title: WaterConsumptionTypes.MoreThanTenGlasses,
+      value: WaterConsumptionTypes.MoreThanTenGlasses,
     },
   ],
 };
 
-export const SleepTime = () => {
+export const WaterConsumption = () => {
   const navigation = useNavigation<Navigation>();
   const navigationBack = useNavigation();
   const goNext = () => {
-    navigation.navigate('WaterConsumption');
+    navigation.navigate('BadHabits');
   };
 
   const goBack = () => {
     navigationBack.goBack();
   };
 
-  const [response, setResponse] = useState<SleepTimeTypes | undefined>(
+  const [response, setResponse] = useState<WaterConsumptionType | undefined>(
     undefined,
   );
 
-  const handleUserResponse = (value: SleepTimeTypes) => {
+  const handleUserResponse = (value: WaterConsumptionType) => {
     if (value === response) {
       setResponse(undefined);
     } else {
@@ -64,7 +56,7 @@ export const SleepTime = () => {
       canGoNext={response !== undefined}
       goNext={goNext}
       goPrevious={goBack}
-      progress={75}>
+      progress={90}>
       <View style={BaseStyles.container}>
         <Label
           varient={LabelVarient.H2.Roboto}

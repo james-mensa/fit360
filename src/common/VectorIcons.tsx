@@ -5,6 +5,8 @@ import FontAwesome from 'react-native-vector-icons/FontAwesome5';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import FeatherIcons from 'react-native-vector-icons/Feather';
+import {TouchableOpacity} from 'react-native';
+
 export const VectorIcons = {
   heart: (
     <FontAwesome
@@ -37,9 +39,26 @@ export const VectorIcons = {
   CheckedLight: (
     <FontAwesome
       name={'check'}
-      size={UIResponsive.Card.icon}
+      size={15}
       color={Palette.background.light[100]}
     />
+  ),
+  Checked: ({
+    size,
+    color,
+    onPress,
+  }: {
+    size: number;
+    color?: string;
+    onPress?: () => void;
+  }) => (
+    <TouchableOpacity onPress={onPress}>
+      <FontAwesome
+        name={'check'}
+        size={size ?? 15}
+        color={color ?? Palette.background.light[500]}
+      />
+    </TouchableOpacity>
   ),
 } as const;
 export type VectorIcons = (typeof VectorIcons)[keyof typeof VectorIcons];

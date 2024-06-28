@@ -5,3 +5,7 @@ export {TargetBodyZones} from './BodyTargetZones';
 export {Interest} from './interest';
 export {WorkOutPerWeek} from './WorkOutPerWeek';
 export {SleepTime} from './SleepTime';
+export {WaterConsumption} from './WaterConsumption';
+export {BadHabits} from './BadHabit';
+export {TermsAgreeMent} from './TermsAgreement';
+export {CreatingPersonalizedModel} from './CreatePersonalizedModel';

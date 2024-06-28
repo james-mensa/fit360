@@ -59,7 +59,7 @@ export const FitnessLevel = () => {
       canGoNext={response !== undefined}
       goNext={goNext}
       goPrevious={goBack}
-      progress={20}>
+      progress={60}>
       <View style={BaseStyles.container}>
         <Label
           varient={LabelVarient.H2.Roboto}

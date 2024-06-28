@@ -76,7 +76,7 @@ export const WorkOutPerWeek = () => {
       canGoNext={response !== undefined}
       goNext={goNext}
       goPrevious={goBack}
-      progress={20}>
+      progress={50}>
       <View style={BaseStyles.container}>
         <Label
           varient={LabelVarient.H2.Roboto}

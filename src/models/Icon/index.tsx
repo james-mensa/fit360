@@ -11,6 +11,7 @@ interface iconProps {
   height?: number;
   uri?: string;
   sx?: StyleSheetProperties;
+  resizeMode?: 'center' | 'cover' | 'contain' | 'stretch';
 }
 
 export const UImage: React.FC<iconProps> = ({
@@ -19,10 +20,12 @@ export const UImage: React.FC<iconProps> = ({
   sx,
   width,
   height,
+  resizeMode = 'contain',
 }) => {
   const customStyles = {
     width: width ?? 40,
     height: height ?? 40,
+    resizeMode: resizeMode,
   };
   return (
     <Image
@@ -35,6 +38,5 @@ export const UImage: React.FC<iconProps> = ({
 const style = StyleSheet.create({
   image: {
     borderRadius: 20,
-    resizeMode: 'contain',
   },
 });

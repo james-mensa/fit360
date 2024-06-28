@@ -6,6 +6,7 @@ import {
   GestureDetector,
   Gesture,
   Directions,
+  GestureHandlerRootView,
 } from 'react-native-gesture-handler';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 
@@ -64,51 +65,53 @@ export const OnBoardingUI: React.FC<onboardingProps> = ({
   return (
     <AnimetedView entering={FadeIn}>
       <ImageBackground source={data.icon} style={styles.container}>
-        <GestureDetector gesture={compose}>
-          <View style={styles.container}>
-            <View style={styles.topIcon}>
-              <TouchableOpacity>
-                <MaterialIcons
-                  name={'arrow-back-ios-new'}
-                  size={UIResponsive.Card.icon}
-                  color={Palette.ColorsFromImage.view1[100]}
-                />
-              </TouchableOpacity>
-            </View>
-            <View>
-              <View style={styles.center} />
-              <View style={styles.center}>
-                <View style={styles.bottomContainer}>
-                  <Animated.View
-                    entering={FadeInLeft.springify()
-                      .damping(10)
-                      .mass(1)
-                      .stiffness(50)
-                      .restDisplacementThreshold(0.1)
-                      .restSpeedThreshold(5)}
-                    exiting={FadeOut}>
-                    <Label
-                      varient={LabelVarient.H2_Bold.Roboto}
-                      title={data.title}
-                      color={Palette.text.light[100]}
-                    />
-                  </Animated.View>
-                  <Animated.View
-                    style={{width: UIResponsive.Body.width - 50}}
-                    entering={FadeIn.duration(500).easing(Easing.ease)}>
-                    <Label
-                      varient={LabelVarient.H3_Bold.small.extra}
-                      color={Palette.text.light[300]}
-                      title={data.details}
-                    />
-                  </Animated.View>
+        <GestureHandlerRootView style={{flex: 1}}>
+          <GestureDetector gesture={compose}>
+            <View style={styles.container}>
+              <View style={styles.topIcon}>
+                <TouchableOpacity>
+                  <MaterialIcons
+                    name={'arrow-back-ios-new'}
+                    size={UIResponsive.Card.icon}
+                    color={Palette.ColorsFromImage.view1[100]}
+                  />
+                </TouchableOpacity>
+              </View>
+              <View>
+                <View style={styles.center} />
+                <View style={styles.center}>
+                  <View style={styles.bottomContainer}>
+                    <Animated.View
+                      entering={FadeInLeft.springify()
+                        .damping(10)
+                        .mass(1)
+                        .stiffness(50)
+                        .restDisplacementThreshold(0.1)
+                        .restSpeedThreshold(5)}
+                      exiting={FadeOut}>
+                      <Label
+                        varient={LabelVarient.H2_Bold.Roboto}
+                        title={data.title}
+                        color={Palette.text.light[100]}
+                      />
+                    </Animated.View>
+                    <Animated.View
+                      style={{width: UIResponsive.Body.width - 50}}
+                      entering={FadeIn.duration(500).easing(Easing.ease)}>
+                      <Label
+                        varient={LabelVarient.H3_Bold.small.extra}
+                        color={Palette.text.light[300]}
+                        title={data.details}
+                      />
+                    </Animated.View>
 
-                  <Controls step={step} handleNext={handleNext} />
+                    <Controls step={step} handleNext={handleNext} />
+                  </View>
                 </View>
               </View>
             </View>
-          </View>
-        </GestureDetector>
+          </GestureDetector>
+        </GestureHandlerRootView>
       </ImageBackground>
     </AnimetedView>
   );

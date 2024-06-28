@@ -4,7 +4,7 @@ import {UIResponsive} from '@layout/ResponsiveUi';
 import {Label, LabelVarient} from '@models/label';
 import {Palette} from '@styles/BaseColor';
 import {Image, ImageSourcePropType, StyleSheet, View} from 'react-native';
-import {TouchableOpacity} from 'react-native-gesture-handler';
+import {TouchableOpacity} from 'react-native';
 
 interface CardProps {
   img: ImageSourcePropType | undefined;
@@ -121,8 +121,8 @@ const styles = StyleSheet.create({
     objectFit: 'contain',
   },
   check: {
-    width: 35,
-    height: 35,
+    width: 30,
+    height: 30,
     borderRadius: 20,
     backgroundColor: Palette.ColorsFromImage.view1[100],
     borderWidth: 1,

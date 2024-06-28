@@ -70,7 +70,7 @@ export const PageBase: React.FC<PageBaseProps> = ({topNav, children}) => {
               )}
               {topNav.right.profile && (
                 <TouchableOpacity>
-                  <UImage source={Icons.profile} />
+                  <UImage source={Icons.profile} resizeMode="cover" />
                 </TouchableOpacity>
               )}
             </View>

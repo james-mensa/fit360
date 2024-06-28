@@ -25,4 +25,8 @@ export const Icons = {
   cut: require('./icons/body_cut.png'),
   muscular_body: require('./icons/musclar.png'),
   bodyZone: require('./icons/bodyzones.png'),
+  bad_habit: require('./icons/bad_habits.png'),
+  terms_aggreement: require('./icons/term-aggreement-preview.png'),
+  plan_1: require('./icons/plan_1.png'),
+  plan_2: require('./icons/plan_2.png'),
 };

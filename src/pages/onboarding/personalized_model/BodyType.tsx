@@ -38,7 +38,7 @@ export const BodyType = () => {
       canGoNext={response !== undefined}
       goNext={goNext}
       goPrevious={goBack}
-      progress={20}>
+      progress={30}>
       <View style={BaseStyles.container}>
         <Label
           varient={LabelVarient.H2.Roboto}
@@ -46,7 +46,7 @@ export const BodyType = () => {
           align="center"
           fullWidth
         />
-        <AnimateView order={0.4}>
+        <AnimateView order={0.2}>
           <CheckCard
             title="Skinny"
             height={70}
@@ -65,7 +65,7 @@ export const BodyType = () => {
           onPress={() => handleUserResponse('overweight')}
         />
 
-        <AnimateView order={0.4}>
+        <AnimateView order={0.3}>
           <CheckCard
             height={80}
             img={Icons.obese1}

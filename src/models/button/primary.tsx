@@ -2,8 +2,8 @@ import {UIResponsive} from '@layout/ResponsiveUi';
 import {Label, LabelVarient} from '@models/label';
 import {Palette} from '@styles/BaseColor';
 import React from 'react';
+import {TouchableOpacity} from 'react-native';
 import {ActivityIndicator, StyleSheet, View} from 'react-native';
-import {TouchableOpacity} from 'react-native-gesture-handler';
 interface buttonProps {
   size?: 'large' | 'small' | 'medium';
   theme: buttonTheme;

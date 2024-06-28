@@ -3,12 +3,12 @@ import {ImageBackground, StyleSheet, View} from 'react-native';
 import {Base} from './base';
 import {Label, LabelVarient} from '@models/label';
 import {Icons} from '@assets/register';
-import {TouchableOpacity} from 'react-native-gesture-handler';
 import {Palette} from '@styles/BaseColor';
 import {ImageSourcePropType} from 'react-native';
 import {AnimateView} from '@models/animation';
 import {useNavigation} from '@react-navigation/native';
 import {Navigation} from '@common/type';
+import { TouchableOpacity } from 'react-native';
 
 export const Gender = () => {
   const navigation = useNavigation<Navigation>();
@@ -27,7 +27,7 @@ export const Gender = () => {
   };
 
   return (
-    <Base canGoNext={gender !== undefined} goNext={goNext}>
+    <Base canGoNext={gender !== undefined} goNext={goNext} progress={10}>
       <View style={styles.container}>
         <Label varient={LabelVarient.H2.Roboto} title={'Gender'} />
         <AvaterComponent
@@ -37,14 +37,14 @@ export const Gender = () => {
         />
         <Label varient={LabelVarient.H3_Bold.extra} title={'Female'} />
 
-        <AnimateView order={0.4}>
+        <AnimateView order={0.2}>
           <AvaterComponent
             img={Icons.male_avater}
             isChecked={gender === 'male'}
             onPress={() => handleAvatarPress('male')}
           />
         </AnimateView>
-        <AnimateView order={0.5}>
+        <AnimateView order={0.3}>
           <Label varient={LabelVarient.H3_Bold.extra} title={'Male'} />
         </AnimateView>
       </View>

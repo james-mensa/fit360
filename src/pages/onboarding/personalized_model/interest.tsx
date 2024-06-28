@@ -38,7 +38,7 @@ export const Interest = () => {
   const navigation = useNavigation<Navigation>();
   const navigationBack = useNavigation();
   const goBack = () => {
-    navigationBack.goBack();
+    navigation.navigate('Gender');
   };
   const goNext = () => {
     navigation.navigate('BodyType');
@@ -66,7 +66,7 @@ export const Interest = () => {
           fullWidth
         />
         {interestData.map((interest, index) => (
-          <AnimateView key={interest.type} order={index * 0.4}>
+          <AnimateView key={interest.type} order={index * 0.1}>
             <CheckCard
               title={interest.title}
               description={interest.description}

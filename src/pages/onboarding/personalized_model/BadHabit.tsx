@@ -6,7 +6,7 @@ import {AnimateView} from '@models/animation';
 import {useNavigation} from '@react-navigation/native';
 import {Navigation} from '@common/type';
 
-import {BodyZonesTypes} from '@core/data-types';
+import {BadHabitsType, BadHabitsTypes} from '@core/data-types';
 import {BasicCheckCard} from '@models/CheckCard';
 import {UImage} from '@models/Icon';
 import {Icons} from '@assets/register';
@@ -14,61 +14,65 @@ import {UIResponsive} from '@layout/ResponsiveUi';
 import {BaseStyles} from './BaseStyles';
 
 const pageContent = {
-  title: 'Please Choose your target Body Zones',
+  title: 'Please Choose your  common daily bad eating habits',
   Cards: [
     {
-      title: 'Neck',
-      name: BodyZonesTypes.Neck,
+      title: BadHabitsTypes.Burgers,
+      name: BadHabitsTypes.Burgers,
     },
-    {title: 'Arms', name: BodyZonesTypes.Forearms},
+    {title: BadHabitsTypes.EnergyDrinks, name: BadHabitsTypes.EnergyDrinks},
     {
-      title: 'Belly',
+      title: BadHabitsTypes.FriedChicken,
 
-      name: BodyZonesTypes.Belly,
+      name: BadHabitsTypes.FriedChicken,
     },
     {
-      title: 'Back',
+      title: BadHabitsTypes.IceCream,
 
-      name: BodyZonesTypes.Back,
+      name: BadHabitsTypes.IceCream,
     },
     {
-      title: 'Legs',
-      name: BodyZonesTypes.Legs,
+      title: BadHabitsTypes.Noodles,
+      name: BadHabitsTypes.Noodles,
     },
 
     {
-      title: 'Pecs',
-      name: BodyZonesTypes.Pecs,
+      title: BadHabitsTypes.Pepperoni,
+      name: BadHabitsTypes.Pepperoni,
     },
     {
-      title: 'Inner and Front thighs',
-      name: BodyZonesTypes.Thighs,
+      title: BadHabitsTypes.Sausages,
+      name: BadHabitsTypes.Sausages,
     },
     {
-      title: 'Triceps',
-      name: BodyZonesTypes.Triceps,
+      title: BadHabitsTypes.Soda,
+      name: BadHabitsTypes.Soda,
     },
     {
-      title: 'Biceps',
-      name: BodyZonesTypes.Biceps,
+      title: BadHabitsTypes.SweetenedFruitJuices,
+      name: BadHabitsTypes.SweetenedFruitJuices,
+    },
+    {
+      title: BadHabitsTypes.SweetenedYogurt,
+      name: BadHabitsTypes.SweetenedYogurt,
     },
   ],
 };
 
-export const TargetBodyZones = () => {
+export const BadHabits = () => {
   const navigation = useNavigation<Navigation>();
   const navigationBack = useNavigation();
   const goNext = () => {
-    navigation.navigate('WorkOutPerWeek');
+    navigation.navigate('TermsAgreeMent');
   };
 
   const goBack = () => {
     navigationBack.goBack();
   };
 
-  const [responses, setResponse] = useState<BodyZonesTypes[]>([]);
+  const [responses, setResponse] = useState<BadHabitsType[]>([]);
 
-  const handleUserOnPress = (value: BodyZonesTypes) => {
+  const handleUserOnPress = (value: BadHabitsType) => {
     if (responses.includes(value)) {
       setResponse(responses.filter(item => item !== value));
     } else {
@@ -81,7 +85,7 @@ export const TargetBodyZones = () => {
       canGoNext={responses.length > 0}
       goNext={goNext}
       goPrevious={goBack}
-      progress={45}>
+      progress={93}>
       <View style={BaseStyles.container}>
         <Label
           varient={LabelVarient.H2.Roboto}
@@ -90,7 +94,7 @@ export const TargetBodyZones = () => {
           fullWidth
         />
         <UImage
-          source={Icons.bodyZone}
+          source={Icons.bad_habit}
           width={UIResponsive.Body.width - 50}
           height={UIResponsive.Body.height / 2.3}
         />

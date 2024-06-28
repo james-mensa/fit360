@@ -37,7 +37,7 @@ export const GetStarted = () => {
               varient={LabelVarient.H1_Bold_Large.TInterface}
             />
           </AnimateView>
-          <AnimateView order={0.3}>
+          <AnimateView order={0.1}>
             <Image style={styles.init_title_icon} source={Icons.pressUp1} />
           </AnimateView>
         </View>
@@ -46,14 +46,14 @@ export const GetStarted = () => {
           <View style={styles.label_small}>
             <Label title={'YOUR'} varient={LabelVarient.H3_Bold.extra} />
           </View>
-          <AnimateView order={0.4}>
+          <AnimateView order={0.2}>
             <Label
               title={'NEW DAY'}
               varient={LabelVarient.H1_Bold.TInterface}
             />
           </AnimateView>
         </View>
-        <AnimateView order={0.7}>
+        <AnimateView order={0.3}>
           <View style={styles.label}>
             <Label
               title={'WITH'}
@@ -66,14 +66,14 @@ export const GetStarted = () => {
           </View>
         </AnimateView>
       </View>
-      <AnimateView order={0.8}>
+      <AnimateView order={0.4}>
         <PrimaryButton
           title="Getting Started"
           theme={ButtonThemes.Default}
           onPress={getStartOnClick}
         />
       </AnimateView>
-      <AnimateView order={2}>
+      <AnimateView order={0.5}>
         <PrimaryButton
           title="I already have an account"
           theme={ButtonThemes.Primary}

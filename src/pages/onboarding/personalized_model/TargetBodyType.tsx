@@ -81,7 +81,7 @@ export const TargetBodyType = () => {
       canGoNext={response !== undefined}
       goNext={goNext}
       goPrevious={goBack}
-      progress={20}>
+      progress={40}>
       <View style={BaseStyles.container}>
         <Label
           varient={LabelVarient.H2.Roboto}
@@ -90,7 +90,7 @@ export const TargetBodyType = () => {
           fullWidth
         />
         {pageContent.Cards.map((card, index) => (
-          <AnimateView key={index} order={index * 0.4}>
+          <AnimateView key={index} order={index * 0.2}>
             <CheckCard
               title={card.title}
               height={70}

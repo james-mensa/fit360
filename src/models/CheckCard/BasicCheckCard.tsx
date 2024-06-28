@@ -2,7 +2,7 @@ import React from 'react';
 import {Label, LabelVarient} from '@models/label';
 import {Palette} from '@styles/BaseColor';
 import {StyleSheet, View} from 'react-native';
-import {TouchableOpacity} from 'react-native-gesture-handler';
+import {TouchableOpacity} from 'react-native';
 
 interface CardProps {
   isChecked: boolean;

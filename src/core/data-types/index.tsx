@@ -78,3 +78,27 @@ export const SleepTimeTypes = {
 } as const;
 export type SleepTimeTypes =
   (typeof SleepTimeTypes)[keyof typeof SleepTimeTypes];
+
+export const WaterConsumptionTypes = {
+  LessThenTwoGlasses: 'Less than 2 glasses of water',
+  TwoToFiveGlasses: '2 to 5  glasses of water',
+  SixToTenGlasses: '6 to 10 glasses of water',
+  MoreThanTenGlasses: 'more than 10 glasses of water',
+} as const;
+export type WaterConsumptionType =
+  (typeof WaterConsumptionTypes)[keyof typeof WaterConsumptionTypes];
+
+export const BadHabitsTypes = {
+  Soda: 'Soda',
+  SweetenedFruitJuices: 'Sweetened fruit juices',
+  EnergyDrinks: 'Energy drinks',
+  FriedChicken: 'Fried chicken',
+  IceCream: 'Ice cream',
+  Pepperoni: 'Pepperoni',
+  SweetenedYogurt: 'Sweetened yogurt',
+  Noodles: 'Noodles',
+  Sausages: 'Sausages',
+  Burgers: 'Burgers',
+} as const;
+export type BadHabitsType =
+  (typeof BadHabitsTypes)[keyof typeof BadHabitsTypes];

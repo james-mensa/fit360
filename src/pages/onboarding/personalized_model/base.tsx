@@ -1,9 +1,14 @@
 import {UIResponsive} from '@layout/ResponsiveUi';
-import {AnimateView} from '@models/animation';
 import {ButtonThemes, PrimaryButton} from '@models/button';
 import {Palette} from '@styles/BaseColor';
-import React from 'react';
+import React, {useEffect} from 'react';
 import {StyleSheet, View} from 'react-native';
+import Animated, {
+  useSharedValue,
+  useAnimatedStyle,
+  withTiming,
+} from 'react-native-reanimated';
+
 interface BaseProps {
   children: React.ReactNode;
   goPrevious?: () => void;
@@ -19,19 +24,26 @@ export const Base: React.FC<BaseProps> = ({
   progress = 10,
   canGoNext,
 }) => {
+  const progressValue = useSharedValue(progress);
+
+  useEffect(() => {
+    progressValue.value = withTiming(progress, {duration: 500});
+  }, [progress, progressValue]);
+
+  const animatedProgressStyle = useAnimatedStyle(() => ({
+    width: `${progressValue.value}%`,
+  }));
+
   return (
     <View style={styles.container}>
       <View style={styles.progress_bar_container}>
-        <AnimateView order={0.3}>
+        <View>
           <View style={styles.progress_bar}>
-            <View
-              style={{
-                ...styles.progress_indicator,
-                width: `${progress}%`,
-              }}
+            <Animated.View
+              style={[styles.progress_indicator, animatedProgressStyle]}
             />
           </View>
-        </AnimateView>
+        </View>
       </View>
       {children}
       <View
@@ -40,25 +52,25 @@ export const Base: React.FC<BaseProps> = ({
           justifyContent: goPrevious ? 'space-between' : 'center',
         }}>
         {goPrevious && (
-          <AnimateView order={0.5}>
+          <View>
             <PrimaryButton
               theme={ButtonThemes.Primary}
               size="small"
               title="Previous"
               onPress={goPrevious}
             />
-          </AnimateView>
+          </View>
         )}
         {goNext && (
-          <AnimateView order={0.6}>
+          <View>
             <PrimaryButton
               theme={ButtonThemes.Primary}
-              size="small"
+              size={goPrevious ? 'small' : 'large'}
               title="Next"
               onPress={goNext}
               active={canGoNext}
             />
-          </AnimateView>
+          </View>
         )}
       </View>
     </View>
@@ -92,7 +104,6 @@ const styles = StyleSheet.create({
   bottom_container: {
     width: UIResponsive.Body.width,
     height: 80,
-
     flexDirection: 'row',
     alignItems: 'center',
     paddingHorizontal: 30,
