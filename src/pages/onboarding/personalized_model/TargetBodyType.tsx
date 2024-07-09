@@ -1,13 +1,13 @@
 import React, {useEffect, useState} from 'react';
 import {View} from 'react-native';
 import {Base} from './base';
-import {Label, LabelVarient} from '@models/label';
+import {Label, LabelVariant} from '@models/label';
 import {Icons} from '@assets/register';
 import {AnimateView} from '@models/animation';
 import {useNavigation} from '@react-navigation/native';
 import {Navigation} from '@common/type';
 import CheckCard from '@models/CheckCard/CheckCard';
-import {getLocalResponse} from '@core/utils';
+import {getLocalResponse, setLocalData} from '@core/utils';
 import {LocalStoreKeys} from '@core/data-types';
 import {BaseStyles} from './BaseStyles';
 type BodyType = 'skinny' | 'cut' | 'bulk' | 'normal' | 'bulk' | 'mascular man';
@@ -45,9 +45,6 @@ const pageContent = {
 
 export const TargetBodyType = () => {
   const navigation = useNavigation<Navigation>();
-  const goNext = () => {
-    navigation.navigate('BodyTargetZones');
-  };
 
   const goBack = () => {
     navigation.goBack();
@@ -76,6 +73,20 @@ export const TargetBodyType = () => {
     setResponse(value === response ? undefined : value);
   };
 
+  const goNext = () => {
+    setLocalData(LocalStoreKeys.BodyTarget, response);
+    navigation.navigate('BodyTargetZones');
+  };
+  useEffect(() => {
+    const localResponse = async () => {
+      const previousResponse = await getLocalResponse(
+        LocalStoreKeys.BodyTarget,
+      );
+      setResponse(previousResponse as BodyType);
+    };
+    localResponse();
+  }, []);
+
   return (
     <Base
       canGoNext={response !== undefined}
@@ -84,7 +95,7 @@ export const TargetBodyType = () => {
       progress={40}>
       <View style={BaseStyles.container}>
         <Label
-          varient={LabelVarient.H2.Roboto}
+          variant={LabelVariant.H2.Roboto}
           title={pageContent.title}
           align="center"
           fullWidth

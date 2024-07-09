@@ -60,5 +60,30 @@ export const VectorIcons = {
       />
     </TouchableOpacity>
   ),
+  Minus: ({color, onPress}: {color?: string; onPress?: () => void}) => (
+    <TouchableOpacity onPress={onPress}>
+      <FeatherIcons
+        name={'minus'}
+        size={15}
+        color={color ?? Palette.background.light[500]}
+      />
+    </TouchableOpacity>
+  ),
+  Plus: ({color, onPress}: {color?: string; onPress?: () => void}) => (
+    <TouchableOpacity onPress={onPress}>
+      <FeatherIcons
+        name={'plus'}
+        size={15}
+        color={color ?? Palette.background.light[500]}
+      />
+    </TouchableOpacity>
+  ),
+  Upload: (
+    <FeatherIcons
+      name="upload-cloud"
+      size={30}
+      color={Palette.background.light[500]}
+    />
+  ),
 } as const;
 export type VectorIcons = (typeof VectorIcons)[keyof typeof VectorIcons];

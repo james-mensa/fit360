@@ -1,17 +1,23 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {View} from 'react-native';
 import {Base} from './base';
-import {Label, LabelVarient} from '@models/label';
+import {Label, LabelVariant} from '@models/label';
 import {AnimateView} from '@models/animation';
 import {useNavigation} from '@react-navigation/native';
 import {Navigation} from '@common/type';
 
-import {BodyZonesTypes} from '@core/data-types';
+import {BodyZonesTypes, LocalStoreKeys} from '@core/data-types';
 import {BasicCheckCard} from '@models/CheckCard';
 import {UImage} from '@models/Icon';
 import {Icons} from '@assets/register';
 import {UIResponsive} from '@layout/ResponsiveUi';
 import {BaseStyles} from './BaseStyles';
+import {
+  convertArrayToString,
+  convertStringToArray,
+  getLocalResponse,
+  setLocalData,
+} from '@core/utils';
 
 const pageContent = {
   title: 'Please Choose your target Body Zones',
@@ -58,9 +64,6 @@ const pageContent = {
 export const TargetBodyZones = () => {
   const navigation = useNavigation<Navigation>();
   const navigationBack = useNavigation();
-  const goNext = () => {
-    navigation.navigate('WorkOutPerWeek');
-  };
 
   const goBack = () => {
     navigationBack.goBack();
@@ -76,6 +79,26 @@ export const TargetBodyZones = () => {
     }
   };
 
+  const goNext = () => {
+    setLocalData(
+      LocalStoreKeys.TargetBodyZones,
+      convertArrayToString(responses),
+    );
+    navigation.navigate('WorkOutPerWeek');
+  };
+  useEffect(() => {
+    const localResponse = async () => {
+      const previousResponse = await getLocalResponse(
+        LocalStoreKeys.TargetBodyZones,
+      );
+      if (previousResponse) {
+        const stringToArray = convertStringToArray(previousResponse);
+        setResponse(stringToArray as BodyZonesTypes[]);
+      }
+    };
+    localResponse();
+  }, []);
+
   return (
     <Base
       canGoNext={responses.length > 0}
@@ -84,7 +107,7 @@ export const TargetBodyZones = () => {
       progress={45}>
       <View style={BaseStyles.container}>
         <Label
-          varient={LabelVarient.H2.Roboto}
+          variant={LabelVariant.H2.Roboto}
           title={pageContent.title}
           align="center"
           fullWidth

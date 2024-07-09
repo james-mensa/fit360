@@ -4,7 +4,7 @@ import {UIResponsive} from '@layout/ResponsiveUi';
 import {AnimateView} from '@models/animation';
 import RotationView from '@models/animation/rotate';
 import {ButtonThemes, PrimaryButton} from '@models/button';
-import {Label, LabelVarient} from '@models/label';
+import {Label, LabelVariant} from '@models/label';
 import {useNavigation} from '@react-navigation/native';
 import {Palette} from '@styles/BaseColor';
 import React from 'react';
@@ -34,7 +34,7 @@ export const GetStarted = () => {
           <AnimateView order={0}>
             <Label
               title={'START'}
-              varient={LabelVarient.H1_Bold_Large.TInterface}
+              variant={LabelVariant.H1_Bold_Large.TInterface}
             />
           </AnimateView>
           <AnimateView order={0.1}>
@@ -44,12 +44,12 @@ export const GetStarted = () => {
 
         <View style={styles.label}>
           <View style={styles.label_small}>
-            <Label title={'YOUR'} varient={LabelVarient.H3_Bold.extra} />
+            <Label title={'YOUR'} variant={LabelVariant.H3_Bold.extra} />
           </View>
           <AnimateView order={0.2}>
             <Label
               title={'NEW DAY'}
-              varient={LabelVarient.H1_Bold.TInterface}
+              variant={LabelVariant.H1_Bold.TInterface}
             />
           </AnimateView>
         </View>
@@ -57,11 +57,11 @@ export const GetStarted = () => {
           <View style={styles.label}>
             <Label
               title={'WITH'}
-              varient={LabelVarient.H1_Bold_Large.TInterface}
+              variant={LabelVariant.H1_Bold_Large.TInterface}
             />
             <Label
               title={'US'}
-              varient={LabelVarient.H1_Bold_Large.TInterface}
+              variant={LabelVariant.H1_Bold_Large.TInterface}
             />
           </View>
         </AnimateView>

@@ -1,7 +1,7 @@
 import React from 'react';
 import {VectorIcons} from '@common/VectorIcons';
 import {UIResponsive} from '@layout/ResponsiveUi';
-import {Label, LabelVarient} from '@models/label';
+import {Label, LabelVariant} from '@models/label';
 import {Palette} from '@styles/BaseColor';
 import {Image, ImageSourcePropType, StyleSheet, View} from 'react-native';
 import {TouchableOpacity} from 'react-native';
@@ -47,14 +47,14 @@ const CheckCard: React.FC<CardProps> = ({
                   isChecked ? Palette.text.light[100] : Palette.text.light[100]
                 }
                 title={title}
-                varient={LabelVarient.H3_Bold.extra}
+                variant={LabelVariant.H3_Bold.extra}
               />
               <Label
                 color={
                   isChecked ? Palette.text.light[100] : Palette.text.light[100]
                 }
                 title={description}
-                varient={LabelVarient.Sub3.Roboto}
+                variant={LabelVariant.Sub3.Roboto}
               />
             </View>
           ) : (
@@ -63,7 +63,7 @@ const CheckCard: React.FC<CardProps> = ({
                 isChecked ? Palette.text.light[100] : Palette.text.light[100]
               }
               title={title}
-              varient={LabelVarient.H3_Bold.extra}
+              variant={LabelVariant.H3_Bold.extra}
             />
           )}
 

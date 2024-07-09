@@ -1,21 +1,26 @@
 import Realm from 'realm';
-import {useEffect, useState} from 'react';
 import {createRealmContext} from '@realm/react';
 //
 //
-import {PersonalizeModel} from './models';
+import {PersonalizeModel, LoginModel} from './models';
 import {
   LocalStore as __LocalStore,
   PersonalizeModelTy as __PersonalizeModelTy,
+  LoginModelTy as __LoginModelTy,
 } from './types';
-import {updatePersonalizeModel, getPersonalizeModel} from './common';
+import {
+  updatePersonalizeModel,
+  getPersonalizeModel,
+  getLoginCredentials,
+  userLogin,
+} from './common';
 
 export type PersonalizeModelTy = __PersonalizeModelTy;
-
+export type LoginModelTy = __LoginModelTy;
 export type LocalStore = __LocalStore;
 
 const realmConfig: Realm.Configuration = {
-  schema: [PersonalizeModel],
+  schema: [PersonalizeModel, LoginModel],
   schemaVersion: 1,
 };
 
@@ -26,12 +31,18 @@ function useLocalStore(): LocalStore {
   const realm = useRealm();
 
   return {
-    getResourceCache: (keyParam: {uriHash?: string; uri?: string}) =>
+    getPersonalizedModel: (keyParam: {user_id?: string}) =>
       getPersonalizeModel(realm, keyParam),
-    setResourceCache: (
-      keyParam: {uriHash?: string; uri?: string},
-      webData: Omit<PersonalizeModelTy, 'uriHash' | 'uri'>,
-    ) => updatePersonalizeModel(realm, keyParam, webData),
+    setPersonalizedModel: (
+      keyParam: {user_id?: string},
+      Data: Omit<PersonalizeModelTy, 'user_id'>,
+    ) => updatePersonalizeModel(realm, keyParam, Data),
+
+    getLoginData: () => getLoginCredentials(realm),
+    setLoginData: (
+      keyParam: {user_id?: string},
+      Data: Omit<LoginModelTy, 'user_id'>,
+    ) => userLogin(realm, keyParam, Data),
   };
 }
 

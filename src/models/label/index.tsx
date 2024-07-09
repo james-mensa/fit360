@@ -30,14 +30,20 @@ type fontWeight =
   | undefined;
 interface labelProps {
   title?: string | number;
-  varient: labelTheme;
+  variant: labelTheme;
   color?: string;
   align?: 'center' | 'left' | 'right';
   fullWidth?: boolean;
 }
+/**
+ * Label component to display text with specified styles.
+ *
+ * @param {LabelProps} props - The properties for the Label component.
+ * @returns {JSX.Element} - The rendered Label component.
+ */
 export const Label: React.FC<labelProps> = ({
   title,
-  varient,
+  variant,
   color,
   align = 'left',
   fullWidth = false,
@@ -45,10 +51,10 @@ export const Label: React.FC<labelProps> = ({
   return (
     <Text
       style={{
-        color: color ?? varient.color,
-        fontFamily: varient.fontFamily,
-        fontSize: varient.fontSize,
-        fontWeight: varient.fontWeight,
+        color: color ?? variant.color,
+        fontFamily: variant.fontFamily,
+        fontSize: variant.fontSize,
+        fontWeight: variant.fontWeight,
         textAlign: align,
         width: fullWidth ? '100%' : undefined,
       }}>
@@ -63,7 +69,7 @@ interface labelTheme {
   fontSize: number;
   fontWeight?: fontWeight;
 }
-export const LabelVarient = {
+export const LabelVariant = {
   H1: {
     TInterface: {
       color: Palette.text.dark[200],
@@ -185,6 +191,7 @@ export const LabelVarient = {
       color: Palette.text.dark[200],
       fontFamily: FONTS.ExtraBold,
       fontSize: 15,
+      fontWeight: 700,
     },
   },
   Sub2: {
@@ -225,4 +232,4 @@ export const LabelVarient = {
   },
 } as const;
 
-export type LabelVarient = (typeof LabelVarient)[keyof typeof LabelVarient];
+export type LabelVariant = (typeof LabelVariant)[keyof typeof LabelVariant];

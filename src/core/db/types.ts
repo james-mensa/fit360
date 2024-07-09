@@ -1,25 +1,30 @@
 import Realm from 'realm';
 //
 //
-import {PersonalizeModel} from './models';
+import {LoginModel, PersonalizeModel} from './models';
 
 export const ModelNames = {
   PersonalizeModel: 'PersonalizeModel',
+  LoginModel: 'LoginModel',
 };
 
 export type PersonalizeModelTy = Omit<PersonalizeModel, keyof Realm.Object>;
-export type PersonalizeModelMetaDataTy = Omit<
-  PersonalizeModelTy,
-  'uri' | 'base64Data'
->;
+export type PersonalizeModelMetaDataTy = Omit<PersonalizeModelTy, 'user_id'>;
+
+export type LoginModelTy = Omit<LoginModel, keyof Realm.Object>;
+export type LoginModelDataTy = Omit<LoginModelTy, 'user_id'>;
 
 export interface LocalStore {
-  getResourceCache: (keyParam: {
-    uriHash?: string;
-    uri?: string;
+  getPersonalizedModel: (keyParam: {
+    user_id?: string;
   }) => PersonalizeModelTy | undefined;
-  setResourceCache: (
-    keyParam: {uriHash?: string; uri?: string},
-    webData: Omit<PersonalizeModelTy, 'uriHash' | 'uri'>,
+  getLoginData: () => LoginModelTy | undefined;
+  setPersonalizedModel: (
+    keyParam: {user_id?: string},
+    Data: Omit<PersonalizeModelTy, 'user_id'>,
+  ) => PersonalizeModelTy;
+  setLoginData: (
+    keyParam: {user_id?: string},
+    Data: Omit<LoginModelTy, 'user_id'>,
   ) => PersonalizeModelTy;
 }

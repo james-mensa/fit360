@@ -1,7 +1,7 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {StyleSheet, View} from 'react-native';
 
-import {Label, LabelVarient} from '@models/label';
+import {Label, LabelVariant} from '@models/label';
 
 import {AnimateView} from '@models/animation';
 import {useNavigation} from '@react-navigation/native';
@@ -12,7 +12,8 @@ import {Palette} from '@styles/BaseColor';
 import CircularProgress from '@models/progress/CircularProgress';
 import {UImage} from '@models/Icon';
 import {Icons} from '@assets/register';
-
+import personalizeDataToDb from '@core/useHooks/PersonalizeDataToDB';
+import {useLocalStore} from '@core/db';
 export const CreatingPersonalizedModel = () => {
   const navigation = useNavigation<Navigation>();
 
@@ -21,6 +22,18 @@ export const CreatingPersonalizedModel = () => {
       navigation.navigate('PageBase');
     }, 100);
   };
+
+  const LocalStore = useLocalStore();
+  useEffect(() => {
+    async function saveToStorage() {
+      const MetaData = await personalizeDataToDb();
+      LocalStore.setPersonalizedModel(
+        {user_id: MetaData.user_id},
+        MetaData.data,
+      );
+    }
+    saveToStorage();
+  }, []);
   return (
     <View style={styles.container}>
       <UImage
@@ -32,7 +45,7 @@ export const CreatingPersonalizedModel = () => {
         <CircularProgress handler={goNext} />
       </AnimateView>
       <Label
-        varient={LabelVarient.Sub1.Extra}
+        variant={LabelVariant.Sub1.Extra}
         title={content.title}
         align="center"
       />

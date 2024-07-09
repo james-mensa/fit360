@@ -9,3 +9,4 @@ export {WaterConsumption} from './WaterConsumption';
 export {BadHabits} from './BadHabit';
 export {TermsAgreeMent} from './TermsAgreement';
 export {CreatingPersonalizedModel} from './CreatePersonalizedModel';
+export {UserDetails} from './UserDetails';

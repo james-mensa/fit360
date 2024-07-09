@@ -1,15 +1,16 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {View} from 'react-native';
 import {Base} from './base';
-import {Label, LabelVarient} from '@models/label';
+import {Label, LabelVariant} from '@models/label';
 import {AnimateView} from '@models/animation';
 import {useNavigation} from '@react-navigation/native';
 import {Navigation} from '@common/type';
 
-import {WorkingHourResponseType} from '@core/data-types';
+import {LocalStoreKeys, WorkingHourResponseType} from '@core/data-types';
 import {BasicCheckCard} from '@models/CheckCard';
 import {UIResponsive} from '@layout/ResponsiveUi';
 import {BaseStyles} from './BaseStyles';
+import {getLocalResponse, setLocalData} from '@core/utils';
 
 const pageContent = {
   title: 'Does your work require you to sit for long hours?',
@@ -30,9 +31,6 @@ const pageContent = {
 export const WorkingHour = () => {
   const navigation = useNavigation<Navigation>();
   const navigationBack = useNavigation();
-  const goNext = () => {
-    navigation.navigate('WalkingTime');
-  };
 
   const goBack = () => {
     navigationBack.goBack();
@@ -49,6 +47,20 @@ export const WorkingHour = () => {
       setResponse(value);
     }
   };
+
+  const goNext = () => {
+    setLocalData(LocalStoreKeys.SitLongHours, response);
+    navigation.navigate('WalkingTime');
+  };
+  useEffect(() => {
+    const localResponse = async () => {
+      const previousResponse = await getLocalResponse(
+        LocalStoreKeys.SitLongHours,
+      );
+      setResponse(previousResponse as WorkingHourResponseType);
+    };
+    localResponse();
+  }, []);
   return (
     <Base
       canGoNext={response !== undefined}
@@ -57,7 +69,7 @@ export const WorkingHour = () => {
       progress={65}>
       <View style={BaseStyles.container}>
         <Label
-          varient={LabelVarient.H2.Roboto}
+          variant={LabelVariant.H2.Roboto}
           title={pageContent.title}
           align="center"
           fullWidth

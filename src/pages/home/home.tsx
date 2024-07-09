@@ -3,7 +3,7 @@ import {PageBase} from '@models/pageBase';
 import {UIResponsive} from '@layout/ResponsiveUi';
 import React from 'react';
 import {Palette} from '@styles/BaseColor';
-import {Label, LabelVarient} from '@models/label';
+import {Label, LabelVariant} from '@models/label';
 import {PrimaryCard} from '@models/cards/primary';
 import {Icons} from '@assets/register';
 import {StatusCard} from '@models/cards/status';
@@ -22,7 +22,7 @@ export const Home = () => {
           <View style={styles.layout}>
             <Label
               title="Today Challenges"
-              varient={LabelVarient.H3_Bold.large.TInterface}
+              variant={LabelVariant.H3_Bold.large.TInterface}
             />
             <PrimaryCard
               title="Upper body"
@@ -39,7 +39,7 @@ export const Home = () => {
             />
             <Label
               title="All Workouts"
-              varient={LabelVarient.H3_Bold.small.Roboto}
+              variant={LabelVariant.H3_Bold.small.Roboto}
             />
             <TabNav
               items={[
@@ -54,9 +54,8 @@ export const Home = () => {
                       directionalLockEnabled={true}
                       alwaysBounceVertical={false}>
                       {statusData.map((item, index) => (
-                        <>
+                        <View key={index} style={styles.status_container}>
                           <StatusCard
-                            key={index}
                             title={item.title}
                             rate={item.rate}
                             unit={item.unit}
@@ -65,7 +64,7 @@ export const Home = () => {
                             status={item.status}
                           />
                           {index !== statusData.length - 1 && <GapHorizontal />}
-                        </>
+                        </View>
                       ))}
                     </ScrollView>
                   ),
@@ -130,5 +129,10 @@ const styles = StyleSheet.create({
   horizontalScrollContainer: {
     gap: 10,
     flexDirection: 'row',
+  },
+  status_container: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
   },
 });

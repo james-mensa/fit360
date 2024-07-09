@@ -16,6 +16,7 @@ import Gender, {
   TargetBodyType,
   TargetBodyZones,
   TermsAgreeMent,
+  UserDetails,
   WaterConsumption,
   WorkOutPerWeek,
 } from './personalized_model';
@@ -113,6 +114,11 @@ const Onboarding = () => {
         name="BadHabits"
         options={navigateWithNoAnimation}
         component={BadHabits}
+      />
+      <Stack.Screen
+        name="UserDetail"
+        options={navigateWithNoAnimation}
+        component={UserDetails}
       />
       <Stack.Screen
         name="TermsAgreeMent"

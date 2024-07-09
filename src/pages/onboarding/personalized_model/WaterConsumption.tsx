@@ -1,15 +1,20 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {View} from 'react-native';
 import {Base} from './base';
-import {Label, LabelVarient} from '@models/label';
+import {Label, LabelVariant} from '@models/label';
 import {AnimateView} from '@models/animation';
 import {useNavigation} from '@react-navigation/native';
 import {Navigation} from '@common/type';
 
-import {WaterConsumptionType, WaterConsumptionTypes} from '@core/data-types';
+import {
+  LocalStoreKeys,
+  WaterConsumptionType,
+  WaterConsumptionTypes,
+} from '@core/data-types';
 import {BasicCheckCard} from '@models/CheckCard';
 import {UIResponsive} from '@layout/ResponsiveUi';
 import {BaseStyles} from './BaseStyles';
+import {getLocalResponse, setLocalData} from '@core/utils';
 
 const pageContent = {
   title: 'Please what is your daily water consumption like ?',
@@ -32,9 +37,6 @@ const pageContent = {
 export const WaterConsumption = () => {
   const navigation = useNavigation<Navigation>();
   const navigationBack = useNavigation();
-  const goNext = () => {
-    navigation.navigate('BadHabits');
-  };
 
   const goBack = () => {
     navigationBack.goBack();
@@ -51,6 +53,20 @@ export const WaterConsumption = () => {
       setResponse(value);
     }
   };
+  const goNext = () => {
+    setLocalData(LocalStoreKeys.WaterConsumption, response);
+    navigation.navigate('BadHabits');
+  };
+  useEffect(() => {
+    const localResponse = async () => {
+      const previousResponse = await getLocalResponse(
+        LocalStoreKeys.WaterConsumption,
+      );
+      setResponse(previousResponse as WaterConsumptionType);
+    };
+    localResponse();
+  }, []);
+
   return (
     <Base
       canGoNext={response !== undefined}
@@ -59,7 +75,7 @@ export const WaterConsumption = () => {
       progress={90}>
       <View style={BaseStyles.container}>
         <Label
-          varient={LabelVarient.H2.Roboto}
+          variant={LabelVariant.H2.Roboto}
           title={pageContent.title}
           align="center"
           fullWidth

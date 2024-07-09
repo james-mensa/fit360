@@ -1,15 +1,16 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {View} from 'react-native';
 import {Base} from './base';
-import {Label, LabelVarient} from '@models/label';
+import {Label, LabelVariant} from '@models/label';
 import {AnimateView} from '@models/animation';
 import {useNavigation} from '@react-navigation/native';
 import {Navigation} from '@common/type';
 
-import {FitnessLevelTypes} from '@core/data-types';
+import {FitnessLevelTypes, LocalStoreKeys} from '@core/data-types';
 import {BasicCheckCard} from '@models/CheckCard';
 import {UIResponsive} from '@layout/ResponsiveUi';
 import {BaseStyles} from './BaseStyles';
+import {getLocalResponse, setLocalData} from '@core/utils';
 
 const pageContent = {
   title: 'Please Select your fitness level',
@@ -35,9 +36,6 @@ const pageContent = {
 export const FitnessLevel = () => {
   const navigation = useNavigation<Navigation>();
   const navigationBack = useNavigation();
-  const goNext = () => {
-    navigation.navigate('WorkingHour');
-  };
 
   const goBack = () => {
     navigationBack.goBack();
@@ -54,6 +52,20 @@ export const FitnessLevel = () => {
       setResponse(value);
     }
   };
+
+  const goNext = () => {
+    setLocalData(LocalStoreKeys.FitnessLevel, response);
+    navigation.navigate('WorkingHour');
+  };
+  useEffect(() => {
+    const localResponse = async () => {
+      const previousResponse = await getLocalResponse(
+        LocalStoreKeys.FitnessLevel,
+      );
+      setResponse(previousResponse as FitnessLevelTypes);
+    };
+    localResponse();
+  }, []);
   return (
     <Base
       canGoNext={response !== undefined}
@@ -62,7 +74,7 @@ export const FitnessLevel = () => {
       progress={60}>
       <View style={BaseStyles.container}>
         <Label
-          varient={LabelVarient.H2.Roboto}
+          variant={LabelVariant.H2.Roboto}
           title={pageContent.title}
           align="center"
           fullWidth

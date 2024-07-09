@@ -1,15 +1,16 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {View} from 'react-native';
 import {Base} from './base';
-import {Label, LabelVarient} from '@models/label';
+import {Label, LabelVariant} from '@models/label';
 import {AnimateView} from '@models/animation';
 import {useNavigation} from '@react-navigation/native';
 import {Navigation} from '@common/type';
 
-import {WorkOutPerWeekType} from '@core/data-types';
+import {LocalStoreKeys, WorkOutPerWeekType} from '@core/data-types';
 import {BasicCheckCard} from '@models/CheckCard';
 import {UIResponsive} from '@layout/ResponsiveUi';
 import {BaseStyles} from './BaseStyles';
+import {getLocalResponse, setLocalData} from '@core/utils';
 
 const pageContent = {
   title: 'How many times do you workout per week ?',
@@ -52,9 +53,6 @@ const pageContent = {
 export const WorkOutPerWeek = () => {
   const navigation = useNavigation<Navigation>();
   const navigationBack = useNavigation();
-  const goNext = () => {
-    navigation.navigate('FitnessLevel');
-  };
 
   const goBack = () => {
     navigationBack.goBack();
@@ -71,6 +69,21 @@ export const WorkOutPerWeek = () => {
       setResponse(value);
     }
   };
+
+  const goNext = () => {
+    setLocalData(LocalStoreKeys.WorkoutTimePerWeek, response);
+    navigation.navigate('FitnessLevel');
+  };
+  useEffect(() => {
+    const localResponse = async () => {
+      const previousResponse = await getLocalResponse(
+        LocalStoreKeys.WorkoutTimePerWeek,
+      );
+      setResponse(previousResponse as WorkOutPerWeekType);
+    };
+    localResponse();
+  }, []);
+
   return (
     <Base
       canGoNext={response !== undefined}
@@ -79,7 +92,7 @@ export const WorkOutPerWeek = () => {
       progress={50}>
       <View style={BaseStyles.container}>
         <Label
-          varient={LabelVarient.H2.Roboto}
+          variant={LabelVariant.H2.Roboto}
           title={pageContent.title}
           align="center"
           fullWidth

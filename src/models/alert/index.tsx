@@ -1,4 +1,4 @@
-import {Label, LabelVarient} from '@models/label';
+import {Label, LabelVariant} from '@models/label';
 import {Palette} from '@styles/BaseColor';
 import React from 'react';
 import {StyleSheet, View} from 'react-native';
@@ -10,7 +10,7 @@ export const Status = ({title, bg}: {title: string; bg?: string}) => {
         ...styles.container,
         backgroundColor: bg ?? Palette.background.light[150],
       }}>
-      <Label title={title} varient={LabelVarient.Sub4.Roboto} />
+      <Label title={title} variant={LabelVariant.Sub4.Roboto} />
     </View>
   );
 };

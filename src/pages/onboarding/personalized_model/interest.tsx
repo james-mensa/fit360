@@ -1,13 +1,20 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {View} from 'react-native';
 import {Base} from './base';
-import {Label, LabelVarient} from '@models/label';
+import {Label, LabelVariant} from '@models/label';
 import {Icons} from '@assets/register';
 import {AnimateView} from '@models/animation';
 import {useNavigation} from '@react-navigation/native';
 import {Navigation} from '@common/type';
 import CheckCard from '@models/CheckCard/CheckCard';
 import {BaseStyles} from './BaseStyles';
+import {
+  convertArrayToString,
+  convertStringToArray,
+  getLocalResponse,
+  setLocalData,
+} from '@core/utils';
+import {LocalStoreKeys} from '@core/data-types';
 
 type ResponseType = 'gym' | 'nutrition' | 'running';
 
@@ -36,13 +43,10 @@ const interestData = [
 
 export const Interest = () => {
   const navigation = useNavigation<Navigation>();
-  const navigationBack = useNavigation();
   const goBack = () => {
     navigation.navigate('Gender');
   };
-  const goNext = () => {
-    navigation.navigate('BodyType');
-  };
+
   const [responses, setResponses] = useState<ResponseType[]>([]);
   const handleUserOnPress = (value: ResponseType) => {
     if (responses.includes(value)) {
@@ -52,6 +56,26 @@ export const Interest = () => {
     }
   };
 
+  const goNext = () => {
+    setLocalData(
+      LocalStoreKeys.FitnessIntrest,
+      convertArrayToString(responses),
+    );
+    navigation.navigate('BodyType');
+  };
+  useEffect(() => {
+    const localResponse = async () => {
+      const previousResponse = await getLocalResponse(
+        LocalStoreKeys.FitnessIntrest,
+      );
+      if (previousResponse) {
+        const stringToArray = convertStringToArray(previousResponse);
+        setResponses(stringToArray as ResponseType[]);
+      }
+    };
+    localResponse();
+  }, []);
+
   return (
     <Base
       canGoNext={responses.length > 0}
@@ -60,7 +84,7 @@ export const Interest = () => {
       goPrevious={goBack}>
       <View style={BaseStyles.container}>
         <Label
-          varient={LabelVarient.H2.Roboto}
+          variant={LabelVariant.H2.Roboto}
           title={LABEL_TEXT}
           align="center"
           fullWidth

@@ -1,14 +1,14 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {View} from 'react-native';
 import {Base} from './base';
-import {Label, LabelVarient} from '@models/label';
+import {Label, LabelVariant} from '@models/label';
 import {Icons} from '@assets/register';
 import {AnimateView} from '@models/animation';
 import {useNavigation} from '@react-navigation/native';
 import {Navigation} from '@common/type';
 import CheckCard from '@models/CheckCard/CheckCard';
 import {LocalStoreKeys} from '@core/data-types';
-import {setLocalData} from '@core/utils';
+import {getLocalResponse, setLocalData} from '@core/utils';
 import {BaseStyles} from './BaseStyles';
 type BodyType = 'skinny' | 'normal' | 'obese' | 'overweight';
 
@@ -33,6 +33,14 @@ export const BodyType = () => {
     navigation.navigate('TargetBodyType');
   };
 
+  useEffect(() => {
+    const localResponse = async () => {
+      const previousResponse = await getLocalResponse(LocalStoreKeys.BodyType);
+      setResponse(previousResponse as BodyType);
+    };
+    localResponse();
+  }, []);
+
   return (
     <Base
       canGoNext={response !== undefined}
@@ -41,7 +49,7 @@ export const BodyType = () => {
       progress={30}>
       <View style={BaseStyles.container}>
         <Label
-          varient={LabelVarient.H2.Roboto}
+          variant={LabelVariant.H2.Roboto}
           title={'Please Choose your Body Type'}
           align="center"
           fullWidth

@@ -96,7 +96,7 @@ const styles = StyleSheet.create({
   },
   progress_bar: {
     backgroundColor: Palette.background.light[200],
-    height: 8,
+    height: 3,
     width: UIResponsive.Body.width - 50,
     borderRadius: 50,
     overflow: 'hidden',

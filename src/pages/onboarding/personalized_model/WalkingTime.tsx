@@ -1,15 +1,16 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {View} from 'react-native';
 import {Base} from './base';
-import {Label, LabelVarient} from '@models/label';
+import {Label, LabelVariant} from '@models/label';
 import {AnimateView} from '@models/animation';
 import {useNavigation} from '@react-navigation/native';
 import {Navigation} from '@common/type';
 
-import {WalkingDurationType} from '@core/data-types';
+import {LocalStoreKeys, WalkingDurationType} from '@core/data-types';
 import {BasicCheckCard} from '@models/CheckCard';
 import {UIResponsive} from '@layout/ResponsiveUi';
 import {BaseStyles} from './BaseStyles';
+import {getLocalResponse, setLocalData} from '@core/utils';
 
 const pageContent = {
   title: 'How long do you spend walking a day?',
@@ -45,9 +46,6 @@ const pageContent = {
 export const WalkingTime = () => {
   const navigation = useNavigation<Navigation>();
   const navigationBack = useNavigation();
-  const goNext = () => {
-    navigation.navigate('SleepTime');
-  };
 
   const goBack = () => {
     navigationBack.goBack();
@@ -64,6 +62,20 @@ export const WalkingTime = () => {
       setResponse(value);
     }
   };
+
+  const goNext = () => {
+    setLocalData(LocalStoreKeys.WalkingTimePerDay, response);
+    navigation.navigate('SleepTime');
+  };
+  useEffect(() => {
+    const localResponse = async () => {
+      const previousResponse = await getLocalResponse(
+        LocalStoreKeys.WalkingTimePerDay,
+      );
+      setResponse(previousResponse as WalkingDurationType);
+    };
+    localResponse();
+  }, []);
   return (
     <Base
       canGoNext={response !== undefined}
@@ -72,7 +84,7 @@ export const WalkingTime = () => {
       progress={70}>
       <View style={BaseStyles.container}>
         <Label
-          varient={LabelVarient.H2.Roboto}
+          variant={LabelVariant.H2.Roboto}
           title={pageContent.title}
           align="center"
           fullWidth

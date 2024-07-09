@@ -8,10 +8,24 @@ export interface StatusProps {
 }
 
 export const LocalStoreKeys = {
+  Gender: 'gender',
+  FitnessIntrest: 'fitness_intrest',
   BodyType: 'body_type',
+  BodyTarget: 'body_target',
+  TargetBodyZones: 'target_body_zones',
+  WorkoutTimePerWeek: 'workout_time_per_week',
+  FitnessLevel: 'fitness_level',
+  SitLongHours: 'sit_longer_hours',
+  WalkingTimePerDay: 'walking_time_per_day',
+  SleepTimePerDay: 'sleep_time_per_day',
+  WaterConsumption: 'water_consumption',
+  Badhabits: 'bad_habits',
+  UserName: 'user_name',
+  UserImage: 'user_image',
+  UserAge: 'user_age',
 } as const;
 
-export type LocalStoreKeys =
+export type LocalStoreKey =
   (typeof LocalStoreKeys)[keyof typeof LocalStoreKeys];
 
 export const BodyZonesTypes = {

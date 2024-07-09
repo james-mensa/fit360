@@ -2,7 +2,7 @@ import {VectorIcons} from '@common/VectorIcons';
 import {UIResponsive} from '@layout/ResponsiveUi';
 import {Status} from '@models/alert';
 import {GapHorizontal} from '@models/gap';
-import {Label, LabelVarient} from '@models/label';
+import {Label, LabelVariant} from '@models/label';
 import {Palette} from '@styles/BaseColor';
 import React from 'react';
 import {StyleSheet, TouchableOpacity, View} from 'react-native';
@@ -33,14 +33,14 @@ export const StatusCard: React.FC<statusCardProps> = ({
     <TouchableOpacity onPress={onPress}>
       <View style={{...styles.container, backgroundColor: bg}}>
         <View style={styles.top}>
-          <Label varient={LabelVarient.H3_Bold.small.extra} title={title} />
+          <Label variant={LabelVariant.H3_Bold.small.extra} title={title} />
           {icon}
         </View>
         <View style={styles.center}>
           <View style={styles.centerRow}>
-            <Label varient={LabelVarient.H2.Roboto} title={rate} />
+            <Label variant={LabelVariant.H2.Roboto} title={rate} />
             <GapHorizontal w={2} />
-            <Label varient={LabelVarient.Sub3.Roboto} title={unit} />
+            <Label variant={LabelVariant.Sub3.Roboto} title={unit} />
           </View>
         </View>
         <View style={styles.bottom}>

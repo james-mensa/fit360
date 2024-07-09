@@ -1,5 +1,5 @@
 import React from 'react';
-import {Label, LabelVarient} from '@models/label';
+import {Label, LabelVariant} from '@models/label';
 import {Palette} from '@styles/BaseColor';
 import {StyleSheet, View} from 'react-native';
 import {TouchableOpacity} from 'react-native';
@@ -48,12 +48,12 @@ const BasicCheckCard: React.FC<CardProps> = ({
         <Label
           color={isChecked ? Palette.text.light[100] : Palette.text.light[100]}
           title={title}
-          varient={LabelVarient.Sub1.TInterface}
+          variant={LabelVariant.Sub1.TInterface}
         />
         <Label
           color={isChecked ? Palette.text.light[500] : Palette.text.light[500]}
           title={description}
-          varient={LabelVarient.Sub4.TInterface}
+          variant={LabelVariant.Sub4.TInterface}
         />
       </View>
     </TouchableOpacity>

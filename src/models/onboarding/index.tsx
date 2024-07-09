@@ -1,5 +1,5 @@
 import {UIResponsive} from '@layout/ResponsiveUi';
-import {Label, LabelVarient} from '@models/label';
+import {Label, LabelVariant} from '@models/label';
 import {Palette} from '@styles/BaseColor';
 import React from 'react';
 import {
@@ -90,7 +90,7 @@ export const OnBoardingUI: React.FC<onboardingProps> = ({
                         .restSpeedThreshold(5)}
                       exiting={FadeOut}>
                       <Label
-                        varient={LabelVarient.H2_Bold.Roboto}
+                        variant={LabelVariant.H2_Bold.Roboto}
                         title={data.title}
                         color={Palette.text.light[100]}
                       />
@@ -99,7 +99,7 @@ export const OnBoardingUI: React.FC<onboardingProps> = ({
                       style={{width: UIResponsive.Body.width - 50}}
                       entering={FadeIn.duration(500).easing(Easing.ease)}>
                       <Label
-                        varient={LabelVarient.H3_Bold.small.extra}
+                        variant={LabelVariant.H3_Bold.small.extra}
                         color={Palette.text.light[300]}
                         title={data.details}
                       />
@@ -141,7 +141,7 @@ const Controls = ({
         entering={FadeInLeft.duration(500).easing(Easing.ease)}
         exiting={FadeInLeft.duration(500).easing(Easing.ease)}>
         <TouchableOpacity style={styles.button} onPress={handleNext}>
-          <Label title={'Next'} varient={LabelVarient.H3_Bold.small.extra} />
+          <Label title={'Next'} variant={LabelVariant.H3_Bold.small.extra} />
         </TouchableOpacity>
       </Animated.View>
     </View>

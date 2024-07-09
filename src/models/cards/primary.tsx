@@ -5,7 +5,7 @@ import {Palette} from '@styles/BaseColor';
 import Feather from 'react-native-vector-icons/Feather';
 import React from 'react';
 import {ImageBackground, StyleSheet, View} from 'react-native';
-import {Label, LabelVarient} from '@models/label';
+import {Label, LabelVariant} from '@models/label';
 import {PrimaryCardProps} from './common';
 
 export const PrimaryCard: React.FC<PrimaryCardProps> = ({
@@ -25,12 +25,12 @@ export const PrimaryCard: React.FC<PrimaryCardProps> = ({
           <View style={styles.labelBox}>
             <View style={styles.labelCard}>
               <Label
-                varient={LabelVarient.H3_Bold.small.Roboto}
+                variant={LabelVariant.H3_Bold.small.Roboto}
                 title={title}
                 color={Palette.text.light[800]}
               />
               <Label
-                varient={LabelVarient.H3_Bold.extra}
+                variant={LabelVariant.H3_Bold.extra}
                 title={description ?? ''}
                 color={Palette.text.light[100]}
               />

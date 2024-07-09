@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {StyleSheet, View} from 'react-native';
 import {Base} from './base';
-import {Label, LabelVarient} from '@models/label';
+import {Label, LabelVariant} from '@models/label';
 import {Icons} from '@assets/register';
 
 import {AnimateView} from '@models/animation';
@@ -14,10 +14,13 @@ import {Palette} from '@styles/BaseColor';
 
 export const TermsAgreeMent = () => {
   const navigation = useNavigation<Navigation>();
+  const [check, setCheck] = useState<boolean>(false);
   const goNext = () => {
-    navigation.navigate('CreatingPersonalizedModel');
+    if (check) {
+      navigation.navigate('CreatingPersonalizedModel');
+    }
   };
-  const [check, setCheck] = useState<boolean>();
+
   const handleOnPress = () => {
     setCheck(!check);
   };
@@ -31,7 +34,7 @@ export const TermsAgreeMent = () => {
             height={UIResponsive.Body.height / 2.3}
           />
           <Label
-            varient={LabelVarient.H2_Bold.TInterface}
+            variant={LabelVariant.H2_Bold.TInterface}
             title={content.title}
             align="center"
           />
@@ -73,7 +76,7 @@ const RenderTermsCheckBox = ({
         style={{
           width: UIResponsive.Body.width - UIResponsive.Body.width * (1 / 4),
         }}>
-        <Label title={content.detail} varient={LabelVarient.H3_Bold.extra} />
+        <Label title={content.detail} variant={LabelVariant.H3_Bold.extra} />
       </View>
     </View>
   );

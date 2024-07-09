@@ -1,5 +1,5 @@
 import {GapHorizontal} from '@models/gap';
-import {Label, LabelVarient} from '@models/label';
+import {Label, LabelVariant} from '@models/label';
 import {ScrollViewHorizontal} from '@models/ScrollView';
 import {Palette} from '@styles/BaseColor';
 import React, {useState} from 'react';
@@ -34,7 +34,7 @@ export const TabNav: React.FC<TabProps> = ({items}) => {
                   activePage === index && styles.activeItem,
                 ]}>
                 <Label
-                  varient={LabelVarient.Sub2.TInterface}
+                  variant={LabelVariant.Sub2.TInterface}
                   color={
                     activePage === index
                       ? Palette.text.light[300]

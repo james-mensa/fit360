@@ -1,5 +1,5 @@
 import {UIResponsive} from '@layout/ResponsiveUi';
-import {Label, LabelVarient} from '@models/label';
+import {Label, LabelVariant} from '@models/label';
 import {Palette} from '@styles/BaseColor';
 import React from 'react';
 import {TouchableOpacity} from 'react-native';
@@ -72,7 +72,7 @@ const PrimaryButton: React.FC<buttonProps> = ({
           <ActivityIndicator color={theme.loaderColor} />
         ) : (
           <Label
-            varient={LabelVarient.H3_Bold.small.extra}
+            variant={LabelVariant.H3_Bold.small.extra}
             color={theme?.color}
             title={title}
           />

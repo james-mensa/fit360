@@ -1,92 +1,105 @@
 import Realm, {UpdateMode} from 'realm';
 
-import {PersonalizeModel} from './models';
-import {ModelNames, PersonalizeModelTy} from './types';
+import {LoginModel, PersonalizeModel} from './models';
+import {LoginModelTy, ModelNames, PersonalizeModelTy} from './types';
 
-// add/update web/remote resources
+// add/update personalized model
+
 export function updatePersonalizeModel(
   realm: Realm,
-  {uriHash, uri}: {uriHash?: string; uri?: string},
-  webData: Omit<PersonalizeModelTy, 'uriHash' | 'uri'>,
+  {user_id}: {user_id?: string},
+  profile: Omit<PersonalizeModelTy, 'user_id'>,
 ) {
-  const __uriHash = uriHash;
-
-  const {base64Data} = webData;
-  const metaData = {...webData, base64Data: undefined};
+  const _user_id = user_id;
+  const {user_name} = profile;
+  const personlizedData = {...profile};
 
   console.log(
-    '\nUpdate Web Resource Cache :  ',
+    '\n Profile created for  :  ',
     '\nURI         :',
-    uri,
-    '[',
-    uriHash,
-    ',',
-    __uriHash,
-    ']',
-    '\nbase64Data  :',
-    `${base64Data.substring(0, 8)}....${base64Data.substring(
-      base64Data.length - 8,
-    )}`,
-    '\nmetaData    :',
-    JSON.stringify(metaData),
+    _user_id,
+    `${user_name}`,
   );
 
   realm.write(() => {
     realm.create<PersonalizeModel>(
       ModelNames.PersonalizeModel,
       {
-        ...metaData,
-        uriHash: __uriHash,
-        uri,
-        base64Data,
+        ...personlizedData,
+        user_id: _user_id,
       },
       UpdateMode.Modified,
     );
   });
-
+  console.log('workss', user_id);
   const dbRecord = getPersonalizeModel(realm, {
-    uriHash,
-    uri,
+    user_id: _user_id,
   }) as PersonalizeModelTy;
 
-  console.log('\nUpdate Web Resource Cache :  DB Record');
+  console.log('\nUpdate Personalized data :  DB Record');
 
   return dbRecord;
 }
 
 export function getPersonalizeModel(
   realm: Realm,
-  {uriHash}: {uriHash?: string; uri?: string},
+  {user_id}: {user_id?: string},
 ) {
-  const __uriHash = uriHash;
+  const __user_id = user_id;
   return realm
     .objects<PersonalizeModel>(ModelNames.PersonalizeModel)
-    .filtered('uriHash == $0', __uriHash)
+    .filtered('user_id == $0', __user_id)
     .at(0);
 }
-// export function getWallet(realm: Realm, address: string) {
-//     return realm.objects<Wallet>(ModelNames.Wallet).filtered('masked == $0 && address == $1', false, address).at(0)
-// }
-// export function addContact(realm: Realm, address: string, data: Omit<ContactTy, 'address' | 'masked'>) {
 
-//     console_logs("\nAdd Contact : ",
-//         "\nAddress : ", address,
-//         "\nData :", JSON.stringify(data, null, "  ")
-//     );
+export function userLogin(
+  realm: Realm,
+  {user_id}: {user_id?: string},
+  profile: Omit<LoginModelTy, 'user_id'>,
+) {
+  const _user_id = user_id;
+  const {user_name} = profile;
+  const personlizedData = {...profile};
 
-//     realm.write(
-//         () => {
-//             realm.create<Contact>(
-//                 ModelNames.Contact,
-//                 {
-//                     ...data,
-//                     address,
-//                     masked: false,
-//                 },
-//                 UpdateMode.Modified
-//             );
-//         }
-//     );
+  console.log(
+    '\n Profile created for  :  ',
+    '\nURI         :',
+    _user_id,
+    `${user_name}`,
+    JSON.stringify(personlizedData),
+  );
 
-//     return realm.objects<Contact>(ModelNames.Contact).filtered('masked == $0 && address == $1', false, address).at(0);
-// }
+  try {
+    realm.write(() => {
+      realm.create<LoginModel>(
+        ModelNames.LoginModel,
+        {
+          ...personlizedData,
+          user_id: _user_id,
+        },
+        UpdateMode.Modified,
+      );
+    });
+
+    const dbRecord = getPersonalizeModel(realm, {
+      user_id: _user_id,
+    }) as PersonalizeModelTy;
+
+    console.log('\nUpdate Personalized data :  DB Record');
+
+    return dbRecord;
+  } catch (err) {
+    console.log('Error in userLogin', err);
+    throw err;
+  }
+}
+
+export function getLoginCredentials(realm: Realm) {
+  return realm.objects<LoginModel>(ModelNames.LoginModel).at(0);
+}
+
+export function generateUserId(user_name: string): string {
+  const randomNumber = Math.floor(10000 + Math.random() * 90000);
+  const userId = `${user_name}${randomNumber}`;
+  return userId;
+}

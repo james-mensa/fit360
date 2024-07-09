@@ -1,23 +1,24 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {ImageBackground, StyleSheet, View} from 'react-native';
 import {Base} from './base';
-import {Label, LabelVarient} from '@models/label';
+import {Label, LabelVariant} from '@models/label';
 import {Icons} from '@assets/register';
 import {Palette} from '@styles/BaseColor';
 import {ImageSourcePropType} from 'react-native';
 import {AnimateView} from '@models/animation';
 import {useNavigation} from '@react-navigation/native';
 import {Navigation} from '@common/type';
-import { TouchableOpacity } from 'react-native';
+import {TouchableOpacity} from 'react-native';
+import {getLocalResponse, setLocalData} from '@core/utils';
+import {LocalStoreKeys} from '@core/data-types';
 
 export const Gender = () => {
   const navigation = useNavigation<Navigation>();
-  const goNext = () => {
-    navigation.navigate('Interest');
-  };
+
   const [gender, setGender] = useState<'female' | 'male' | undefined>(
     undefined,
   );
+
   const handleAvatarPress = (avatar: 'female' | 'male') => {
     if (avatar === gender) {
       setGender(undefined);
@@ -25,17 +26,27 @@ export const Gender = () => {
       setGender(avatar);
     }
   };
-
+  const goNext = () => {
+    setLocalData(LocalStoreKeys.Gender, gender);
+    navigation.navigate('Interest');
+  };
+  useEffect(() => {
+    const localResponse = async () => {
+      const previousResponse = await getLocalResponse(LocalStoreKeys.Gender);
+      setGender(previousResponse as 'female' | 'male');
+    };
+    localResponse();
+  }, []);
   return (
     <Base canGoNext={gender !== undefined} goNext={goNext} progress={10}>
       <View style={styles.container}>
-        <Label varient={LabelVarient.H2.Roboto} title={'Gender'} />
+        <Label variant={LabelVariant.H2.Roboto} title={'Gender'} />
         <AvaterComponent
           img={Icons.female_avater}
           isChecked={gender === 'female'}
           onPress={() => handleAvatarPress('female')}
         />
-        <Label varient={LabelVarient.H3_Bold.extra} title={'Female'} />
+        <Label variant={LabelVariant.H3_Bold.extra} title={'Female'} />
 
         <AnimateView order={0.2}>
           <AvaterComponent
@@ -45,7 +56,7 @@ export const Gender = () => {
           />
         </AnimateView>
         <AnimateView order={0.3}>
-          <Label varient={LabelVarient.H3_Bold.extra} title={'Male'} />
+          <Label variant={LabelVariant.H3_Bold.extra} title={'Male'} />
         </AnimateView>
       </View>
     </Base>

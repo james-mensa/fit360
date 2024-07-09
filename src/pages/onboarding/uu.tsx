@@ -1,7 +1,7 @@
 import {Icons} from '@assets/register';
 import {VectorIcons} from '@common/VectorIcons';
 import {UIResponsive} from '@layout/ResponsiveUi';
-import {Label, LabelVarient} from '@models/label';
+import {Label, LabelVariant} from '@models/label';
 import {Palette} from '@styles/BaseColor';
 import React, {useState} from 'react';
 import {
@@ -51,12 +51,12 @@ export const Onboarding = () => {
         <View style={styles.center}>
           <View style={styles.bottomContainer}>
             <Label
-              varient={LabelVarient.H2_Bold.Roboto}
+              variant={LabelVariant.H2_Bold.Roboto}
               title={steps[step].title}
               color={Palette.text.light[100]}
             />
             <Label
-              varient={LabelVarient.H3_Bold.small.extra}
+              variant={LabelVariant.H3_Bold.small.extra}
               color={Palette.text.light[300]}
               title={steps[step].details}
             />
@@ -89,7 +89,7 @@ const Controls = ({
         />
       </View>
       <TouchableOpacity style={styles.button} onPress={handleNext}>
-        <Label title={'Next'} varient={LabelVarient.H3_Bold.small.extra} />
+        <Label title={'Next'} variant={LabelVariant.H3_Bold.small.extra} />
       </TouchableOpacity>
     </View>
   );
