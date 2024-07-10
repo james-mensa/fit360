@@ -6,7 +6,6 @@ import {PermissionsAndroid} from 'react-native';
 const getLocalResponse = async (key: LocalStoreKey) => {
   try {
     const value = await AsyncStorageService.retrieveData(key);
-  
     return value;
   } catch (error) {}
 };

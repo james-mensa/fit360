@@ -81,7 +81,7 @@ const styles = StyleSheet.create({
   },
   card: {
     ...UIResponsive.Card.primary,
-    height: 180,
+    height: UIResponsive.Card.primary.height,
     flexDirection: 'row',
     alignItems: 'flex-end',
   },

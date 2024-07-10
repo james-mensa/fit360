@@ -35,54 +35,65 @@ export const Base: React.FC<BaseProps> = ({
   }));
 
   return (
-    <View style={styles.container}>
-      <View style={styles.progress_bar_container}>
-        <View>
-          <View style={styles.progress_bar}>
-            <Animated.View
-              style={[styles.progress_indicator, animatedProgressStyle]}
-            />
+    <View style={styles.layout}>
+      <View style={styles.container}>
+        <View style={styles.progress_bar_container}>
+          <View>
+            <View style={styles.progress_bar}>
+              <Animated.View
+                style={[styles.progress_indicator, animatedProgressStyle]}
+              />
+            </View>
           </View>
         </View>
-      </View>
-      {children}
-      <View
-        style={{
-          ...styles.bottom_container,
-          justifyContent: goPrevious ? 'space-between' : 'center',
-        }}>
-        {goPrevious && (
-          <View>
-            <PrimaryButton
-              theme={ButtonThemes.Primary}
-              size="small"
-              title="Previous"
-              onPress={goPrevious}
-            />
-          </View>
-        )}
-        {goNext && (
-          <View>
-            <PrimaryButton
-              theme={ButtonThemes.Primary}
-              size={goPrevious ? 'small' : 'large'}
-              title="Next"
-              onPress={goNext}
-              active={canGoNext}
-            />
-          </View>
-        )}
+        {children}
+        <View
+          style={{
+            ...styles.bottom_container,
+            justifyContent: goPrevious ? 'space-between' : 'center',
+          }}>
+          {goPrevious && (
+            <View>
+              <PrimaryButton
+                theme={ButtonThemes.Primary}
+                size="small"
+                title="Previous"
+                onPress={goPrevious}
+              />
+            </View>
+          )}
+          {goNext && (
+            <View>
+              <PrimaryButton
+                theme={ButtonThemes.Primary}
+                size={goPrevious ? 'small' : 'large'}
+                title={'Next'}
+                onPress={goNext}
+                active={canGoNext}
+              />
+            </View>
+          )}
+        </View>
       </View>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    ...UIResponsive.FullScreen,
+  layout: {
+    width: UIResponsive.FullScreen.width,
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    flex: 1,
     backgroundColor: Palette.background.light[250],
+  },
+
+  container: {
+    width: UIResponsive.Body.width,
     flexDirection: 'column',
     justifyContent: 'space-between',
+    height: UIResponsive.FullScreen.height,
   },
 
   progress_bar_container: {
@@ -103,7 +114,7 @@ const styles = StyleSheet.create({
   },
   bottom_container: {
     width: UIResponsive.Body.width,
-    height: 80,
+    height: 100,
     flexDirection: 'row',
     alignItems: 'center',
     paddingHorizontal: 30,

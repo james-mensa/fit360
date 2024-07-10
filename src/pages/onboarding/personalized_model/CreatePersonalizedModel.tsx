@@ -7,7 +7,6 @@ import {AnimateView} from '@models/animation';
 import {useNavigation} from '@react-navigation/native';
 import {Navigation} from '@common/type';
 import {UIResponsive} from '@layout/ResponsiveUi';
-
 import {Palette} from '@styles/BaseColor';
 import CircularProgress from '@models/progress/CircularProgress';
 import {UImage} from '@models/Icon';
@@ -26,11 +25,25 @@ export const CreatingPersonalizedModel = () => {
   const LocalStore = useLocalStore();
   useEffect(() => {
     async function saveToStorage() {
+      const signed_user = LocalStore.getLoginData();
+      if (signed_user?.user_id) {
+        console.log('Already signed in');
+        return;
+      }
       const MetaData = await personalizeDataToDb();
-      LocalStore.setPersonalizedModel(
+      const response = LocalStore.setPersonalizedModel(
         {user_id: MetaData.user_id},
         MetaData.data,
       );
+      if (response) {
+        const __user = LocalStore.setLoginData(
+          {user_id: MetaData.user_id},
+          {user_name: response.user_name},
+        );
+        if (__user) {
+          console.log({__user});
+        }
+      }
     }
     saveToStorage();
   }, []);

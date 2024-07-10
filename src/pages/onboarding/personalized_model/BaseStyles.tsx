@@ -11,6 +11,7 @@ export const BaseStyles = StyleSheet.create({
     gap: 10,
   },
   stackRow: {
+    width: UIResponsive.Body.width - 50,
     flexDirection: 'row',
     flexWrap: 'wrap',
     justifyContent: 'center',

@@ -26,5 +26,5 @@ export interface LocalStore {
   setLoginData: (
     keyParam: {user_id?: string},
     Data: Omit<LoginModelTy, 'user_id'>,
-  ) => PersonalizeModelTy;
+  ) => LoginModelTy;
 }

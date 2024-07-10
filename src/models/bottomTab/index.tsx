@@ -12,14 +12,14 @@ import Settings from '@pages/settings';
 import Plan from '@pages/nurition_plan';
 import Progress from '@pages/progress';
 import {StyleSheet} from 'react-native';
-import {UIResponsive} from '@layout/ResponsiveUi';
+import {isLargeDevice, UIResponsive} from '@layout/ResponsiveUi';
 import {Palette} from '@styles/BaseColor';
 const Tab = createBottomTabNavigator();
 
 export function BaseTab() {
   return (
     <Tab.Navigator
-      sceneContainerStyle={{backgroundColor: 'white'}}
+      sceneContainerStyle={styles.container}
       screenOptions={{
         tabBarStyle: styles.tabbar,
       }}>
@@ -100,13 +100,21 @@ const tabsOption = (page: string): BottomTabNavigationOptions => {
   };
 };
 const styles = StyleSheet.create({
+  container: {
+    backgroundColor: Palette.background.dark[100],
+
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
   tabbar: {
     position: 'absolute',
     bottom: 15,
     justifyContent: 'space-between',
     alignItems: 'center',
-    backgroundColor: 'rgba(255, 255, 255,0.7)',
-    marginHorizontal: 30,
+    backgroundColor: 'rgba(255, 255, 255,0.9)',
+    marginHorizontal: isLargeDevice ? 200 : 50,
     borderRadius: 25,
     borderCurve: 'continuous',
     shadowColor: 'black',

@@ -62,36 +62,32 @@ export function userLogin(
   const personlizedData = {...profile};
 
   console.log(
-    '\n Profile created for  :  ',
-    '\nURI         :',
-    _user_id,
+    '\n User:',
+
     `${user_name}`,
-    JSON.stringify(personlizedData),
+    'signed in successfully',
   );
 
-  try {
-    realm.write(() => {
-      realm.create<LoginModel>(
-        ModelNames.LoginModel,
-        {
-          ...personlizedData,
-          user_id: _user_id,
-        },
-        UpdateMode.Modified,
-      );
-    });
+  realm.write(() => {
+    realm.create<LoginModel>(
+      ModelNames.LoginModel,
+      {
+        ...personlizedData,
+        user_id: _user_id,
+      },
+      UpdateMode.Modified,
+    );
+  });
 
-    const dbRecord = getPersonalizeModel(realm, {
-      user_id: _user_id,
-    }) as PersonalizeModelTy;
+  // const dbRecord = getPersonalizeModel(realm, {
+  //   user_id: _user_id,
+  // }) as PersonalizeModelTy;
 
-    console.log('\nUpdate Personalized data :  DB Record');
+  const dbRecord = getLoginCredentials(realm) as LoginModelTy;
 
-    return dbRecord;
-  } catch (err) {
-    console.log('Error in userLogin', err);
-    throw err;
-  }
+  console.log('\n LOGIN details', dbRecord);
+
+  return dbRecord;
 }
 
 export function getLoginCredentials(realm: Realm) {

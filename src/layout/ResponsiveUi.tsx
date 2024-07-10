@@ -1,6 +1,8 @@
 import {Dimensions} from 'react-native';
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
+const LARGE_DIMENSION_MIN_WIDTH = 900;
+export const isLargeDevice = windowWidth > LARGE_DIMENSION_MIN_WIDTH;
 const Tab = {
   active: 28,
   inactive: 20,
@@ -8,8 +10,10 @@ const Tab = {
 const TopNav = {
   height: 50,
 };
+
 const Body = {
-  width: windowWidth,
+  width:
+    windowWidth > LARGE_DIMENSION_MIN_WIDTH ? windowWidth - 150 : windowWidth,
   height: windowHeight - TopNav.height,
 };
 
@@ -19,7 +23,11 @@ const FullScreen = {
 };
 const Card = {
   primary: {
-    width: windowWidth - 50,
+    width:
+      windowWidth > LARGE_DIMENSION_MIN_WIDTH
+        ? windowWidth - 300
+        : windowWidth - 50,
+    height: windowWidth > LARGE_DIMENSION_MIN_WIDTH ? 250 : 180,
   },
 
   status: {
@@ -29,6 +37,12 @@ const Card = {
   icon: 20,
 };
 
+const BottomNav = {
+  width:
+    windowWidth > LARGE_DIMENSION_MIN_WIDTH
+      ? windowWidth - 300
+      : windowWidth - 100,
+};
 const Radius = {
   bodyTop: 30,
 };
@@ -46,4 +60,6 @@ export const UIResponsive = {
   Icons,
   Card,
   FullScreen,
+  BottomNav,
+  isLargeDevice,
 };

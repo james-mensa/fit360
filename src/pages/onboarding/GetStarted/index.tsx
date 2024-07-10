@@ -86,7 +86,7 @@ export const GetStarted = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'flex-start',
+    justifyContent: 'center',
     alignItems: 'center',
     flexDirection: 'column',
     gap: 10,
@@ -102,13 +102,12 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
     alignItems: 'center',
     gap: 20,
-    width: UIResponsive.Body.width - 50,
   },
 
   init_title_icon: {width: 130, height: 50, borderRadius: 80},
   label: {
     flexDirection: 'row',
-    justifyContent: 'flex-start',
+    justifyContent: 'center',
     width: UIResponsive.Body.width - 50,
     alignItems: 'flex-end',
     gap: 20,

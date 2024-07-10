@@ -93,6 +93,7 @@ export const OnBoardingUI: React.FC<onboardingProps> = ({
                         variant={LabelVariant.H2_Bold.Roboto}
                         title={data.title}
                         color={Palette.text.light[100]}
+                        align="center"
                       />
                     </Animated.View>
                     <Animated.View
@@ -102,9 +103,9 @@ export const OnBoardingUI: React.FC<onboardingProps> = ({
                         variant={LabelVariant.H3_Bold.small.extra}
                         color={Palette.text.light[300]}
                         title={data.details}
+                        align="center"
                       />
                     </Animated.View>
-
                     <Controls step={step} handleNext={handleNext} />
                   </View>
                 </View>

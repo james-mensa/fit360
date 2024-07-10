@@ -11,13 +11,21 @@ import {UImage} from '@models/Icon';
 import {UIResponsive} from '@layout/ResponsiveUi';
 import {VectorIcons} from '@common/VectorIcons';
 import {Palette} from '@styles/BaseColor';
+import {useLocalStore} from '@core/db';
 
 export const TermsAgreeMent = () => {
   const navigation = useNavigation<Navigation>();
   const [check, setCheck] = useState<boolean>(false);
+  const LocalStore = useLocalStore();
+
   const goNext = () => {
     if (check) {
-      navigation.navigate('CreatingPersonalizedModel');
+      const signed_user = LocalStore.getLoginData();
+      if (signed_user?.user_id) {
+        navigation.navigate('PageBase');
+      } else {
+        navigation.navigate('CreatingPersonalizedModel');
+      }
     }
   };
 

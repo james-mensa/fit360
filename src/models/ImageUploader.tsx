@@ -28,10 +28,6 @@ export const ImageUploader: React.FC<Uploaderprops> = ({
   const [base64Image, setBase64Image] = useState<string | null>(img);
 
   const selectImage = async () => {
-    const permission_response: boolean = await requestCameraPermission();
-    if (!permission_response) {
-      return;
-    }
     const options = {
       mediaType: 'photo' as MediaType,
       maxWidth: 300,

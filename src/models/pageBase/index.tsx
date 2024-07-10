@@ -1,11 +1,5 @@
 import React from 'react';
-import {
-  SafeAreaView,
-  StyleSheet,
-  Text,
-  View,
-  TouchableOpacity,
-} from 'react-native';
+import {StyleSheet, Text, View, TouchableOpacity} from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import Feather from 'react-native-vector-icons/Feather';
 import {UIResponsive} from '@layout/ResponsiveUi';
@@ -35,8 +29,8 @@ interface PageBaseProps {
 
 export const PageBase: React.FC<PageBaseProps> = ({topNav, children}) => {
   return (
-    <SafeAreaView style={styles.safeArea}>
-      <View style={styles.base}>
+    <View style={styles.base}>
+      <View style={styles.layout}>
         <View style={styles.nav}>
           <View style={styles.navLeft}>
             {topNav.left && (
@@ -79,23 +73,28 @@ export const PageBase: React.FC<PageBaseProps> = ({topNav, children}) => {
         </View>
         <View style={styles.body}>{children}</View>
       </View>
-    </SafeAreaView>
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
-  safeArea: {
-    flex: 1,
-    backgroundColor: 'white',
-  },
   base: {
-    flex: 1,
+    ...UIResponsive.FullScreen,
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center',
     backgroundColor: Palette.background.dark[100],
-    gap: 10,
+    paddingVertical: 30,
+  },
+  layout: {
+    width: UIResponsive.Body.width,
+    display: 'flex',
+    flexDirection: 'column',
+    alignContent: 'center',
   },
   nav: {
     ...UIResponsive.TopNav,
-    // backgroundColor: 'transparent',
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
@@ -130,8 +129,10 @@ const styles = StyleSheet.create({
     shadowOffset: {width: 0, height: 10},
   },
   body: {
-    ...UIResponsive.Body,
-    flex: 1,
+    display: 'flex',
+    flexDirection: 'column',
+    alignContent: 'center',
+    height: UIResponsive.Body.height,
   },
   profileContainer: {
     backgroundColor: Palette.background.light[100],
