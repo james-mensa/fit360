@@ -11,6 +11,10 @@ interface CircularProgressProps {
   handler?: () => void;
   size?: number;
   textColor?: string;
+  textSize?: number;
+  itemslist?: string[];
+  showItems?: boolean;
+  showPercent?: boolean;
 }
 const CircularProgress: React.FC<CircularProgressProps> = ({
   backgroundColor,
@@ -19,6 +23,9 @@ const CircularProgress: React.FC<CircularProgressProps> = ({
   handler,
   size = 80,
   textColor,
+  textSize,
+  itemslist,
+  showPercent = true,
 }) => {
   const [progress, setProgress] = useState<number>(0);
   const [done, setDone] = useState<boolean>(false);
@@ -27,7 +34,7 @@ const CircularProgress: React.FC<CircularProgressProps> = ({
   const circumference = 2 * Math.PI * radius;
   const animatedStroke = useSharedValue(0);
 
-  const items = [
+  const default_items = [
     'initialization',
     'onboarding',
     'personalized model',
@@ -35,6 +42,7 @@ const CircularProgress: React.FC<CircularProgressProps> = ({
     'basic_check',
     'complete',
   ];
+  const items = itemslist ?? default_items;
 
   const currentItem = items[Math.floor(progress * (items.length - 1))];
 
@@ -80,7 +88,9 @@ const CircularProgress: React.FC<CircularProgressProps> = ({
           cy={radius}
           r={radius - strokeWidth / 2}
           stroke={
-            progressColor ?? progress === 1
+            progressColor
+              ? progressColor
+              : progress === 1
               ? Palette.ColorsFromImage.view1[100]
               : Palette.ColorsFromImage.view1[250]
           }
@@ -95,7 +105,7 @@ const CircularProgress: React.FC<CircularProgressProps> = ({
           y={radius}
           textAnchor="middle"
           dy=".3em"
-          fontSize="9"
+          fontSize={textSize ?? '9'}
           fill={textColor ?? Palette.text.dark[400]}>
           {currentItem}
         </SvgText>
@@ -106,7 +116,7 @@ const CircularProgress: React.FC<CircularProgressProps> = ({
           dy=".1em"
           fontSize="12"
           fill={textColor ?? Palette.text.dark[400]}>
-          {`${Math.round(progress * 100)}%`}
+          { showPercent && `${Math.round(progress * 100)}%`}
         </SvgText>
       </Svg>
     </View>

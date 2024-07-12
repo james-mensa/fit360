@@ -1,6 +1,7 @@
 import React from 'react';
 import {UIResponsive} from '@layout/ResponsiveUi';
 import {Palette} from '@styles/BaseColor';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 import FontAwesome from 'react-native-vector-icons/FontAwesome5';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
@@ -84,6 +85,58 @@ export const VectorIcons = {
       size={30}
       color={Palette.background.light[500]}
     />
+  ),
+
+  Close: ({
+    size,
+    color,
+    onPress,
+  }: {
+    size?: number;
+    color?: string;
+    onPress?: () => void;
+  }) => (
+    <TouchableOpacity onPress={onPress}>
+      <Ionicons
+        name={'close'}
+        size={size ?? 20}
+        color={color ?? Palette.background.light[550]}
+      />
+    </TouchableOpacity>
+  ),
+  previous: ({
+    size,
+    color,
+    onPress,
+  }: {
+    size?: number;
+    color?: string;
+    onPress?: () => void;
+  }) => (
+    <TouchableOpacity onPress={onPress}>
+      <MaterialCommunityIcons
+        name={'skip-previous'}
+        size={size ?? 20}
+        color={color ?? Palette.background.light[500]}
+      />
+    </TouchableOpacity>
+  ),
+  next: ({
+    size,
+    color,
+    onPress,
+  }: {
+    size?: number;
+    color?: string;
+    onPress?: () => void;
+  }) => (
+    <TouchableOpacity onPress={onPress}>
+      <MaterialCommunityIcons
+        name={'skip-next'}
+        size={size ?? 20}
+        color={color ?? Palette.background.light[500]}
+      />
+    </TouchableOpacity>
   ),
 } as const;
 export type VectorIcons = (typeof VectorIcons)[keyof typeof VectorIcons];

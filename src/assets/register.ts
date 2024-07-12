@@ -29,4 +29,6 @@ export const Icons = {
   terms_aggreement: require('./icons/term-aggreement-preview.png'),
   plan_1: require('./icons/plan_1.png'),
   plan_2: require('./icons/plan_2.png'),
+  plank: require('./videos/weight loss/male/Predator-Jack.gif'),
+  crunch: require('./icons/Crunch.gif'),
 };

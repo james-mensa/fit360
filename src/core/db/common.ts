@@ -85,7 +85,7 @@ export function userLogin(
 
   const dbRecord = getLoginCredentials(realm) as LoginModelTy;
 
-  console.log('\n LOGIN details', dbRecord);
+  console.log('\n LOGIN details', JSON.stringify(dbRecord));
 
   return dbRecord;
 }
