@@ -2,7 +2,6 @@ import Realm from 'realm';
 //
 //
 import {LoginModel, PersonalizeModel} from './models';
-
 export const ModelNames = {
   PersonalizeModel: 'PersonalizeModel',
   LoginModel: 'LoginModel',
@@ -10,7 +9,6 @@ export const ModelNames = {
 
 export type PersonalizeModelTy = Omit<PersonalizeModel, keyof Realm.Object>;
 export type PersonalizeModelMetaDataTy = Omit<PersonalizeModelTy, 'user_id'>;
-
 export type LoginModelTy = Omit<LoginModel, keyof Realm.Object>;
 export type LoginModelDataTy = Omit<LoginModelTy, 'user_id'>;
 
@@ -27,4 +25,28 @@ export interface LocalStore {
     keyParam: {user_id?: string},
     Data: Omit<LoginModelTy, 'user_id'>,
   ) => LoginModelTy;
+}
+
+interface Workout {
+  name: string;
+  description: string;
+  point: number;
+  link: string;
+  duration: number;
+  completed: boolean;
+}
+
+export interface Day {
+  day: number;
+  total: number;
+  completed: number;
+  title: string;
+  description?: string;
+  playlist: Workout[];
+}
+
+export interface Plan {
+  title: string;
+  description: string;
+  exercise: Day[];
 }

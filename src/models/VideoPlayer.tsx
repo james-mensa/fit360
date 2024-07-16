@@ -3,6 +3,7 @@ import React from 'react';
 import {Image, ImageSourcePropType, StyleSheet, View} from 'react-native';
 import {UIResponsive} from '@layout/ResponsiveUi';
 import {AppStyles} from '@common/common-ui';
+import {Palette} from '@styles/BaseColor';
 interface PlayerProps {
   file: ImageSourcePropType;
 }
@@ -21,6 +22,9 @@ const styles = StyleSheet.create({
   },
   image_container: {
     borderRadius: 20,
+    borderWidth: 1,
+    borderStyle: 'solid',
+    borderColor: Palette.background.light[300],
     width: UIResponsive.Body.width - 50,
     height: UIResponsive.Body.height / 3,
     overflow: 'hidden',

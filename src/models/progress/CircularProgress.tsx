@@ -116,7 +116,7 @@ const CircularProgress: React.FC<CircularProgressProps> = ({
           dy=".1em"
           fontSize="12"
           fill={textColor ?? Palette.text.dark[400]}>
-          { showPercent && `${Math.round(progress * 100)}%`}
+          {showPercent && `${Math.round(progress * 100)}%`}
         </SvgText>
       </Svg>
     </View>

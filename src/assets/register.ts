@@ -31,4 +31,8 @@ export const Icons = {
   plan_2: require('./icons/plan_2.png'),
   plank: require('./videos/weight loss/male/Predator-Jack.gif'),
   crunch: require('./icons/Crunch.gif'),
+  push_ups: require('./icons/ab-workouts-GQ-alex-reside-PLANK.gif'),
+  leg_drops: require('./icons/skinny/female/leg_drops.gif'),
+  neck: require('./icons/zones/forearms/female/Inner_Wrist_Curls.webp'),
 };
+

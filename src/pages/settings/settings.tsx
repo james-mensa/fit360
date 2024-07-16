@@ -31,7 +31,7 @@ export const Settings = () => {
                 <VideoProgressIndicator />
               </View>
             </View>
-            <VideoPlayer file={Icons.crunch} />
+            <VideoPlayer file={Icons.neck} />
             <View style={styles.controllers}>
               <View style={styles.controller_button}>
                 {VectorIcons.previous({})}

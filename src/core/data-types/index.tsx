@@ -29,7 +29,7 @@ export type LocalStoreKey =
   (typeof LocalStoreKeys)[keyof typeof LocalStoreKeys];
 
 export const BodyZonesTypes = {
-  Neck: 'Feck',
+  Neck: 'Neck',
   Forearms: 'forearms',
   Belly: 'belly',
   Back: 'back',
