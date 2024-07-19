@@ -1,6 +1,8 @@
-import {Icons} from '@assets/register';
 import {AppStyles} from '@common/common-ui';
 import {VectorIcons} from '@common/VectorIcons';
+import {DayPlanModelTy, useLocalStore} from '@core/db';
+import {WorkoutModel} from '@core/db/models';
+import {generateId} from '@core/utils';
 import {UIResponsive} from '@layout/ResponsiveUi';
 import CircularProgress from '@models/progress/CircularProgress';
 import {VideoPlayer} from '@models/VideoPlayer';
@@ -9,6 +11,27 @@ import {Palette} from '@styles/BaseColor';
 import React from 'react';
 import {SafeAreaView, ScrollView, StyleSheet, View} from 'react-native';
 export const Settings = () => {
+  const LocalStore = useLocalStore();
+
+  async function saveToStorage() {
+    const response = LocalStore.AddDayPlan();
+    if (response) {
+      console.log('Added');
+    } else {
+      console.log('error');
+    }
+  }
+
+  function getPlan() {
+    const response = LocalStore.getPlan();
+    for (const plan of response) {
+      for (const planl of plan.playlist) {
+        if (planl.dayPlan) {
+          console.log({assa: planl.dayPlan[0]});
+        }
+      }
+    }
+  }
   return (
     <SafeAreaView>
       <ScrollView>
@@ -31,10 +54,10 @@ export const Settings = () => {
                 <VideoProgressIndicator />
               </View>
             </View>
-            <VideoPlayer file={Icons.neck} />
+            {/* <VideoPlayer file={Icons.neck} /> */}
             <View style={styles.controllers}>
               <View style={styles.controller_button}>
-                {VectorIcons.previous({})}
+                {VectorIcons.previous({onPress: () => getPlan()})}
               </View>
               <View style={styles.progress}>
                 <CircularProgress
@@ -58,7 +81,7 @@ export const Settings = () => {
                 />
               </View>
               <View style={styles.controller_button}>
-                {VectorIcons.next({})}
+                {VectorIcons.next({onPress: () => saveToStorage()})}
               </View>
             </View>
           </View>

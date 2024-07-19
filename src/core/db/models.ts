@@ -64,4 +64,59 @@ export class LoginModel extends Realm.Object<LoginModel> {
     },
   };
 }
+
+export class WorkoutModel extends Realm.Object<WorkoutModel> {
+  name!: string;
+  description?: string;
+  point?: number;
+  link!: string;
+  duration!: number;
+  completed!: boolean;
+  _id!: string;
+  type?: string;
+  dayPlan?: Realm.Results<DayPlanModel>;
+  static schema: Realm.ObjectSchema = {
+    name: 'WorkoutModel',
+    primaryKey: '_id',
+    properties: {
+      _id: 'string',
+      name: 'string',
+      description: 'string?',
+      point: 'int?',
+      link: 'string',
+      duration: 'int',
+      completed: 'bool',
+      type: 'string?',
+      dayPlan: {
+        type: 'linkingObjects',
+        objectType: 'DayPlanModel',
+        property: 'playlist',
+      },
+    },
+  };
+}
+export class DayPlanModel extends Realm.Object<DayPlanModel> {
+  day!: number;
+  total!: number;
+  phase!: number;
+  completed!: number;
+  title!: string;
+  description?: string;
+  _id!: string;
+  playlist!: Realm.List<WorkoutModel>;
+  static schema: Realm.ObjectSchema = {
+    name: 'DayPlanModel',
+    primaryKey: '_id',
+    properties: {
+      _id: 'string',
+      day: 'int',
+      total: 'int',
+      phase: 'int',
+      completed: 'int',
+      title: 'string',
+      description: 'string?',
+      playlist: 'WorkoutModel[]',
+    },
+  };
+}
 export {PersonalizeModel as default};

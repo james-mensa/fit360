@@ -28,8 +28,18 @@ export const LocalStoreKeys = {
 export type LocalStoreKey =
   (typeof LocalStoreKeys)[keyof typeof LocalStoreKeys];
 
+export const TargetBodyTypes = {
+  skinny: 'skinny',
+  cut: 'cut',
+  bulk: 'bulk',
+  mascular: 'mascular man',
+  normal: 'normal',
+} as const;
+export type TargetBodyType =
+  (typeof TargetBodyTypes)[keyof typeof TargetBodyTypes];
+
 export const BodyZonesTypes = {
-  Neck: 'Neck',
+  Neck: 'neck',
   Forearms: 'forearms',
   Belly: 'belly',
   Back: 'back',
@@ -37,7 +47,9 @@ export const BodyZonesTypes = {
   Pecs: 'pecs',
   Thighs: 'inner and front thighs',
   Triceps: 'triceps',
-  Biceps: 'bisceps',
+  Biceps: 'biceps',
+  Shoulder: 'shoulder',
+  Skinny: 'skinny',
 } as const;
 export type BodyZonesTypes =
   (typeof BodyZonesTypes)[keyof typeof BodyZonesTypes];

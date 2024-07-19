@@ -1,17 +1,28 @@
 import Realm from 'realm';
 //
 //
-import {LoginModel, PersonalizeModel} from './models';
+import {
+  DayPlanModel,
+  LoginModel,
+  PersonalizeModel,
+  WorkoutModel,
+} from './models';
+import {BodyZonesTypes} from '@core/data-types';
 export const ModelNames = {
   PersonalizeModel: 'PersonalizeModel',
   LoginModel: 'LoginModel',
-};
+  WorkoutModel: 'WorkoutModel',
+  DayPlanModel: 'DayPlanModel',
+} as const;
+
+export type ModelName = (typeof ModelNames)[keyof typeof ModelNames];
 
 export type PersonalizeModelTy = Omit<PersonalizeModel, keyof Realm.Object>;
 export type PersonalizeModelMetaDataTy = Omit<PersonalizeModelTy, 'user_id'>;
 export type LoginModelTy = Omit<LoginModel, keyof Realm.Object>;
 export type LoginModelDataTy = Omit<LoginModelTy, 'user_id'>;
-
+export type WorkoutModelTy = Omit<WorkoutModel, keyof Realm.Object>;
+export type DayPlanModelTy = Omit<DayPlanModel, keyof Realm.Object>;
 export interface LocalStore {
   getPersonalizedModel: (keyParam: {
     user_id?: string;
@@ -25,28 +36,37 @@ export interface LocalStore {
     keyParam: {user_id?: string},
     Data: Omit<LoginModelTy, 'user_id'>,
   ) => LoginModelTy;
+  AddDayPlan: () =>
+    | Realm.Results<Realm.Object<DayPlanModel, never> & DayPlanModel>
+    | undefined;
+  // addPlaylist: (Data: WorkoutModelTy[]) => DayPlanModelTy;
+  getPlan: () => Realm.Results<
+    Realm.Object<DayPlanModel, never> & DayPlanModel
+  >;
 }
 
-interface Workout {
+export interface WorkoutTy {
   name: string;
   description: string;
   point: number;
   link: string;
   duration: number;
   completed: boolean;
+  type?: BodyZonesTypes;
 }
 
-export interface Day {
+export interface DayTy {
   day: number;
   total: number;
+  phase: number;
   completed: number;
   title: string;
   description?: string;
-  playlist: Workout[];
+  playlist: WorkoutTy[];
 }
 
-export interface Plan {
+export interface PlanTy {
   title: string;
   description: string;
-  exercise: Day[];
+  exercise: DayTy[];
 }

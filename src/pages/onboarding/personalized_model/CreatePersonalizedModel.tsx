@@ -13,9 +13,9 @@ import {UImage} from '@models/Icon';
 import {Icons} from '@assets/register';
 import personalizeDataToDb from '@core/useHooks/PersonalizeDataToDB';
 import {useLocalStore} from '@core/db';
+import {createUserModel} from '@core/db/creatingPersonalizedModel';
 export const CreatingPersonalizedModel = () => {
   const navigation = useNavigation<Navigation>();
-
   const goNext = () => {
     setTimeout(() => {
       navigation.navigate('PageBase');
@@ -27,7 +27,6 @@ export const CreatingPersonalizedModel = () => {
     async function saveToStorage() {
       const signed_user = LocalStore.getLoginData();
       if (signed_user?.user_id) {
-        console.log('Already signed in');
         return;
       }
       const MetaData = await personalizeDataToDb();
@@ -42,6 +41,7 @@ export const CreatingPersonalizedModel = () => {
         );
         if (__user) {
           console.log({__user});
+          await createUserModel(MetaData.data);
         }
       }
     }
