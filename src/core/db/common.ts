@@ -118,34 +118,34 @@ export function AddDayPlan(realm: Realm) {
   const personalizeDataToDb = createUserModel(
     userData as PersonalizeModelMetaDataTy,
   );
-  console.log({datasss: personalizeDataToDb[0]});
-  // for (const exercise of personalizeDataToDb) {
-  //   console.log('Creating skin', {
-  //     planLength: personalizeDataToDb.length,
-  //   });
-  //   const _data: DayPlanModelTy = {
-  //     day: exercise.day,
-  //     total: exercise.total,
-  //     completed: exercise.completed,
-  //     title: exercise.title,
-  //     phase: exercise.phase,
-  //     description: exercise.description,
-  //     playlist: [] as unknown as Realm.List<WorkoutModel>,
-  //     _id: generateId(),
-  //   };
-  //   const _id = _data._id;
-  //   realm.write(() => {
-  //     realm.create<DayPlanModel>(
-  //       ModelNames.DayPlanModel,
-  //       {
-  //         ..._data,
-  //       },
-  //       UpdateMode.Modified,
-  //     );
-  //   });
-  //   console.log('add playlist');
-  //   AddWorkoutToDayPlan(realm, _id, exercise.playlist);
-  // }
+  console.log({datasss: personalizeDataToDb});
+  for (const exercise of personalizeDataToDb) {
+    console.log('Creating skin', {
+      planLength: personalizeDataToDb.length,
+    });
+    const _data: DayPlanModelTy = {
+      day: exercise.day,
+      total: exercise.total,
+      completed: exercise.completed,
+      title: exercise.title,
+      phase: exercise.phase,
+      description: exercise.description,
+      playlist: [] as unknown as Realm.List<WorkoutModel>,
+      _id: generateId(),
+    };
+    const _id = _data._id;
+    realm.write(() => {
+      realm.create<DayPlanModel>(
+        ModelNames.DayPlanModel,
+        {
+          ..._data,
+        },
+        UpdateMode.Modified,
+      );
+    });
+    console.log('add playlist');
+    AddWorkoutToDayPlan(realm, _id, exercise.playlist);
+  }
 
   const dbRecord = getPlan(realm);
   console.log({dbRecord});

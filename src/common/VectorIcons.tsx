@@ -138,5 +138,12 @@ export const VectorIcons = {
       />
     </TouchableOpacity>
   ),
+  Dumbell: (
+    <MaterialCommunityIcons
+      name={'dumbbell'}
+      size={UIResponsive.Card.icon}
+      color={Palette.background.light[500]}
+    />
+  ),
 } as const;
 export type VectorIcons = (typeof VectorIcons)[keyof typeof VectorIcons];

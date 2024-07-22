@@ -29,6 +29,13 @@ const Card = {
         : windowWidth - 50,
     height: windowWidth > LARGE_DIMENSION_MIN_WIDTH ? 250 : 180,
   },
+  medium: {
+    width:
+      windowWidth > LARGE_DIMENSION_MIN_WIDTH
+        ? windowWidth - 300
+        : windowWidth - 50,
+    height: windowWidth > LARGE_DIMENSION_MIN_WIDTH ? 250 : 140,
+  },
 
   status: {
     width: windowWidth * (1 / 3),

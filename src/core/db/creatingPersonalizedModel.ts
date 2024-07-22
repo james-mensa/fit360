@@ -67,7 +67,7 @@ export function createUserModel(data: PersonalizeModelMetaDataTy): DayTy[] {
   // Ensure Skinny plan is prioritized if selected
   if (target_body_type === BodyZonesTypes.Skinny) {
     selectedPlan =
-      gender === 'female' ? femaleSkinnyExercise : [maleSkinnyExercise];
+      gender === 'female' ? femaleSkinnyExercise : maleSkinnyExercise;
   }
 
   return selectedPlan;
