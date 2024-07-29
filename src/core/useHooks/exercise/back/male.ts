@@ -1,4 +1,3 @@
-import {bodyZones} from '@assets/register';
 import {DayTy} from '@core/db/types';
 
 interface PhaseType {
@@ -25,10 +24,11 @@ export const malePlanFirstPhase = ({
       description:
         'An exercise that targets the chest and back using a dumbbell.',
       point: 2,
-      link: bodyZones.back.male.DumbbellPull_Over,
+      link: 'DumbbellPull_Over',
       duration: difficulty,
       completed: false,
       type: 'back',
+      path: 'back',
     },
   ],
 });
@@ -50,10 +50,11 @@ export const malePlanSecondPhase = ({
       description:
         'An exercise to strengthen the lower back by lifting arms and legs while lying face down.',
       point: 2,
-      link: bodyZones.back.male.Posture_Superman,
+      link: 'Posture_Superman',
       duration: difficulty,
       completed: false,
       type: 'back',
+      path: 'back',
     },
   ],
 });
@@ -75,10 +76,11 @@ export const malePlanThirdPhase = ({
       description:
         'A rowing exercise using the Smith machine to target the back muscles.',
       point: 2,
-      link: bodyZones.back.male.SmithMachineRows,
+      link: 'SmithMachineRows',
       duration: difficulty,
       completed: false,
       type: 'back',
+      path: 'back',
     },
   ],
 });
@@ -100,10 +102,11 @@ export const malePlanFourthPhase = ({
       description:
         'An exercise that targets the chest and back using a dumbbell.',
       point: 2,
-      link: bodyZones.back.male.DumbbellPull_Over,
+      link: 'DumbbellPull_Over',
       duration: difficulty,
       completed: false,
       type: 'back',
+      path: 'back',
     },
   ],
 });

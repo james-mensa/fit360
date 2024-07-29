@@ -1,4 +1,3 @@
-import {bodyZones} from '@assets/register';
 import {DayTy} from '@core/db/types';
 
 interface PhaseType {
@@ -16,17 +15,18 @@ export const malePlanFirstPhase = ({
     day: day,
     total: 1,
     completed: 0,
-    title: `Phase 1 - Basic Neck Flexibility Exercise (${difficulty}s)`,
+    title: `Basic Neck Flexibility Exercise (${difficulty}s) \n Exercise`,
     phase: phase,
     playlist: [
       {
         name: 'Neck Flexibility Exercise 1',
         description: 'Basic neck stretch to improve flexibility and posture.',
         point: 2,
-        link: bodyZones.neck.male.neck_1,
+        link: 'neck_1',
         duration: difficulty,
         completed: false,
         type: 'neck',
+        path: 'neck',
       },
     ],
   };
@@ -41,7 +41,7 @@ export const malePlanSecondPhase = ({
     day: day,
     total: 1,
     completed: 0,
-    title: `Phase 2 - Stiff Neck Relief (${difficulty}s)`,
+    title: `Stiff Neck Relief (${difficulty}s) \n Exercise`,
     phase: phase,
     playlist: [
       {
@@ -49,10 +49,11 @@ export const malePlanSecondPhase = ({
         description:
           'Exercise to alleviate stiffness and improve neck mobility.',
         point: 2,
-        link: bodyZones.neck.male.stiff_neck,
+        link: 'stiff_neck',
         duration: difficulty,
         completed: false,
         type: 'neck',
+        path: 'neck',
       },
     ],
   };
@@ -67,7 +68,7 @@ export const malePlanThirdPhase = ({
     day: day,
     total: 1,
     completed: 0,
-    title: `Phase 3 - Advanced Neck Relief Exercises (${difficulty}s)`,
+    title: `Advanced Neck Relief Exercises (${difficulty}s) \n Exercise`,
     phase: phase,
     playlist: [
       {
@@ -75,10 +76,11 @@ export const malePlanThirdPhase = ({
         description:
           'Exercise to alleviate stiffness and improve neck mobility.',
         point: 2,
-        link: bodyZones.neck.male.stiff_neck,
+        link: 'stiff_neck',
         duration: difficulty,
         completed: false,
         type: 'neck',
+        path: 'neck',
       },
     ],
   };
@@ -93,7 +95,7 @@ export const malePlanFourthPhase = ({
     day: day,
     total: 2,
     completed: 0,
-    title: `Phase 4 - Comprehensive Neck Routine (${difficulty}s)`,
+    title: `Comprehensive Neck Routine (${difficulty}s) \n Exercise`,
     phase: phase,
     playlist: [
       {
@@ -101,19 +103,21 @@ export const malePlanFourthPhase = ({
         description:
           'Exercise to alleviate stiffness and improve neck mobility.',
         point: 2,
-        link: bodyZones.neck.male.stiff_neck,
+        link: 'stiff_neck',
         duration: difficulty,
         completed: false,
         type: 'neck',
+        path: 'neck',
       },
       {
         name: 'Neck Flexibility Exercise 1',
         description: 'Basic neck stretch to improve flexibility and posture.',
         point: 2,
-        link: bodyZones.neck.male.neck_1,
+        link: 'neck_1',
         duration: difficulty,
         completed: false,
         type: 'neck',
+        path: 'neck',
       },
     ],
   };

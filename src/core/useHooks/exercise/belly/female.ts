@@ -1,4 +1,3 @@
-import {bodyZones} from '@assets/register';
 import {DayTy} from '@core/db/types';
 
 interface PhaseType {
@@ -30,25 +29,25 @@ const createPhase = ({
 export const femalePlanFirstPhase = (params: PhaseType): DayTy =>
   createPhase({
     ...params,
-    title: params.title || `Phase ${params.phase}: Core Foundation`,
+    title: params.title || `Core Foundation \n Exercise`,
     exercises: [
       {
         name: 'Reverse Crunches',
         description:
           'A lower abdominal exercise that involves lifting the hips off the ground while bringing the knees towards the chest.',
         point: 2,
-        link: bodyZones.belly.female
-          .Exercises_That_Help_You_Get_V_Reverse_Crunches,
+        link: 'Exercises_That_Help_You_Get_V_Reverse_Crunches',
         type: 'belly',
+        path: 'belly',
       },
       {
         name: 'Flat Bench Leg Raise',
         description:
           'An exercise targeting the lower abs by raising the legs while lying on a bench.',
         point: 2,
-        link: bodyZones.belly.female
-          .Exercises_for_Washboard_Abs_Flat_Bench_Leg_Raise,
+        link: 'Exercises_for_Washboard_Abs_Flat_Bench_Leg_Raise',
         type: 'belly',
+        path: 'belly',
       },
     ],
   });
@@ -56,23 +55,25 @@ export const femalePlanFirstPhase = (params: PhaseType): DayTy =>
 export const femalePlanSecondPhase = (params: PhaseType): DayTy =>
   createPhase({
     ...params,
-    title: params.title || `Phase ${params.phase}: Core Strength`,
+    title: params.title || `Core Strength \n Exercise`,
     exercises: [
       {
         name: 'Flutter Kicks',
         description:
           'A lower abdominal exercise where you kick your legs up and down while lying on your back.',
         point: 2,
-        link: bodyZones.belly.female.Exercises_for_Washboard_Abs_Flutter_Kicks,
+        link: 'Exercises_for_Washboard_Abs_Flutter_Kicks',
         type: 'belly',
+        path: 'belly',
       },
       {
         name: 'Toe Reach',
         description:
           'An exercise where you reach for your toes while lying on your back to target the upper abs.',
         point: 2,
-        link: bodyZones.belly.female.Exercises_for_Washboard_Abs_Toe_Reach,
+        link: 'Exercises_for_Washboard_Abs_Toe_Reach',
         type: 'belly',
+        path: 'belly',
       },
     ],
   });
@@ -80,25 +81,25 @@ export const femalePlanSecondPhase = (params: PhaseType): DayTy =>
 export const femalePlanThirdPhase = (params: PhaseType): DayTy =>
   createPhase({
     ...params,
-    title: params.title || `Phase ${params.phase}: Core Strength and Balance`,
+    title: params.title || `Core Strength and Balance \n Exercise`,
     exercises: [
       {
         name: 'Bicycle Crunch',
         description:
           'An exercise targeting the obliques and lower abs by simulating a pedaling motion while lying on your back.',
         point: 2,
-        link: bodyZones.belly.female
-          .Exercises_to_Make_the_Most_of_Your_Oblique_Workout_Bicycle_Crunch,
+        link: 'Exercises_to_Make_the_Most_of_Your_Oblique_Workout_Bicycle_Crunch',
         type: 'belly',
+        path: 'belly',
       },
       {
         name: 'Side Plank',
         description:
           'An oblique exercise where you hold a plank position on your side to strengthen the core.',
         point: 2,
-        link: bodyZones.belly.female
-          .Exercises_to_Make_the_Most_of_Your_Oblique_Workout_Side_Plank,
+        link: 'Exercises_to_Make_the_Most_of_Your_Oblique_Workout_Side_Plank',
         type: 'belly',
+        path: 'belly',
       },
     ],
   });
@@ -106,24 +107,25 @@ export const femalePlanThirdPhase = (params: PhaseType): DayTy =>
 export const femalePlanFourthPhase = (params: PhaseType): DayTy =>
   createPhase({
     ...params,
-    title: params.title || `Phase ${params.phase}: Advanced Core Workouts`,
+    title: params.title || `Advanced Core Workouts \n Exercise`,
     exercises: [
       {
         name: 'Scissor Kicks',
         description:
           'An exercise where you alternate lifting each leg up and down while lying on your back to target the lower abs.',
         point: 2,
-        link: bodyZones.belly.female.ScissorKicks,
+        link: 'ScissorKicks',
         type: 'belly',
+        path: 'belly',
       },
       {
         name: 'Side Plank',
         description:
           'An oblique exercise where you hold a plank position on your side to strengthen the core.',
         point: 2,
-        link: bodyZones.belly.female
-          .Exercises_to_Make_the_Most_of_Your_Oblique_Workout_Side_Plank,
+        link: 'Exercises_to_Make_the_Most_of_Your_Oblique_Workout_Side_Plank',
         type: 'belly',
+        path: 'belly',
       },
     ],
   });

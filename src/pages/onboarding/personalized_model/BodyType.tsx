@@ -56,7 +56,7 @@ export const BodyType = () => {
         />
         <AnimateView order={0.2}>
           <CheckCard
-            title="Skinny"
+            title="skinny"
             height={70}
             description=""
             img={Icons.skinny}
@@ -67,7 +67,7 @@ export const BodyType = () => {
         <CheckCard
           height={70}
           img={Icons.overweight}
-          title="OverWeight"
+          title="overweight"
           description=""
           isChecked={response === 'overweight'}
           onPress={() => handleUserResponse('overweight')}
@@ -77,7 +77,7 @@ export const BodyType = () => {
           <CheckCard
             height={80}
             img={Icons.obese1}
-            title="Obese"
+            title="obese"
             description=""
             isChecked={response === 'obese'}
             onPress={() => handleUserResponse('obese')}
@@ -87,7 +87,7 @@ export const BodyType = () => {
           <CheckCard
             height={70}
             img={Icons.normal_weight}
-            title="Normal"
+            title="normal"
             description=""
             isChecked={response === 'normal'}
             onPress={() => handleUserResponse('normal')}

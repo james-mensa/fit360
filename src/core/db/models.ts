@@ -74,6 +74,7 @@ export class WorkoutModel extends Realm.Object<WorkoutModel> {
   completed!: boolean;
   _id!: string;
   type?: string;
+  path!: string;
   dayPlan?: Realm.Results<DayPlanModel>;
   static schema: Realm.ObjectSchema = {
     name: 'WorkoutModel',
@@ -87,6 +88,7 @@ export class WorkoutModel extends Realm.Object<WorkoutModel> {
       duration: 'int',
       completed: 'bool',
       type: 'string?',
+      path: 'string',
       dayPlan: {
         type: 'linkingObjects',
         objectType: 'DayPlanModel',

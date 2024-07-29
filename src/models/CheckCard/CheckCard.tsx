@@ -47,7 +47,7 @@ const CheckCard: React.FC<CardProps> = ({
                   isChecked ? Palette.text.light[100] : Palette.text.light[100]
                 }
                 title={title}
-                variant={LabelVariant.H3_Bold.extra}
+                variant={LabelVariant.H3_Bold.small.extra}
               />
               <Label
                 color={
@@ -58,13 +58,15 @@ const CheckCard: React.FC<CardProps> = ({
               />
             </View>
           ) : (
-            <Label
-              color={
-                isChecked ? Palette.text.light[100] : Palette.text.light[100]
-              }
-              title={title}
-              variant={LabelVariant.H3_Bold.extra}
-            />
+            <View style={styles.title}>
+              <Label
+                color={
+                  isChecked ? Palette.text.light[100] : Palette.text.light[100]
+                }
+                title={title}
+                variant={LabelVariant.H3_Bold.small.extra}
+              />
+            </View>
           )}
 
           <View style={{...styles.image_container, height: imgstyle.height}}>
@@ -133,5 +135,8 @@ const styles = StyleSheet.create({
     top: -10,
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  title: {
+    paddingLeft: 10,
   },
 });

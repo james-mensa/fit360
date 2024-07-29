@@ -1,4 +1,3 @@
-import {bodyZones} from '@assets/register';
 import {DayTy} from '@core/db/types';
 
 interface PhaseType {
@@ -26,6 +25,8 @@ const createPlan = (
       link: exercise.link,
       duration: difficulty,
       completed: false,
+      type: 'triceps',
+      path: 'triceps',
     })),
   };
 };
@@ -35,19 +36,19 @@ const phaseExercises = {
   phase1: [
     {
       name: 'Javelin Press',
-      link: bodyZones.triceps.male.Javelin_Press,
+      link: 'Javelin_Press',
       description:
         'An isolation exercise for the triceps that focuses on the long head, performed with a barbell or dumbbell.',
     },
     {
       name: 'Tate Press',
-      link: bodyZones.triceps.male.Tate_Press,
+      link: 'Tate_Press',
       description:
         'Targets the inner triceps and helps in building strength and mass, performed with dumbbells.',
     },
     {
       name: 'Barbell Tricep Extension',
-      link: bodyZones.triceps.male.barbelltricepsextension,
+      link: 'barbelltricepsextension',
       description:
         'A classic exercise to enhance tricep strength, performed with a barbell and focusing on full extension of the arms.',
     },
@@ -55,19 +56,19 @@ const phaseExercises = {
   phase2: [
     {
       name: 'Close Grip Bench Press',
-      link: bodyZones.triceps.male.close_grip_bench_press,
+      link: 'close_grip_bench_press',
       description:
         'A bench press variation that places more emphasis on the triceps due to the narrow grip.',
     },
     {
       name: 'Diamond Push-Ups',
-      link: bodyZones.triceps.male.diamond,
+      link: 'diamond',
       description:
         'Push-ups performed with hands close together to increase tricep activation and overall arm strength.',
     },
     {
       name: 'Diamond Press-Up',
-      link: bodyZones.triceps.male.diamond_press_up,
+      link: 'diamond_press_up',
       description:
         'An advanced push-up variation that challenges the triceps further by changing the hand position to a diamond shape.',
     },
@@ -75,19 +76,19 @@ const phaseExercises = {
   phase3: [
     {
       name: 'Floor Press',
-      link: bodyZones.triceps.male.floor_press,
+      link: 'floor_press',
       description:
         'A chest and triceps exercise performed on the floor, reducing shoulder strain and focusing on triceps strength.',
     },
     {
       name: 'Kettlebell Floor Press',
-      link: bodyZones.triceps.male.kettlebell_floor,
+      link: 'kettlebell_floor',
       description:
         'A variation of the floor press using kettlebells to target triceps and improve grip strength.',
     },
     {
       name: 'Push-Up',
-      link: bodyZones.triceps.male.pressup,
+      link: 'pressup',
       description:
         'A fundamental bodyweight exercise that engages the triceps, chest, and shoulders for overall upper body strength.',
     },
@@ -95,19 +96,19 @@ const phaseExercises = {
   phase4: [
     {
       name: 'Single Arm Dumbbell Tricep Extension',
-      link: bodyZones.triceps.male.single_arm_dumbbell_tricep_extension,
+      link: 'single_arm_dumbbell_tricep_extension',
       description:
         'An isolation exercise for the triceps, performed with a single dumbbell to ensure balanced development and focus.',
     },
     {
       name: 'Skull Crusher',
-      link: bodyZones.triceps.male.skullcrushergif,
+      link: 'skullcrushergif',
       description:
         'A triceps exercise performed by extending the arms while holding a barbell or dumbbells, aiming to increase tricep strength and size.',
     },
     {
       name: 'Tricep Bulking',
-      link: bodyZones.triceps.male.tricep_bulking,
+      link: 'tricep_bulking',
       description:
         'An intense triceps exercise designed to maximize muscle growth and strength through high volume and resistance.',
     },
@@ -139,7 +140,7 @@ export const maleTricepsExercise: DayTy[] = [
     malePlanFirstPhase({
       difficulty: 180,
       day: i + 8,
-      title: 'Phase 1 - Initial Strength Building',
+      title: ' Initial Strength Building \n Exercise',
       phase: 1,
     }),
   ),
@@ -149,7 +150,7 @@ export const maleTricepsExercise: DayTy[] = [
     malePlanSecondPhase({
       difficulty: 180,
       day: i + 14,
-      title: 'Phase 2 - Intermediate Development',
+      title: 'Intermediate Development \n Exercise',
       phase: 2,
     }),
   ),
@@ -159,7 +160,7 @@ export const maleTricepsExercise: DayTy[] = [
     malePlanThirdPhase({
       difficulty: 180,
       day: i + 31,
-      title: 'Phase 3 - Advanced Strength and Endurance',
+      title: 'Advanced Strength and Endurance \n Exercise',
       phase: 3,
     }),
   ),
@@ -169,7 +170,7 @@ export const maleTricepsExercise: DayTy[] = [
     malePlanFourthPhase({
       difficulty: 180,
       day: i + 46,
-      title: 'Phase 4 - Peak Performance',
+      title: 'Peak Performance \n Exercise',
       phase: 4,
     }),
   ),
@@ -177,7 +178,7 @@ export const maleTricepsExercise: DayTy[] = [
     malePlanFourthPhase({
       difficulty: 210,
       day: i + 55,
-      title: 'Phase 4 - Peak Performance',
+      title: 'Peak Performance \n Exercise',
       phase: 4,
     }),
   ),
@@ -185,7 +186,7 @@ export const maleTricepsExercise: DayTy[] = [
     malePlanFourthPhase({
       difficulty: 240,
       day: i + 61,
-      title: 'Phase 4 - Peak Performance',
+      title: 'Peak Performance \n Exercise',
       phase: 4,
     }),
   ),
@@ -195,7 +196,7 @@ export const maleTricepsExercise: DayTy[] = [
     malePlanFourthPhase({
       difficulty: 240,
       day: i + 68,
-      title: 'Phase 5 - Advanced Strength and Mass',
+      title: 'Advanced Strength and Mass \n Exercise',
       phase: 5,
     }),
   ),
@@ -205,7 +206,7 @@ export const maleTricepsExercise: DayTy[] = [
     malePlanSecondPhase({
       difficulty: 210,
       day: i + 61,
-      title: 'Phase 6 - Final Refinement and Conditioning',
+      title: 'Final Refinement and Conditioning \n Exercise',
       phase: 6,
     }),
   ),
@@ -213,7 +214,7 @@ export const maleTricepsExercise: DayTy[] = [
     malePlanSecondPhase({
       difficulty: 240,
       day: i + 68,
-      title: 'Phase 6 - Final Refinement and Conditioning',
+      title: 'Final Refinement and Conditioning \n Exercise',
       phase: 6,
     }),
   ),

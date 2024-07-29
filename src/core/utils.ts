@@ -2,6 +2,8 @@ import {LocalStoreKey} from './data-types';
 import _ from 'lodash';
 import AsyncStorageService from './local/AsyncStorageService';
 import {PermissionsAndroid} from 'react-native';
+import {CardIcons} from '@assets/register';
+import {WorkoutModelTy} from './db/types';
 
 const getLocalResponse = async (key: LocalStoreKey) => {
   try {
@@ -118,6 +120,79 @@ function generateId(
   return figures;
 }
 
+function getToolImg() {
+  const randomIndex = Math.floor(Math.random() * CardIcons.tools.length);
+  return CardIcons.tools[randomIndex];
+}
+
+function getFirstIncompleteExercise(
+  exercises: WorkoutModelTy[],
+): WorkoutModelTy | undefined {
+  return exercises.find(exercise => !exercise.completed);
+}
+function isNextCompleted(
+  exercises: WorkoutModelTy[],
+  currentExercise: WorkoutModelTy,
+): boolean | undefined {
+  const currentIndex = exercises.findIndex(
+    exercise => exercise.name === currentExercise.name,
+  );
+
+  if (currentIndex === -1 || currentIndex === exercises.length - 1) {
+    // If the current exercise is not found or is the last exercise, return undefined
+    return undefined;
+  }
+
+  return exercises[currentIndex + 1].completed;
+}
+
+function hasNextExercise(
+  exercises: WorkoutModelTy[],
+  currentExercise: WorkoutModelTy,
+): boolean {
+  const currentIndex = exercises.findIndex(
+    exercise => exercise.name === currentExercise.name,
+  );
+
+  if (currentIndex === -1 || currentIndex === exercises.length - 1) {
+    // If the current exercise is not found or is the last exercise
+    return false;
+  }
+
+  return true;
+}
+
+function formatTime(seconds: number, short?: boolean): string {
+  if (seconds < 0) {
+    throw new Error('Seconds must be a non-negative number.');
+  }
+
+  const minutes = Math.floor(seconds / 60);
+  const remainingSeconds = seconds % 60;
+
+  let result = '';
+
+  if (minutes > 0) {
+    result += `${minutes} ${short ? 'm' : 'minute'}${minutes > 1 ? 's' : ''}`;
+  }
+
+  if (remainingSeconds > 0) {
+    if (result) {
+      result += ' ';
+    }
+    result += `${remainingSeconds} ${short ? 's' : 'second'}${
+      remainingSeconds > 1 ? '' : ''
+    }`;
+  }
+
+  // Handle case where the result is empty (i.e., seconds = 0)
+  if (result === '') {
+    result = '0 seconds';
+  }
+
+  return result;
+}
+
 export {
   getLocalResponse,
   setLocalData,
@@ -125,4 +200,9 @@ export {
   convertStringToArray,
   requestCameraPermission,
   generateId,
+  getToolImg,
+  getFirstIncompleteExercise,
+  isNextCompleted,
+  hasNextExercise,
+  formatTime,
 };

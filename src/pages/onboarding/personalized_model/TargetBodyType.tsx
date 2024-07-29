@@ -16,26 +16,26 @@ const pageContent = {
   title: 'Please Choose your target Body Type',
   Cards: [
     {
-      title: 'Skinny',
+      title: 'skinny',
       description: '',
       icon: Icons.skinny_1,
       type: 'skinny' as BodyType,
     },
-    {title: 'Cut', description: '', icon: Icons.cut, type: 'cut' as BodyType},
+    {title: 'cut', description: '', icon: Icons.cut, type: 'cut' as BodyType},
     {
-      title: 'Bulk',
+      title: 'bulk',
       description: '',
       icon: Icons.bulk_1,
       type: 'bulk' as BodyType,
     },
     {
-      title: 'Normal',
+      title: 'normal',
       description: '',
       icon: Icons.normal_body,
       type: 'normal' as BodyType,
     },
     {
-      title: 'Mascular Man',
+      title: 'mascular Man',
       description: '',
       icon: Icons.muscular_body,
       type: 'mascular man' as BodyType,
@@ -95,7 +95,7 @@ export const TargetBodyType = () => {
       progress={40}>
       <View style={BaseStyles.container}>
         <Label
-          variant={LabelVariant.H2.Roboto}
+          variant={LabelVariant.H3.TInterface}
           title={pageContent.title}
           align="center"
           fullWidth

@@ -1,4 +1,4 @@
-import {femaleBicepsExercise} from '@core/useHooks/exercise/bisceps/female';
+import {femaleBicepsExercise} from '@core/useHooks/exercise/biceps/female';
 import {DayTy, PersonalizeModelMetaDataTy} from './types';
 import {femaleBackExercise} from '@core/useHooks/exercise/back/female';
 import {femaleForearmsExercise} from '@core/useHooks/exercise/forearms/female';
@@ -18,22 +18,22 @@ import {maleBellyExercise} from '@core/useHooks/exercise/belly/male';
 import {maleLegsExercise} from '@core/useHooks/exercise/legs/male';
 import {malePecsExercise} from '@core/useHooks/exercise/pecs/male';
 import {maleTricepsExercise} from '@core/useHooks/exercise/triceps/male';
-import {maleBiscepsExercise} from '@core/useHooks/exercise/bisceps/male';
+import {maleBiscepsExercise} from '@core/useHooks/exercise/biceps/male';
 import {maleShoulderExercise} from '@core/useHooks/exercise/shoulder/male';
 const exercisePlans: {
   [key in keyof typeof BodyZonesTypes]: {male: DayTy[]; female: DayTy[]};
 } = {
-  Neck: {male: maleNeckExercise, female: femaleNeckExercise},
-  Forearms: {male: maleForearmsExercise, female: femaleForearmsExercise},
-  Belly: {male: maleBellyExercise, female: femaleBellyExercise},
-  Back: {male: maleBackExercise, female: femaleBackExercise},
-  Legs: {male: maleLegsExercise, female: femaleLegsExercise},
-  Pecs: {male: malePecsExercise, female: []},
-  Thighs: {male: [], female: femaleThighsPlan},
-  Triceps: {male: maleTricepsExercise, female: femaleTricepsExercise},
-  Biceps: {male: maleBiscepsExercise, female: femaleBicepsExercise},
-  Shoulder: {male: maleShoulderExercise, female: []},
-  Skinny: {male: maleSkinnyExercise, female: femaleSkinnyExercise},
+  neck: {male: maleNeckExercise, female: femaleNeckExercise},
+  forearms: {male: maleForearmsExercise, female: femaleForearmsExercise},
+  belly: {male: maleBellyExercise, female: femaleBellyExercise},
+  back: {male: maleBackExercise, female: femaleBackExercise},
+  legs: {male: maleLegsExercise, female: femaleLegsExercise},
+  pecs: {male: malePecsExercise, female: []},
+  thighs: {male: [], female: femaleThighsPlan},
+  triceps: {male: maleTricepsExercise, female: femaleTricepsExercise},
+  biceps: {male: maleBiscepsExercise, female: femaleBicepsExercise},
+  shoulder: {male: maleShoulderExercise, female: []},
+  skinny: {male: maleSkinnyExercise, female: femaleSkinnyExercise},
 };
 
 export function createUserModel(data: PersonalizeModelMetaDataTy): DayTy[] {
@@ -57,6 +57,7 @@ export function createUserModel(data: PersonalizeModelMetaDataTy): DayTy[] {
   let selectedPlan: DayTy[] = [];
 
   target_body_zones.forEach(zone => {
+    console.log({target_body_zones});
     const plan =
       exercisePlans[zone as keyof typeof BodyZonesTypes]?.[genderKey];
     if (plan) {
@@ -65,7 +66,7 @@ export function createUserModel(data: PersonalizeModelMetaDataTy): DayTy[] {
   });
 
   // Ensure Skinny plan is prioritized if selected
-  if (target_body_type === BodyZonesTypes.Skinny) {
+  if (target_body_type === BodyZonesTypes.skinny) {
     selectedPlan =
       gender === 'female' ? femaleSkinnyExercise : maleSkinnyExercise;
   }

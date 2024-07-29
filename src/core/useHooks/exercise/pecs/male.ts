@@ -1,4 +1,3 @@
-import {bodyZones} from '@assets/register';
 import {DayTy} from '@core/db/types';
 
 interface PhaseType {
@@ -11,7 +10,7 @@ interface PhaseType {
 export const malePlanFirstPhase = ({
   difficulty,
   day,
-  title = 'Phase 1 - Chest Workout',
+  title = 'Chest Workout \n Exercise',
   phase,
 }: PhaseType): DayTy => {
   return {
@@ -25,28 +24,31 @@ export const malePlanFirstPhase = ({
         name: 'Decline Bench Press',
         description: 'Decline bench press to target lower chest.',
         point: 2,
-        link: bodyZones.pecs.male.DeclineB,
+        link: 'DeclineB',
         duration: difficulty,
         completed: false,
         type: 'pecs',
+        path: 'pecs',
       },
       {
         name: 'Pump Up Your Pecs',
         description: 'A chest exercise to increase blood flow and muscle pump.',
         point: 2,
-        link: bodyZones.pecs.male.Pump_Up_Your_Pecs,
+        link: 'Pump_Up_Your_Pecs',
         duration: difficulty,
         completed: false,
         type: 'pecs',
+        path: 'pecs',
       },
       {
         name: 'Cable Fly',
         description: 'Cable fly to enhance chest stretch and contraction.',
         point: 2,
-        link: bodyZones.pecs.male.cablefly,
+        link: 'cablefly',
         duration: difficulty,
         completed: false,
         type: 'pecs',
+        path: 'pecs',
       },
     ],
   };
@@ -55,7 +57,7 @@ export const malePlanFirstPhase = ({
 export const malePlanSecondPhase = ({
   difficulty,
   day,
-  title = 'Phase 2 - Chest Strength Training',
+  title = 'Chest Strength Training \n Exercise',
   phase,
 }: PhaseType): DayTy => {
   return {
@@ -70,28 +72,31 @@ export const malePlanSecondPhase = ({
         description:
           'Bench press with close grip to target triceps and inner chest.',
         point: 2,
-        link: bodyZones.pecs.male.close_grip_bench_press,
+        link: 'close_grip_bench_press',
         duration: difficulty,
         completed: false,
         type: 'pecs',
+        path: 'pecs',
       },
       {
         name: 'Decline Push-Up',
         description: 'Push-up with feet elevated to target upper chest.',
         point: 2,
-        link: bodyZones.pecs.male.decline_push_up,
+        link: 'decline_push_up',
         duration: difficulty,
         completed: false,
         type: 'pecs',
+        path: 'pecs',
       },
       {
         name: 'Incline Bench Press',
         description: 'Incline bench press to focus on upper chest development.',
         point: 2,
-        link: bodyZones.pecs.male.incline_bench_press,
+        link: 'incline_bench_press',
         duration: difficulty,
         completed: false,
         type: 'pecs',
+        path: 'pecs',
       },
     ],
   };
@@ -100,7 +105,7 @@ export const malePlanSecondPhase = ({
 export const malePlanThirdPhase = ({
   difficulty,
   day,
-  title = 'Phase 3 - Advanced Chest Routine',
+  title = 'Advanced Chest Routine \n Exercise',
   phase,
 }: PhaseType): DayTy => {
   return {
@@ -115,29 +120,32 @@ export const malePlanThirdPhase = ({
         description:
           'Incline dumbbell press to target upper chest with dumbbells.',
         point: 2,
-        link: bodyZones.pecs.male.inclinedumbbellpress,
+        link: 'inclinedumbbellpress',
         duration: difficulty,
         completed: false,
         type: 'pecs',
+        path: 'pecs',
       },
       {
         name: 'Neutral Grip Chest Press',
         description:
           'Chest press with neutral grip to enhance chest activation.',
         point: 2,
-        link: bodyZones.pecs.male.neutralgripchestpress,
+        link: 'neutralgripchestpress',
         duration: difficulty,
         completed: false,
         type: 'pecs',
+        path: 'pecs',
       },
       {
         name: 'Push-Up',
         description: 'Standard push-up to build chest strength and endurance.',
         point: 2,
-        link: bodyZones.pecs.male.push_up,
+        link: 'push_up',
         duration: difficulty,
         completed: false,
         type: 'pecs',
+        path: 'pecs',
       },
     ],
   };
@@ -146,7 +154,7 @@ export const malePlanThirdPhase = ({
 export const malePlanFourthPhase = ({
   difficulty,
   day,
-  title = 'Phase 4 - Comprehensive Chest Routine',
+  title = 'Comprehensive Chest Routine \n Exercise',
   phase,
 }: PhaseType): DayTy => {
   return {
@@ -160,36 +168,38 @@ export const malePlanFourthPhase = ({
         name: 'Slow Clap Push-Up',
         description: 'Push-up with a slow clap for explosive strength.',
         point: 2,
-        link: bodyZones.pecs.male.slowclap,
+        link: 'slowclap',
         duration: difficulty,
         completed: false,
         type: 'pecs',
+        path: 'pecs',
       },
       {
         name: 'Staggered Press Up',
         description:
           'Press-up with staggered hands for increased chest activation.',
         point: 2,
-        link: bodyZones.pecs.male.staggered_press_up,
+        link: 'staggered_press_up',
         duration: difficulty,
         completed: false,
         type: 'pecs',
+        path: 'pecs',
       },
       {
         name: 'Wide Push-Up',
         description: 'Wide grip push-up to target outer chest muscles.',
         point: 2,
-        link: bodyZones.pecs.male.wide_push_up1,
+        link: 'wide_push_up1',
         duration: difficulty,
         completed: false,
         type: 'pecs',
+        path: 'pecs',
       },
     ],
   };
 };
 
 export const malePecsExercise: DayTy[] = [
-  // Phase 1
   ...Array(7)
     .fill(null)
     .map((_, i) =>

@@ -15,6 +15,7 @@ interface CircularProgressProps {
   itemslist?: string[];
   showItems?: boolean;
   showPercent?: boolean;
+  countDown?: number | string;
 }
 const CircularProgress: React.FC<CircularProgressProps> = ({
   backgroundColor,
@@ -22,6 +23,7 @@ const CircularProgress: React.FC<CircularProgressProps> = ({
   Cprogress,
   handler,
   size = 80,
+  countDown,
   textColor,
   textSize,
   itemslist,
@@ -70,7 +72,6 @@ const CircularProgress: React.FC<CircularProgressProps> = ({
       duration: 100,
     });
   }, [progress, animatedStroke, circumference, Cprogress]);
-
   return (
     <View
       style={[styles.container, {backgroundColor: backgroundColor ?? 'none'}]}>
@@ -107,7 +108,7 @@ const CircularProgress: React.FC<CircularProgressProps> = ({
           dy=".3em"
           fontSize={textSize ?? '9'}
           fill={textColor ?? Palette.text.dark[400]}>
-          {currentItem}
+          {countDown ?? currentItem}
         </SvgText>
         <SvgText
           x={radius}

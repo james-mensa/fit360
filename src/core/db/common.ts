@@ -114,7 +114,6 @@ export function AddDayPlan(realm: Realm) {
   }
 
   const userData = getPersonalizeModel(realm, {user_id: signed_user.user_id});
-  console.log({userData});
   const personalizeDataToDb = createUserModel(
     userData as PersonalizeModelMetaDataTy,
   );
@@ -145,12 +144,6 @@ export function AddDayPlan(realm: Realm) {
     });
     console.log('add playlist');
     AddWorkoutToDayPlan(realm, _id, exercise.playlist);
-  }
-
-  const dbRecord = getPlan(realm);
-  console.log({dbRecord});
-  if (dbRecord) {
-    return dbRecord;
   }
 }
 
@@ -186,7 +179,6 @@ function AddWorkoutToDayPlan(
       realm.write(() => {
         _planModel.playlist.push(_WorkoutModel);
       });
-      completeWorkout(realm, _id);
     }
   }
 }
@@ -198,7 +190,20 @@ export function getDayPlan(realm: Realm, {_id}: {_id: string}) {
     .at(0);
 }
 export function getPlan(realm: Realm) {
-  return realm.objects<DayPlanModel>(ModelNames.DayPlanModel);
+  const response = realm.objects<DayPlanModel>(ModelNames.DayPlanModel);
+
+  const incompleteTasks = response.filter(
+    task => task.completed < task.playlist.length,
+  );
+  // Step 2: Sort the filtered array by the day property
+  incompleteTasks.sort((a, b) => a.day - b.day);
+  // Step 3: Find the minimum day value
+  const minDay = incompleteTasks[0]?.day;
+
+  // Step 4: Filter the tasks to include only those with the minimum day value
+  const smallestDayTasks = incompleteTasks.filter(task => task.day === minDay);
+
+  return smallestDayTasks;
 }
 
 export function getWorkOut(realm: Realm, {_id}: {_id: string}) {

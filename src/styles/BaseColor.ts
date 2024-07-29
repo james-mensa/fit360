@@ -22,6 +22,8 @@ const Card = {
 const background = {
   light: {
     100: '#ffffff',
+    120: 'rgba(255, 255, 255,0.5)',
+    130: 'rgba(255, 255, 255,0.7)',
     150: 'rgba(255, 255, 255,0.8)',
     200: 'rgb(236, 242, 255)',
     250: '#fcfcfd',
@@ -29,6 +31,7 @@ const background = {
     400: 'rgb(229, 209, 250)',
     500: 'rgb(132, 104, 252)',
     550: 'rgba(120, 94, 218,0.2)',
+    560: 'rgba(255, 255, 255,0.96)',
   },
   dark: {
     100: '#070F2B',
@@ -73,6 +76,12 @@ const ColorsFromImage = {
     250: 'rgba(216, 173, 131,0.6)',
   },
 };
+const cardColors = [
+  'rgba(120, 94, 218,0.5)',
+  'rgba(216, 123, 130,0.7)',
+  'rgba(250, 217, 177,0.7)',
+  'rgba(223, 209, 251,0.6)',
+];
 
 export const Palette = {
   tab,
@@ -83,4 +92,5 @@ export const Palette = {
   ColorsFromImage,
   Button,
   Card,
+  cardColors,
 };

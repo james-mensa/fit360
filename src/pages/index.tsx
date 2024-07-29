@@ -4,6 +4,7 @@ import {BaseTab} from '@models/bottomTab';
 import {createStackNavigator} from '@react-navigation/stack';
 import {useLocalStore} from '@core/db';
 import {createUserModel} from '@core/db/creatingPersonalizedModel';
+import Player from '@models/Player';
 const Stack = createStackNavigator();
 
 const UIScreens = () => {
@@ -42,6 +43,11 @@ const UIScreens = () => {
         name="PageBase"
         options={{headerShown: false}}
         component={BaseTab}
+      />
+      <Stack.Screen
+        name="Player"
+        options={{headerShown: false, presentation: 'transparentModal'}}
+        component={Player}
       />
     </Stack.Navigator>
   );

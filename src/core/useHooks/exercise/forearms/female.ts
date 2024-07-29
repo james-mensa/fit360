@@ -1,4 +1,3 @@
-import {bodyZones} from '@assets/register';
 import {DayTy} from '@core/db/types';
 
 interface PhaseType {
@@ -17,17 +16,18 @@ export const femalePlanFirstPhase = ({
   day: day,
   total: 1,
   completed: 0,
-  title: title || `Phase ${phase}: Foundation Building (${difficulty}s)`,
+  title: title || `Foundation Building (${difficulty}s) \n Exercise`,
   phase: phase,
   playlist: [
     {
       name: 'Inner Wrist Curls',
       description: 'Strengthens forearm flexors by curling wrists inward.',
       point: 2,
-      link: bodyZones.forearms.female.Inner_Wrist_Curls,
+      link: 'Inner_Wrist_Curls',
       duration: difficulty,
       completed: false,
       type: 'forearms',
+      path: 'forearms',
     },
   ],
 });
@@ -41,17 +41,18 @@ export const femalePlanSecondPhase = ({
   day: day,
   total: 1,
   completed: 0,
-  title: title || `Phase ${phase}: Strength Enhancement (${difficulty}s)`,
+  title: title || `Strength Enhancement (${difficulty}s) \n Exercise`,
   phase: phase,
   playlist: [
     {
       name: 'Tricep Dips',
       description: 'Targets triceps and strengthens upper arms.',
       point: 2,
-      link: bodyZones.forearms.female.tricep_dips,
+      link: 'tricep_dips',
       duration: difficulty,
       completed: false,
       type: 'forearms',
+      path: 'forearms',
     },
   ],
 });
@@ -65,17 +66,18 @@ export const femalePlanThirdPhase = ({
   day: day,
   total: 1,
   completed: 0,
-  title: title || `Phase ${phase}: Flexor Focus (${difficulty}s)`,
+  title: title || `Flexor Focus (${difficulty}s) \n Exercise`,
   phase: phase,
   playlist: [
     {
       name: 'Inner Wrist Curls',
       description: 'Strengthens forearm flexors by curling wrists inward.',
       point: 2,
-      link: bodyZones.forearms.female.Inner_Wrist_Curls,
+      link: 'Inner_Wrist_Curls',
       duration: difficulty,
       completed: false,
       type: 'forearms',
+      path: 'forearms',
     },
   ],
 });
@@ -89,17 +91,18 @@ export const femalePlanFourthPhase = ({
   day: day,
   total: 1,
   completed: 0,
-  title: title || `Phase ${phase}: Upper Arm Conditioning (${difficulty}s)`,
+  title: title || `Upper Arm Conditioning (${difficulty}s) \n Exercise`,
   phase: phase,
   playlist: [
     {
       name: 'Tricep Dips',
       description: 'Targets triceps and strengthens upper arms.',
       point: 2,
-      link: bodyZones.forearms.female.tricep_dips,
+      link: 'tricep_dips',
       duration: difficulty,
       completed: false,
       type: 'forearms',
+      path: 'forearms',
     },
   ],
 });

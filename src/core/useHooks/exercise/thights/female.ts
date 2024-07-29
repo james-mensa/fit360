@@ -1,4 +1,3 @@
-import {bodyZones} from '@assets/register';
 import {DayTy} from '@core/db/types';
 
 // Helper function to create workout plans
@@ -28,7 +27,8 @@ const createWorkoutPlan = ({
       link: exercise.link,
       duration: difficulty,
       completed: false,
-      type: 'inner and front thighs',
+      type: 'thighs',
+      path: 'thighs',
     })),
   };
 };
@@ -37,7 +37,7 @@ const createWorkoutPlan = ({
 const phase1Exercises = [
   {
     name: 'Prone Hamstring Curl',
-    link: bodyZones.thighs.female.Prone_hamstring_curl,
+    link: 'Prone_hamstring_curl',
     description:
       'A targeted exercise to strengthen the inner and front thighs.',
   },
@@ -46,7 +46,7 @@ const phase1Exercises = [
 const phase2Exercises = [
   {
     name: 'Hamstring Curl with Dumbbell',
-    link: bodyZones.thighs.female.Hamstring_curl_dumbbell,
+    link: 'Hamstring_curl_dumbbell',
     description: 'Hamstring curls using a dumbbell to enhance thigh strength.',
   },
 ];
@@ -54,7 +54,7 @@ const phase2Exercises = [
 const phase3Exercises = [
   {
     name: 'Hamstring Curl with a Ball',
-    link: bodyZones.thighs.female.Hamstring_curl_with_a_ball,
+    link: 'Hamstring_curl_with_a_ball',
     description:
       'An advanced hamstring curl using a ball for added resistance and stability.',
   },
@@ -63,13 +63,13 @@ const phase3Exercises = [
 const phase4Exercises = [
   {
     name: 'Seated Hamstring Curl',
-    link: bodyZones.thighs.female.Seated_hamstring_curl,
+    link: 'Seated_hamstring_curl',
     description:
       'Seated exercise focusing on the hamstrings for increased strength.',
   },
   {
     name: 'Standing Hamstring Curl',
-    link: bodyZones.thighs.female.Standing_hamstring_curl,
+    link: 'Standing_hamstring_curl',
     description:
       'Standing exercise targeting the hamstrings with additional resistance.',
   },
@@ -82,7 +82,7 @@ export const femaleThighsPlan: DayTy[] = [
       createWorkoutPlan({
         difficulty: 120,
         day: i + 1,
-        title: 'Phase 1: Initial Strength Building',
+        title: 'Initial Strength Building \n Exercise',
         phase: 1,
         exercises: phase1Exercises,
       }),
@@ -93,7 +93,7 @@ export const femaleThighsPlan: DayTy[] = [
       createWorkoutPlan({
         difficulty: 180,
         day: i + 8,
-        title: 'Phase 1: Increased Intensity',
+        title: 'Increased Intensity \n Exercise',
         phase: 1,
         exercises: phase1Exercises,
       }),
@@ -104,7 +104,7 @@ export const femaleThighsPlan: DayTy[] = [
       createWorkoutPlan({
         difficulty: 180,
         day: i + 15,
-        title: 'Phase 2: Intermediate Strength Building',
+        title: 'Intermediate Strength Building \n Exercise',
         phase: 2,
         exercises: phase2Exercises,
       }),
@@ -115,7 +115,7 @@ export const femaleThighsPlan: DayTy[] = [
       createWorkoutPlan({
         difficulty: 180,
         day: i + 30,
-        title: 'Phase 3: Advanced Strength Building',
+        title: 'Advanced Strength Building \n Exercise',
         phase: 3,
         exercises: phase3Exercises,
       }),
@@ -126,7 +126,7 @@ export const femaleThighsPlan: DayTy[] = [
       createWorkoutPlan({
         difficulty: 180,
         day: i + 39,
-        title: 'Phase 3: Advanced Strength Building',
+        title: 'Advanced Strength Building \n Exercise',
         phase: 3,
         exercises: phase3Exercises,
       }),
@@ -137,7 +137,7 @@ export const femaleThighsPlan: DayTy[] = [
       createWorkoutPlan({
         difficulty: 180,
         day: i + 46,
-        title: 'Phase 4: Comprehensive Strength Training',
+        title: 'Comprehensive Strength Training \n Exercise',
         phase: 4,
         exercises: phase4Exercises,
       }),
@@ -148,7 +148,7 @@ export const femaleThighsPlan: DayTy[] = [
       createWorkoutPlan({
         difficulty: 210,
         day: i + 55,
-        title: 'Phase 4: Enhanced Strength Training',
+        title: 'Enhanced Strength Training \n Exercise',
         phase: 4,
         exercises: phase4Exercises,
       }),
@@ -159,7 +159,7 @@ export const femaleThighsPlan: DayTy[] = [
       createWorkoutPlan({
         difficulty: 210,
         day: i + 61,
-        title: 'Phase 5: Peak Strength Training',
+        title: 'Peak Strength Training \n Exercise',
         phase: 5,
         exercises: phase4Exercises,
       }),
@@ -170,7 +170,7 @@ export const femaleThighsPlan: DayTy[] = [
       createWorkoutPlan({
         difficulty: 240,
         day: i + 68,
-        title: 'Phase 5: Peak Strength Training',
+        title: 'Peak Strength Training \n Exercise',
         phase: 5,
         exercises: phase4Exercises,
       }),
@@ -181,7 +181,7 @@ export const femaleThighsPlan: DayTy[] = [
       createWorkoutPlan({
         difficulty: 210,
         day: i + 75,
-        title: 'Phase 6: Advanced Conditioning',
+        title: 'Advanced Conditioning \n Exercise',
         phase: 6,
         exercises: phase2Exercises,
       }),
@@ -192,7 +192,7 @@ export const femaleThighsPlan: DayTy[] = [
       createWorkoutPlan({
         difficulty: 240,
         day: i + 82,
-        title: 'Phase 6: Advanced Conditioning',
+        title: 'Advanced Conditioning \n Exercise',
         phase: 6,
         exercises: phase2Exercises,
       }),

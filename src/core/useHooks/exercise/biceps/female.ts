@@ -1,4 +1,3 @@
-import {bodyZones} from '@assets/register';
 import {DayTy} from '@core/db/types';
 
 interface PhaseType {
@@ -28,7 +27,7 @@ export const femalePlanFirstPhase = ({
   day,
   total: 2,
   completed: 0,
-  title: title || `Phase ${phase}: Biceps Strength Foundation (${difficulty}s)`,
+  title: title || `Biceps Strength Foundation (${difficulty}s) \n Exercise`,
   phase,
   playlist: [
     {
@@ -36,20 +35,22 @@ export const femalePlanFirstPhase = ({
       description:
         'An exercise targeting the biceps using a wide grip to enhance muscle engagement and strength.',
       point: 2,
-      link: bodyZones.bisceps.female.Denise_Wide_Grip_20Biceps_20Curl,
+      link: 'Denise_Wide_Grip_20Biceps_20Curl',
       duration: difficulty,
       completed: false,
       type: 'biceps',
+      path: 'biceps',
     },
     {
       name: 'Arnold Press',
       description:
         'A shoulder exercise that also engages the biceps, performed by rotating the palms while pressing weights overhead.',
       point: 2,
-      link: bodyZones.bisceps.female.Francine_arnold_press,
+      link: 'Francine_arnold_press',
       duration: difficulty,
       completed: false,
       type: 'biceps',
+      path: 'biceps',
     },
   ],
 });
@@ -63,7 +64,7 @@ export const femalePlanSecondPhase = ({
   day,
   total: 2,
   completed: 0,
-  title: title || `Phase ${phase}: Upper Body Strength (${difficulty}s)`,
+  title: title || `Upper Body Strength (${difficulty}s) \n Exercise`,
   phase,
   playlist: [
     {
@@ -71,20 +72,22 @@ export const femalePlanSecondPhase = ({
       description:
         'An exercise that targets the upper back and biceps by pulling weights towards the torso while bent over.',
       point: 2,
-      link: bodyZones.bisceps.female.Francine_bent_over_row,
+      link: 'Francine_bent_over_row',
       duration: difficulty,
       completed: false,
       type: 'biceps',
+      path: 'biceps',
     },
     {
       name: 'Chest Press',
       description:
         'A chest exercise that also engages the biceps by pressing weights away from the chest while lying on a bench.',
       point: 2,
-      link: bodyZones.bisceps.female.Jo_chest_press,
+      link: 'Jo_chest_press',
       duration: difficulty,
       completed: false,
       type: 'biceps',
+      path: 'biceps',
     },
   ],
 });
@@ -98,7 +101,7 @@ export const femalePlanThirdPhase = ({
   day,
   total: 2,
   completed: 0,
-  title: title || `Phase ${phase}: Isolation and Definition (${difficulty}s)`,
+  title: title || `Isolation (${difficulty}s) \n Exercise`,
   phase,
   playlist: [
     {
@@ -106,20 +109,22 @@ export const femalePlanThirdPhase = ({
       description:
         'A biceps curl performed with a wide grip and lifted position to maximize muscle contraction.',
       point: 2,
-      link: bodyZones.bisceps.female.Wide_Lifted_Bicep_Curl,
+      link: 'Wide_Lifted_Bicep_Curl',
       duration: difficulty,
       completed: false,
       type: 'biceps',
+      path: 'biceps',
     },
     {
       name: 'Single Arm Bicep Curl',
       description:
         'An exercise focusing on each arm individually to isolate and strengthen the biceps.',
       point: 2,
-      link: bodyZones.bisceps.female.dumbbell_single_arm_bicep_curl,
+      link: 'dumbbell_single_arm_bicep_curl',
       duration: difficulty,
       completed: false,
       type: 'biceps',
+      path: 'biceps',
     },
   ],
 });
@@ -133,7 +138,7 @@ export const femalePlanFourthPhase = ({
   day,
   total: 3,
   completed: 0,
-  title: title || `Phase ${phase}: Comprehensive Conditioning (${difficulty}s)`,
+  title: title || `Comprehensive Conditioning (${difficulty}s) \n Exercise`,
   phase,
   playlist: [
     {
@@ -141,30 +146,33 @@ export const femalePlanFourthPhase = ({
       description:
         'An exercise combining lateral and front raises to target the shoulders and biceps.',
       point: 2,
-      link: bodyZones.bisceps.female.lateral_raise_to_front_raise_rachel,
+      link: 'lateral_raise_to_front_raise_rachel',
       duration: difficulty,
       completed: false,
       type: 'biceps',
+      path: 'biceps',
     },
     {
       name: 'Skull Crusher',
       description:
         'An exercise that targets the triceps with a focus on extending the arms while lying on a bench.',
       point: 2,
-      link: bodyZones.bisceps.female.skull_crusher_Rachel,
+      link: 'skull_crusher_Rachel',
       duration: difficulty,
       completed: false,
       type: 'biceps',
+      path: 'biceps',
     },
     {
       name: 'Three Point Row',
       description:
         'A rowing exercise that involves pulling weights towards the torso from three different positions to target the back and biceps.',
       point: 2,
-      link: bodyZones.bisceps.female.three_point_row,
+      link: 'three_point_row',
       duration: difficulty,
       completed: false,
       type: 'biceps',
+      path: 'biceps',
     },
   ],
 });

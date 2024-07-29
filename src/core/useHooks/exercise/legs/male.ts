@@ -1,4 +1,3 @@
-import {bodyZones} from '@assets/register';
 import {DayTy} from '@core/db/types';
 
 interface PhaseType {
@@ -26,10 +25,11 @@ export const malePlanFirstPhase = ({
         description:
           'Targets the hamstrings, glutes, and lower back with deadlifts using dumbbells',
         point: 2,
-        link: bodyZones.legs.male.DB_Deadlifts,
+        link: 'DB_Deadlifts',
         duration: difficulty,
         completed: false,
         type: 'legs',
+        path: 'legs',
       },
     ],
   };
@@ -54,10 +54,11 @@ export const malePlanSecondPhase = ({
         description:
           'Strengthens the legs and glutes with a single-leg reverse lunge exercise',
         point: 2,
-        link: bodyZones.legs.male.Single_Leg_Reverse_Lunge,
+        link: 'Single_Leg_Reverse_Lunge',
         duration: difficulty,
         completed: false,
         type: 'legs',
+        path: 'legs',
       },
     ],
   };
@@ -81,10 +82,11 @@ export const malePlanThirdPhase = ({
         description:
           'Targets the hamstrings, glutes, and lower back with deadlifts using dumbbells',
         point: 2,
-        link: bodyZones.legs.male.DB_Deadlifts,
+        link: 'DB_Deadlifts',
         duration: difficulty,
         completed: false,
         type: 'legs',
+        path: 'legs',
       },
     ],
   };
@@ -109,20 +111,22 @@ export const malePlanFourthPhase = ({
         description:
           'Strengthens the legs and glutes with a single-leg reverse lunge exercise',
         point: 2,
-        link: bodyZones.legs.male.Single_Leg_Reverse_Lunge,
+        link: 'Single_Leg_Reverse_Lunge',
         duration: difficulty,
         completed: false,
         type: 'legs',
+        path: 'legs',
       },
       {
         name: 'Dumbbell Deadlifts',
         description:
           'Targets the hamstrings, glutes, and lower back with deadlifts using dumbbells',
         point: 2,
-        link: bodyZones.legs.male.DB_Deadlifts,
+        link: 'DB_Deadlifts',
         duration: difficulty,
         completed: false,
         type: 'legs',
+        path: 'legs',
       },
     ],
   };
@@ -135,7 +139,7 @@ export const maleLegsExercise: DayTy[] = [
       malePlanFirstPhase({
         difficulty: 120,
         day: i + 1,
-        title: `Phase 1 - Dumbbell Deadlifts (${120}s)`,
+        title: `Dumbbell Deadlifts (${120}s) \n Exercises`,
         phase: 1,
       }),
     ),
@@ -145,7 +149,7 @@ export const maleLegsExercise: DayTy[] = [
       malePlanFirstPhase({
         difficulty: 180,
         day: i + 8,
-        title: `Phase 1 - Dumbbell Deadlifts (${180}s)`,
+        title: `Dumbbell Deadlifts (${180}s) \n Exercises`,
         phase: 1,
       }),
     ),
@@ -155,7 +159,7 @@ export const maleLegsExercise: DayTy[] = [
       malePlanSecondPhase({
         difficulty: 180,
         day: i + 14,
-        title: `Phase 2 - Single Leg Reverse Lunge (${180}s)`,
+        title: `Single Leg Reverse Lunge (${180}s) \n Exercises`,
         phase: 2,
       }),
     ),
@@ -165,7 +169,7 @@ export const maleLegsExercise: DayTy[] = [
       malePlanThirdPhase({
         difficulty: 180,
         day: i + 31,
-        title: `Phase 3 - Dumbbell Deadlifts (${180}s)`,
+        title: `Dumbbell Deadlifts (${180}s) \n Exercises`,
         phase: 3,
       }),
     ),
@@ -175,7 +179,7 @@ export const maleLegsExercise: DayTy[] = [
       malePlanFourthPhase({
         difficulty: 180,
         day: i + 46,
-        title: `Phase 4 - Comprehensive Leg Routine (${180}s)`,
+        title: `Comprehensive Leg Routine (${180}s) \n Exercises`,
         phase: 4,
       }),
     ),
@@ -185,7 +189,7 @@ export const maleLegsExercise: DayTy[] = [
       malePlanFourthPhase({
         difficulty: 210,
         day: i + 53,
-        title: `Phase 5 - Comprehensive Leg Routine (${210}s)`,
+        title: `Comprehensive Leg Routine (${210}s) \n Exercises`,
         phase: 5,
       }),
     ),
@@ -195,7 +199,7 @@ export const maleLegsExercise: DayTy[] = [
       malePlanFourthPhase({
         difficulty: 240,
         day: i + 60,
-        title: `Phase 5 - Comprehensive Leg Routine (${240}s)`,
+        title: `Comprehensive Leg Routine (${240}s) \n Exercises`,
         phase: 5,
       }),
     ),
@@ -205,7 +209,7 @@ export const maleLegsExercise: DayTy[] = [
       malePlanSecondPhase({
         difficulty: 210,
         day: i + 67,
-        title: `Phase 6 - Single Leg Reverse Lunge (${210}s)`,
+        title: `Single Leg Reverse Lunge (${210}s) \n Exercises`,
         phase: 6,
       }),
     ),
@@ -215,7 +219,7 @@ export const maleLegsExercise: DayTy[] = [
       malePlanSecondPhase({
         difficulty: 240,
         day: i + 74,
-        title: `Phase 6 - Single Leg Reverse Lunge (${240}s)`,
+        title: `Single Leg Reverse Lunge (${240}s) \n Exercises`,
         phase: 6,
       }),
     ),

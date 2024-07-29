@@ -1,11 +1,8 @@
 import {AppStyles} from '@common/common-ui';
 import {VectorIcons} from '@common/VectorIcons';
-import {DayPlanModelTy, useLocalStore} from '@core/db';
-import {WorkoutModel} from '@core/db/models';
-import {generateId} from '@core/utils';
+import { useLocalStore} from '@core/db';
 import {UIResponsive} from '@layout/ResponsiveUi';
 import CircularProgress from '@models/progress/CircularProgress';
-import {VideoPlayer} from '@models/VideoPlayer';
 import {VideoProgressIndicator} from '@models/VideoProgressIndicator';
 import {Palette} from '@styles/BaseColor';
 import React from 'react';
@@ -14,23 +11,8 @@ export const Settings = () => {
   const LocalStore = useLocalStore();
 
   async function saveToStorage() {
-    const response = LocalStore.AddDayPlan();
-    if (response) {
-      console.log('Added');
-    } else {
-      console.log('error');
-    }
-  }
-
-  function getPlan() {
-    const response = LocalStore.getPlan();
-    for (const plan of response) {
-      for (const planl of plan.playlist) {
-        if (planl.dayPlan) {
-          console.log({assa: planl.dayPlan[0]});
-        }
-      }
-    }
+    LocalStore.AddDayPlan();
+    console.log('Added');
   }
   return (
     <SafeAreaView>
@@ -54,7 +36,7 @@ export const Settings = () => {
                 <VideoProgressIndicator />
               </View>
             </View>
-            {/* <VideoPlayer file={Icons.neck} /> */}
+            <VideoPlayer file={Icons.skinny_1} />
             <View style={styles.controllers}>
               <View style={styles.controller_button}>
                 {VectorIcons.previous({onPress: () => getPlan()})}

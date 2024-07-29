@@ -1,4 +1,3 @@
-import {bodyZones} from '@assets/register';
 import {DayTy} from '@core/db/types';
 
 interface PhaseType {
@@ -17,7 +16,7 @@ export const malePlanFirstPhase = ({
   day: day,
   total: 2,
   completed: 0,
-  title: title || `Phase ${phase}: Biceps Strength Foundation (${difficulty}s)`,
+  title: title || `Biceps Strength Foundation (${difficulty}s) \n Exercise`,
   phase: phase,
   playlist: [
     {
@@ -25,20 +24,22 @@ export const malePlanFirstPhase = ({
       description:
         'A classic exercise for building overall biceps strength and mass.',
       point: 2,
-      link: bodyZones.bisceps.male.Barbell_Bicep_Curl,
+      link: 'Barbell_Bicep_Curl',
       duration: difficulty,
       completed: false,
       type: 'biceps',
+      path: 'biceps',
     },
     {
       name: 'Concentration Curl',
       description:
         'An isolation exercise that targets the biceps peak by focusing on one arm at a time.',
       point: 2,
-      link: bodyZones.bisceps.male.Concentration_Curl,
+      link: 'Concentration_Curl',
       duration: difficulty,
       completed: false,
       type: 'biceps',
+      path: 'biceps',
     },
   ],
 });
@@ -52,7 +53,7 @@ export const malePlanSecondPhase = ({
   day: day,
   total: 2,
   completed: 0,
-  title: title || `Phase ${phase}: Advanced Curl Techniques (${difficulty}s)`,
+  title: `Advanced Curl Techniques (${difficulty}s) \n Exercise`,
   phase: phase,
   playlist: [
     {
@@ -60,20 +61,22 @@ export const malePlanSecondPhase = ({
       description:
         'An advanced curl variation using an EZ bar while leaning forward to target the biceps more intensively.',
       point: 2,
-      link: bodyZones.bisceps.male.Leant_Forward_EZ_Bar_Curl,
+      link: 'Leant_Forward_EZ_Bar_Curl',
       duration: difficulty,
       completed: false,
       type: 'biceps',
+      path: 'biceps',
     },
     {
       name: 'Prone Dumbbell Spider Curl',
       description:
         'A curl exercise performed while lying face down on an incline bench to isolate the biceps effectively.',
       point: 2,
-      link: bodyZones.bisceps.male.Prone_Dumbbell_Spider_Curl,
+      link: 'Prone_Dumbbell_Spider_Curl',
       duration: difficulty,
       completed: false,
       type: 'biceps',
+      path: 'biceps',
     },
   ],
 });
@@ -87,8 +90,7 @@ export const malePlanThirdPhase = ({
   day: day,
   total: 2,
   completed: 0,
-  title:
-    title || `Phase ${phase}: Dynamic Biceps Conditioning (${difficulty}s)`,
+  title: title || `Dynamic Biceps Conditioning (${difficulty}s) \n Exercise`,
   phase: phase,
   playlist: [
     {
@@ -96,20 +98,22 @@ export const malePlanThirdPhase = ({
       description:
         'A curl variation with a reverse grip to hit the biceps from a different angle and enhance forearm strength.',
       point: 2,
-      link: bodyZones.bisceps.male.Reverse_Grip_EZ_Bar_Curl,
+      link: 'Reverse_Grip_EZ_Bar_Curl',
       duration: difficulty,
       completed: false,
       type: 'biceps',
+      path: 'biceps',
     },
     {
       name: 'Twisting Dumbbell Curl',
       description:
         'A dynamic curl exercise that includes a twisting motion to maximize biceps contraction and improve muscle definition.',
       point: 2,
-      link: bodyZones.bisceps.male.Twisting_Dumbbell_Curl,
+      link: 'Twisting_Dumbbell_Curl',
       duration: difficulty,
       completed: false,
       type: 'biceps',
+      path: 'biceps',
     },
   ],
 });
@@ -123,8 +127,7 @@ export const malePlanFourthPhase = ({
   day: day,
   total: 2,
   completed: 0,
-  title:
-    title || `Phase ${phase}: Comprehensive Biceps Workout (${difficulty}s)`,
+  title: title || `Comprehensive Biceps Workout (${difficulty}s) \n Exercise`,
   phase: phase,
   playlist: [
     {
@@ -132,20 +135,22 @@ export const malePlanFourthPhase = ({
       description:
         'A reverse curl exercise targeting the biceps and forearms using a reverse grip to challenge the muscles differently.',
       point: 2,
-      link: bodyZones.bisceps.male.reversecurl,
+      link: 'reversecurl',
       duration: difficulty,
       completed: false,
       type: 'biceps',
+      path: 'biceps',
     },
     {
       name: 'Prone Dumbbell Spider Curl',
       description:
         'Repeat of the prone dumbbell spider curl to further isolate and work the biceps.',
       point: 2,
-      link: bodyZones.bisceps.male.Prone_Dumbbell_Spider_Curl,
+      link: 'Prone_Dumbbell_Spider_Curl',
       duration: difficulty,
       completed: false,
       type: 'biceps',
+      path: 'biceps',
     },
   ],
 });

@@ -14,8 +14,10 @@ import {Icons} from '@assets/register';
 import personalizeDataToDb from '@core/useHooks/PersonalizeDataToDB';
 import {useLocalStore} from '@core/db';
 import {createUserModel} from '@core/db/creatingPersonalizedModel';
+import {useProvider} from '@store/provider';
 export const CreatingPersonalizedModel = () => {
   const navigation = useNavigation<Navigation>();
+  const {setPlans} = useProvider();
   const goNext = () => {
     setTimeout(() => {
       navigation.navigate('PageBase');
@@ -34,12 +36,18 @@ export const CreatingPersonalizedModel = () => {
         {user_id: MetaData.user_id},
         MetaData.data,
       );
+
       if (response) {
         const __user = LocalStore.setLoginData(
           {user_id: MetaData.user_id},
           {user_name: response.user_name},
         );
         if (__user) {
+          LocalStore.AddDayPlan();
+          const response = LocalStore.getPlan();
+          if (response) {
+            setPlans(response);
+          }
           console.log({__user});
           await createUserModel(MetaData.data);
         }

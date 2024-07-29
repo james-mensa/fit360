@@ -36,15 +36,10 @@ export interface LocalStore {
     keyParam: {user_id?: string},
     Data: Omit<LoginModelTy, 'user_id'>,
   ) => LoginModelTy;
-  AddDayPlan: () =>
-    | Realm.Results<Realm.Object<DayPlanModel, never> & DayPlanModel>
-    | undefined;
-  // addPlaylist: (Data: WorkoutModelTy[]) => DayPlanModelTy;
-  getPlan: () => Realm.Results<
-    Realm.Object<DayPlanModel, never> & DayPlanModel
-  >;
-}
+  AddDayPlan: () => void;
 
+  getPlan: () => DayPlanModelTy[] | undefined;
+}
 export interface WorkoutTy {
   name: string;
   description: string;
@@ -53,6 +48,7 @@ export interface WorkoutTy {
   duration: number;
   completed: boolean;
   type?: BodyZonesTypes;
+  path: string;
 }
 
 export interface DayTy {

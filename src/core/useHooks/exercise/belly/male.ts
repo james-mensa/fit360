@@ -1,6 +1,4 @@
-import {bodyZones} from '@assets/register';
 import {DayTy} from '@core/db/types';
-
 interface PhaseType {
   difficulty: number;
   day: number;
@@ -17,7 +15,7 @@ export const malePlanFirstPhase = ({
   day,
   total: 2,
   completed: 0,
-  title: title || `Phase ${phase}: Core Strength Foundation`,
+  title: title || `Core Strength Foundation \n Exercise`,
   phase,
   playlist: [
     {
@@ -25,20 +23,22 @@ export const malePlanFirstPhase = ({
       description:
         'A core exercise that involves contracting the abdominal muscles to strengthen the belly area.',
       point: 2,
-      link: bodyZones.belly.male.AbContractions,
+      link: 'AbContractions',
       duration: difficulty,
       completed: false,
       type: 'belly',
+      path: 'belly',
     },
     {
       name: 'Bicycle Crunches',
       description:
         'A dynamic abdominal exercise that targets the obliques and rectus abdominis by simulating a pedaling motion.',
       point: 2,
-      link: bodyZones.belly.male.BicycleCrunches,
+      link: 'BicycleCrunches',
       duration: difficulty,
       completed: false,
       type: 'belly',
+      path: 'belly',
     },
   ],
 });
@@ -52,7 +52,7 @@ export const malePlanSecondPhase = ({
   day,
   total: 2,
   completed: 0,
-  title: title || `Phase ${phase}: Core Stability and Balance`,
+  title: title || `Core Stability and Balance \n Exercise`,
   phase,
   playlist: [
     {
@@ -60,20 +60,22 @@ export const malePlanSecondPhase = ({
       description:
         'A yoga pose that strengthens the core and improves balance by holding a V-shaped position.',
       point: 2,
-      link: bodyZones.belly.male.BoatPose,
+      link: 'BoatPose',
       duration: difficulty,
       completed: false,
       type: 'belly',
+      path: 'belly',
     },
     {
       name: 'Hip Lift',
       description:
         'An exercise that targets the lower abs and glutes by lifting the hips while lying on your back.',
       point: 2,
-      link: bodyZones.belly.male.HipLift,
+      link: 'HipLift',
       duration: difficulty,
       completed: false,
       type: 'belly',
+      path: 'belly',
     },
   ],
 });
@@ -87,7 +89,7 @@ export const malePlanThirdPhase = ({
   day,
   total: 2,
   completed: 0,
-  title: title || `Phase ${phase}: Advanced Core Challenges`,
+  title: title || `Advanced Core Challenges \n Exercise`,
   phase,
   playlist: [
     {
@@ -95,21 +97,22 @@ export const malePlanThirdPhase = ({
       description:
         'A core exercise that involves twisting the torso while holding a weight and keeping the legs crossed to engage the obliques.',
       point: 2,
-      link: bodyZones.belly.male
-        .How_to_Do_a_Russian_Twist_and_Strengthen_Your_Core_Legs_Crossed,
+      link: 'How_to_Do_a_Russian_Twist_and_Strengthen_Your_Core_Legs_Crossed',
       duration: difficulty,
       completed: false,
       type: 'belly',
+      path: 'belly',
     },
     {
       name: 'Leg Drops',
       description:
         'An abdominal exercise where you lower your legs towards the floor while keeping your lower back pressed to the ground.',
       point: 2,
-      link: bodyZones.belly.male.LegDrops,
+      link: 'LegDrops',
       duration: difficulty,
       completed: false,
       type: 'belly',
+      path: 'belly',
     },
   ],
 });
@@ -123,7 +126,7 @@ export const malePlanFourthPhase = ({
   day,
   total: 3,
   completed: 0,
-  title: title || `Phase ${phase}: Comprehensive Core Conditioning`,
+  title: title || `Comprehensive Core Conditioning \n Exercise`,
   phase,
   playlist: [
     {
@@ -131,30 +134,33 @@ export const malePlanFourthPhase = ({
       description:
         'A Pilates exercise that strengthens the core by pumping the arms up and down while holding a stable position with the legs raised.',
       point: 2,
-      link: bodyZones.belly.male.TheHundred,
+      link: 'TheHundred',
       duration: difficulty,
       completed: false,
       type: 'belly',
+      path: 'belly',
     },
     {
       name: 'Rocking Plank',
       description:
         'A variation of the plank exercise that involves rocking back and forth to increase core stability and strength.',
       point: 2,
-      link: bodyZones.belly.male.RockingPlank,
+      link: 'RockingPlank',
       duration: difficulty,
       completed: false,
       type: 'belly',
+      path: 'belly',
     },
     {
       name: 'Mountain Climbers',
       description:
         'A full-body exercise that involves alternating knee drives towards the chest while in a plank position to engage the core and improve cardiovascular fitness.',
       point: 2,
-      link: bodyZones.belly.male.MountainClimbers,
+      link: 'MountainClimbers',
       duration: difficulty,
       completed: false,
       type: 'belly',
+      path: 'belly',
     },
   ],
 });

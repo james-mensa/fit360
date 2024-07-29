@@ -1,4 +1,3 @@
-import {bodyZones} from '@assets/register';
 import {DayTy} from '@core/db/types';
 
 interface PhaseType {
@@ -24,6 +23,7 @@ const createPlan = (
     duration: difficulty,
     completed: false,
     type: 'forearms',
+    path: 'forearms',
   })),
 });
 
@@ -35,25 +35,23 @@ export const malePlanFirstPhase = (params: PhaseType): DayTy =>
         name: 'Crab Walks',
         description:
           'Strengthens forearms and improves grip by walking in a crab position',
-        link: bodyZones.forearms.male.Crab_Walks,
+        link: 'Crab_Walks',
       },
       {
         name: 'Grip Crush',
         description: 'Enhances grip strength with a crushing motion',
-        link: bodyZones.forearms.male
-          .Exercises_to_Do_at_the_Gym_or_at_Home_Grip_Crush,
+        link: 'Exercises_to_Do_at_the_Gym_or_at_Home_Grip_Crush',
       },
       {
         name: 'Forearm Twist',
         description: 'Strengthens forearms by twisting wrists',
-        link: bodyZones.forearms.male.Forearm_Twist,
+        link: 'Forearm_Twist',
       },
       {
         name: 'Hammer Curl to Pause Twist',
         description:
           'Combines hammer curls with a pause twist for forearm engagement',
-        link: bodyZones.forearms.male
-          .HAMMER_CURL_TO_PAUSE_TWIST_AND_SUPINATED_LOWER,
+        link: 'HAMMER_CURL_TO_PAUSE_TWIST_AND_SUPINATED_LOWER',
       },
     ],
     params,
@@ -66,22 +64,22 @@ export const malePlanSecondPhase = (params: PhaseType): DayTy =>
       {
         name: 'Incline Bench Zottman Curl',
         description: 'Targets forearms and biceps with an incline bench angle',
-        link: bodyZones.forearms.male.INCLINE_BENCH_ZOTTMAN_CURL,
+        link: 'INCLINE_BENCH_ZOTTMAN_CURL',
       },
       {
         name: 'Linear Naughty Gar',
         description: 'Focuses on forearm strength with a linear movement',
-        link: bodyZones.forearms.male.LinearNaughtyGar,
+        link: 'LinearNaughtyGar',
       },
       {
         name: 'Rear Roasters',
         description: 'Strengthens forearms with a rear-focused movement',
-        link: bodyZones.forearms.male.Rear_Roasters,
+        link: 'Rear_Roasters',
       },
       {
         name: 'Wrist Curl',
         description: 'Builds forearm strength through wrist curling',
-        link: bodyZones.forearms.male.Wrist_Curl,
+        link: 'Wrist_Curl',
       },
     ],
     params,
@@ -94,22 +92,22 @@ export const malePlanThirdPhase = (params: PhaseType): DayTy =>
       {
         name: 'Bent Over Row',
         description: 'Engages forearms and back with a bent-over position',
-        link: bodyZones.forearms.male.bent_over_row,
+        link: 'bent_over_row',
       },
       {
         name: 'Big Arms Exercise 1',
         description: 'Focuses on forearm strength with a specific movement',
-        link: bodyZones.forearms.male.big_arms,
+        link: 'big_arms',
       },
       {
         name: 'Big Arms Exercise 2',
         description: 'Additional forearm strengthening exercise',
-        link: bodyZones.forearms.male.big_arms_2,
+        link: 'big_arms_2',
       },
       {
         name: 'Lateral Raise',
         description: 'Targets forearms and shoulders with a lateral raise',
-        link: bodyZones.forearms.male.how_to_do_a_lateral_raise,
+        link: 'how_to_do_a_lateral_raise',
       },
     ],
     params,
@@ -123,23 +121,23 @@ export const malePlanFourthPhase = (params: PhaseType): DayTy =>
         name: 'Zottman Curl',
         description:
           'Combines curling and rotating motion for forearm development',
-        link: bodyZones.forearms.male.curlszottman,
+        link: 'curlszottman',
       },
       {
         name: 'Hammer Curl',
         description: 'Strengthens forearms with a hammer grip curl',
-        link: bodyZones.forearms.male.hammer_url,
+        link: 'hammer_url',
       },
       {
         name: 'Tricep Extension',
         description:
           'Focuses on triceps and forearms with an extension movement',
-        link: bodyZones.forearms.male.tricep_extension,
+        link: 'tricep_extension',
       },
       {
         name: 'Palm Supination Wrist Curl',
         description: 'Strengthens forearms with a palm-up wrist curl',
-        link: bodyZones.forearms.male.palmsupwristcurl,
+        link: 'palmsupwristcurl',
       },
     ],
     params,

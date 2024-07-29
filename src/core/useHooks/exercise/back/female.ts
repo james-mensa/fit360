@@ -1,4 +1,3 @@
-import {bodyZones} from '@assets/register';
 import {DayTy} from '@core/db/types';
 
 interface PhaseType {
@@ -18,7 +17,7 @@ const femalePlanFirstPhase = ({
     day: day,
     total: 2,
     completed: 0,
-    title: title || `Phase ${phase}: Foundational Back Strength`,
+    title: title || `Foundational Back Strength \n Exercise`,
     phase: phase,
     playlist: [
       {
@@ -26,21 +25,22 @@ const femalePlanFirstPhase = ({
         description:
           'A barbell row targets the upper back and lats using a barbell.',
         point: 2,
-        link: bodyZones.back.female.Back_Moves_for_a_Stronger_Back_Barbell,
+        link: 'Back_Moves_for_a_Stronger_Back_Barbell',
         duration: difficulty,
         completed: false,
         type: 'back',
+        path: 'back',
       },
       {
         name: 'Resistance Band Pull Aparts',
         description:
           'This exercise strengthens the upper back using a resistance band.',
         point: 2,
-        link: bodyZones.back.female
-          .Back_Moves_for_a_Stronger_Back_Resistance_Band_Pull_Aparts,
+        link: 'Back_Moves_for_a_Stronger_Back_Resistance_Band_Pull_Aparts',
         duration: difficulty,
         completed: false,
         type: 'back',
+        path: 'back',
       },
     ],
   };
@@ -56,7 +56,7 @@ const femalePlanSecondPhase = ({
     day: day,
     total: 2,
     completed: 0,
-    title: title || `Phase ${phase}: Targeted Back Workouts`,
+    title: title || `Targeted Back Workouts \n Exercise`,
     phase: phase,
     playlist: [
       {
@@ -64,21 +64,22 @@ const femalePlanSecondPhase = ({
         description:
           'This exercise works on the back muscles using a single dumbbell.',
         point: 2,
-        link: bodyZones.back.female
-          .Back_Moves_for_a_Stronger_Back_Single_Arm_Dumbbell_Row_off_Bench,
+        link: 'Back_Moves_for_a_Stronger_Back_Single_Arm_Dumbbell_Row_off_Bench',
         duration: difficulty,
         completed: false,
         type: 'back',
+        path: 'back',
       },
       {
         name: 'Medicine Ball Woodchop',
         description:
           'A dynamic exercise working on the back and core using a medicine ball.',
         point: 2,
-        link: bodyZones.back.female.Back_Woodchop_with_Medicine_Ball,
+        link: 'Back_Woodchop_with_Medicine_Ball',
         duration: difficulty,
         completed: false,
         type: 'back',
+        path: 'back',
       },
     ],
   };
@@ -94,7 +95,7 @@ const femalePlanThirdPhase = ({
     day: day,
     total: 3,
     completed: 0,
-    title: title || `Phase ${phase}: Comprehensive Back Routine`,
+    title: title || `Comprehensive Back Routine \n Exercise`,
     phase: phase,
     playlist: [
       {
@@ -102,31 +103,33 @@ const femalePlanThirdPhase = ({
         description:
           'A fundamental strength exercise targeting the lower back and entire posterior chain.',
         point: 2,
-        link: bodyZones.back.female.BarbellDeadlift,
+        link: 'BarbellDeadlift',
         duration: difficulty,
         completed: false,
         type: 'back',
+        path: 'back',
       },
       {
         name: 'Dumbbell Pullover',
         description:
           'An exercise that targets the chest and back using a dumbbell.',
         point: 2,
-        link: bodyZones.back.female.Dumbbell_pullover,
+        link: 'Dumbbell_pullover',
         duration: difficulty,
         completed: false,
         type: 'back',
+        path: 'back',
       },
       {
         name: 'Seated Lat Pull Down',
         description:
           'A high-rep, low-weight exercise targeting the latissimus dorsi muscles.',
         point: 2,
-        link: bodyZones.back.female
-          .Low_Weight_and_High_Reps_Seated_Lat_Pull_Down,
+        link: 'Low_Weight_and_High_Reps_Seated_Lat_Pull_Down',
         duration: difficulty,
         completed: false,
         type: 'back',
+        path: 'back',
       },
     ],
   };
@@ -142,7 +145,7 @@ const femalePlanFourthPhase = ({
     day: day,
     total: 3,
     completed: 0,
-    title: title || `Phase ${phase}: Advanced Back Exercises`,
+    title: title || 'Advanced Back Exercises \n Exercise',
     phase: phase,
     playlist: [
       {
@@ -150,30 +153,33 @@ const femalePlanFourthPhase = ({
         description:
           'This exercise targets the rear deltoids and upper back muscles.',
         point: 2,
-        link: bodyZones.back.female.Reverse_Fly_with_Dumbbells,
+        link: 'Reverse_Fly_with_Dumbbells',
         duration: difficulty,
         completed: false,
         type: 'back',
+        path: 'back',
       },
       {
         name: 'Bent Over Row',
         description:
           'A versatile exercise that targets the back muscles using dumbbells.',
         point: 2,
-        link: bodyZones.back.female.Suit_Your_Needs_Bent_Over_Row,
+        link: 'Suit_Your_Needs_Bent_Over_Row',
         duration: difficulty,
         completed: false,
         type: 'back',
+        path: 'back',
       },
       {
         name: 'Cat-Cow Stretch',
         description:
           'A gentle stretch for the back and neck, improving flexibility.',
         point: 2,
-        link: bodyZones.back.female.cat_cow_in_pink_top,
+        link: 'cat_cow_in_pink_top',
         duration: difficulty,
         completed: false,
         type: 'back',
+        path: 'back',
       },
     ],
   };

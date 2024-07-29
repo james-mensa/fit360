@@ -1,4 +1,3 @@
-import {bodyZones} from '@assets/register';
 import {DayTy} from '@core/db/types';
 
 interface PhaseType {
@@ -25,10 +24,11 @@ export const femalePlanFirstPhase = ({
         name: 'Tricep Exercise 1',
         description: 'An exercise targeting the triceps.',
         point: 2,
-        link: bodyZones.triceps.female.HonoredFamousIbex_size_restricted,
+        link: 'HonoredFamousIbex_size_restricted',
         duration: difficulty,
         completed: false,
         type: 'triceps',
+        path: 'triceps',
       },
     ],
   };
@@ -51,10 +51,11 @@ export const femalePlanSecondPhase = ({
         name: 'Tricep Exercise 2',
         description: 'Another tricep-focused exercise.',
         point: 2,
-        link: bodyZones.triceps.female.TricepOverhead,
+        link: 'TricepOverhead',
         duration: difficulty,
         completed: false,
         type: 'triceps',
+        path: 'triceps',
       },
     ],
   };
@@ -77,10 +78,11 @@ export const femalePlanThirdPhase = ({
         name: 'Tricep Exercise 3',
         description: 'An advanced tricep exercise.',
         point: 2,
-        link: bodyZones.triceps.female.dumbbell_bent_over_triceps_kick,
+        link: 'dumbbell_bent_over_triceps_kick',
         duration: difficulty,
         completed: false,
         type: 'triceps',
+        path: 'triceps',
       },
     ],
   };
@@ -103,19 +105,21 @@ export const femalePlanFourthPhase = ({
         name: 'Tricep Exercise 4',
         description: 'A basic tricep exercise.',
         point: 2,
-        link: bodyZones.triceps.female.HonoredFamousIbex_size_restricted,
+        link: 'HonoredFamousIbex_size_restricted',
         duration: difficulty,
         completed: false,
         type: 'triceps',
+        path: 'triceps',
       },
       {
         name: 'Tricep Exercise 5',
         description: 'Another tricep exercise for variety.',
         point: 2,
-        link: bodyZones.triceps.female.dumbbell_bent_over_triceps_kick,
+        link: 'dumbbell_bent_over_triceps_kick',
         duration: difficulty,
         completed: false,
         type: 'triceps',
+        path: 'triceps',
       },
     ],
   };
@@ -128,7 +132,7 @@ export const femaleTricepsExercise: DayTy[] = [
       femalePlanFirstPhase({
         difficulty: 120,
         day: i + 1,
-        title: 'Phase 1: Initial Strength Building',
+        title: 'Initial Strength Building \n Exercise',
         phase: 1,
       }),
     ),
@@ -138,7 +142,7 @@ export const femaleTricepsExercise: DayTy[] = [
       femalePlanFirstPhase({
         difficulty: 180,
         day: i + 8,
-        title: 'Phase 1: Increased Intensity',
+        title: 'Increased Intensity \n Exercise',
         phase: 1,
       }),
     ),
@@ -149,7 +153,7 @@ export const femaleTricepsExercise: DayTy[] = [
       femalePlanSecondPhase({
         difficulty: 180,
         day: i + 15,
-        title: 'Phase 2: Intermediate Strength Building',
+        title: 'Intermediate Strength Building \n Exercise',
         phase: 2,
       }),
     ),
@@ -160,7 +164,7 @@ export const femaleTricepsExercise: DayTy[] = [
       femalePlanThirdPhase({
         difficulty: 180,
         day: i + 30,
-        title: 'Phase 3: Advanced Strength Building',
+        title: 'Advanced Strength Building \n Exercise',
         phase: 3,
       }),
     ),
@@ -171,7 +175,7 @@ export const femaleTricepsExercise: DayTy[] = [
       femalePlanFourthPhase({
         difficulty: 180,
         day: i + 45,
-        title: 'Phase 4: Comprehensive Strength Training',
+        title: 'Comprehensive Strength Training \n Exercise',
         phase: 4,
       }),
     ),
@@ -181,7 +185,7 @@ export const femaleTricepsExercise: DayTy[] = [
       femalePlanFourthPhase({
         difficulty: 210,
         day: i + 51,
-        title: 'Phase 4: Enhanced Strength Training',
+        title: 'Enhanced Strength Training \n Exercise',
         phase: 4,
       }),
     ),
@@ -192,7 +196,7 @@ export const femaleTricepsExercise: DayTy[] = [
       femalePlanFourthPhase({
         difficulty: 240,
         day: i + 58,
-        title: 'Phase 5: Peak Strength Training',
+        title: 'Peak Strength Training \n Exercise',
         phase: 5,
       }),
     ),
@@ -203,7 +207,7 @@ export const femaleTricepsExercise: DayTy[] = [
       femalePlanSecondPhase({
         difficulty: 210,
         day: i + 65,
-        title: 'Phase 6: Advanced Conditioning',
+        title: 'Advanced Conditioning \n Exercise',
         phase: 6,
       }),
     ),
@@ -213,7 +217,7 @@ export const femaleTricepsExercise: DayTy[] = [
       femalePlanSecondPhase({
         difficulty: 240,
         day: i + 72,
-        title: 'Phase 6: Advanced Conditioning',
+        title: 'Advanced Conditioning  \n Exercise',
         phase: 6,
       }),
     ),

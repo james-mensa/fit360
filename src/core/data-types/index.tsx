@@ -7,6 +7,7 @@ export interface StatusProps {
   status: string;
 }
 
+export type GenderType = 'female' | 'male';
 export const LocalStoreKeys = {
   Gender: 'gender',
   FitnessIntrest: 'fitness_intrest',
@@ -38,18 +39,30 @@ export const TargetBodyTypes = {
 export type TargetBodyType =
   (typeof TargetBodyTypes)[keyof typeof TargetBodyTypes];
 
+export type BodyZonesAnyTypes =
+  | 'neck'
+  | 'forearms'
+  | 'belly'
+  | 'back'
+  | 'legs'
+  | 'pecs'
+  | 'thighs'
+  | 'triceps'
+  | 'biceps'
+  | 'shoulder'
+  | 'skinny';
 export const BodyZonesTypes = {
-  Neck: 'neck',
-  Forearms: 'forearms',
-  Belly: 'belly',
-  Back: 'back',
-  Legs: 'legs',
-  Pecs: 'pecs',
-  Thighs: 'inner and front thighs',
-  Triceps: 'triceps',
-  Biceps: 'biceps',
-  Shoulder: 'shoulder',
-  Skinny: 'skinny',
+  neck: 'neck',
+  forearms: 'forearms',
+  belly: 'belly',
+  back: 'back',
+  legs: 'legs',
+  pecs: 'pecs',
+  thighs: 'thighs',
+  triceps: 'triceps',
+  biceps: 'biceps',
+  shoulder: 'shoulder',
+  skinny: 'skinny',
 } as const;
 export type BodyZonesTypes =
   (typeof BodyZonesTypes)[keyof typeof BodyZonesTypes];
@@ -115,16 +128,16 @@ export type WaterConsumptionType =
   (typeof WaterConsumptionTypes)[keyof typeof WaterConsumptionTypes];
 
 export const BadHabitsTypes = {
-  Soda: 'Soda',
-  SweetenedFruitJuices: 'Sweetened fruit juices',
-  EnergyDrinks: 'Energy drinks',
-  FriedChicken: 'Fried chicken',
-  IceCream: 'Ice cream',
-  Pepperoni: 'Pepperoni',
-  SweetenedYogurt: 'Sweetened yogurt',
-  Noodles: 'Noodles',
-  Sausages: 'Sausages',
-  Burgers: 'Burgers',
+  Soda: 'soda',
+  SweetenedFruitJuices: 'sweetened fruit juices',
+  EnergyDrinks: 'energy drinks',
+  FriedChicken: 'fried chicken',
+  IceCream: 'ice cream',
+  Pepperoni: 'pepperoni',
+  SweetenedYogurt: 'sweetened yogurt',
+  Noodles: 'noodles',
+  Sausages: 'sausages',
+  Burgers: 'burgers',
 } as const;
 export type BadHabitsType =
   (typeof BadHabitsTypes)[keyof typeof BadHabitsTypes];

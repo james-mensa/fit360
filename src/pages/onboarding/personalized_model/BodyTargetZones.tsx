@@ -23,40 +23,40 @@ const pageContent = {
   title: 'Please Choose your target Body Zones',
   Cards: [
     {
-      title: 'Neck',
-      name: BodyZonesTypes.Neck,
+      title: 'neck',
+      name: BodyZonesTypes.neck,
     },
-    {title: 'Arms', name: BodyZonesTypes.Forearms},
+    {title: 'arms', name: BodyZonesTypes.forearms},
     {
-      title: 'Belly',
+      title: 'belly',
 
-      name: BodyZonesTypes.Belly,
+      name: BodyZonesTypes.belly,
     },
     {
-      title: 'Back',
+      title: 'back',
 
-      name: BodyZonesTypes.Back,
+      name: BodyZonesTypes.back,
     },
     {
-      title: 'Legs',
-      name: BodyZonesTypes.Legs,
+      title: 'legs',
+      name: BodyZonesTypes.legs,
     },
 
     {
-      title: 'Pecs',
-      name: BodyZonesTypes.Pecs,
+      title: 'pecs',
+      name: BodyZonesTypes.pecs,
     },
     {
-      title: 'Inner and Front thighs',
-      name: BodyZonesTypes.Thighs,
+      title: 'inner and front thighs',
+      name: BodyZonesTypes.thighs,
     },
     {
-      title: 'Triceps',
-      name: BodyZonesTypes.Triceps,
+      title: 'triceps',
+      name: BodyZonesTypes.triceps,
     },
     {
-      title: 'Biceps',
-      name: BodyZonesTypes.Biceps,
+      title: 'biceps',
+      name: BodyZonesTypes.biceps,
     },
   ],
 };
