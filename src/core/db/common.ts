@@ -192,6 +192,11 @@ export function getDayPlan(realm: Realm, {_id}: {_id: string}) {
 export function getPlan(realm: Realm) {
   const response = realm.objects<DayPlanModel>(ModelNames.DayPlanModel);
 
+  const day1 = response.filter(d => d.day === 1);
+  console.log({coutssss: day1.length});
+  day1.map(d => {
+    console.log(d);
+  });
   const incompleteTasks = response.filter(
     task => task.completed < task.playlist.length,
   );
@@ -202,8 +207,8 @@ export function getPlan(realm: Realm) {
 
   // Step 4: Filter the tasks to include only those with the minimum day value
   const smallestDayTasks = incompleteTasks.filter(task => task.day === minDay);
-
-  return smallestDayTasks;
+  const day = smallestDayTasks[0].day;
+  return response.filter(task => task.day === day);
 }
 
 export function getWorkOut(realm: Realm, {_id}: {_id: string}) {
@@ -223,7 +228,7 @@ function getDayPlanModel(realm: Realm, _id: string): DayPlanModel | null {
 
 export function completeWorkout(realm: Realm, _id: string) {
   const _WorkoutModel = getWorkOutModel(realm, _id);
-
+  console.log('updating', _id);
   if (_WorkoutModel) {
     realm.write(() => {
       _WorkoutModel.completed = true;

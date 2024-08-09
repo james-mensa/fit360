@@ -145,5 +145,14 @@ export const VectorIcons = {
       color={Palette.background.light[500]}
     />
   ),
+  mark: ({size, color}: {size?: number; color?: string}) => {
+    return (
+      <MaterialCommunityIcons
+        name={'checkbox-marked-circle-outline'}
+        size={size ?? 17}
+        color={color ?? Palette.background.light[500]}
+      />
+    );
+  },
 } as const;
 export type VectorIcons = (typeof VectorIcons)[keyof typeof VectorIcons];

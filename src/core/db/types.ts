@@ -37,8 +37,8 @@ export interface LocalStore {
     Data: Omit<LoginModelTy, 'user_id'>,
   ) => LoginModelTy;
   AddDayPlan: () => void;
-
   getPlan: () => DayPlanModelTy[] | undefined;
+  complete: (_id: string) => void;
 }
 export interface WorkoutTy {
   name: string;

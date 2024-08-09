@@ -13,14 +13,15 @@ import {Icons} from '@assets/register';
 import {Navigation} from '@common/type';
 import {useNavigation} from '@react-navigation/native';
 import {DayPlanModelTy, WorkoutModelTy} from '@core/db/types';
-import {WorkoutModel} from '@core/db/models';
-import {List} from 'realm';
+import {VectorIcons} from '@common/VectorIcons';
+import Animated from 'react-native-reanimated';
 interface PlanProps {
   title: string;
   count: number;
   type: string;
   index: number;
   item: DayPlanModelTy;
+  completed: number;
 }
 export const DayPlan: React.FC<PlanProps> = ({
   title,
@@ -28,64 +29,91 @@ export const DayPlan: React.FC<PlanProps> = ({
   type,
   index,
   item,
+  completed,
 }) => {
   const {user, setPlayList} = useProvider();
   const gender = user ? user.gender : 'female';
   const path = CardIcons[gender as GenderType][type as BodyZonesTypes];
   const toolPath = getToolImg();
   const PageNav = useNavigation<Navigation>();
-  const list = item.playlist;
+  const list = item.playlist as unknown as WorkoutModelTy[];
   const handleOnPress = () => {
     setPlayList(list);
     PageNav.navigate('Player');
   };
+
+  const isCompleted = completed === count;
+  const tool_style = toolstyle(isCompleted);
   return (
-    <TouchableOpacity onPress={handleOnPress}>
-      <ImageBackground
-        source={Icons.card_background}
-        resizeMode="cover"
-        style={styles.container_image}>
-        <View style={styles.container_image_cover}>
-          <View
-            style={{
-              ...styles.container,
-              backgroundColor: Palette.cardColors[index],
-            }}>
-            <View style={styles.content}>
-              <Label title={title} variant={LabelVariant.Sub1.Extra} />
-              <View style={styles.detailContainer}>
-                <View style={styles.tool}>
-                  <Image source={toolPath} style={styles.toolImg} />
+    <Animated.View>
+      <TouchableOpacity onPress={handleOnPress}>
+        <ImageBackground
+          source={Icons.card_background}
+          resizeMode="cover"
+          style={styles.container_image}>
+          <View style={styles.container_image_cover}>
+            <View
+              style={{
+                ...styles.container,
+                backgroundColor: Palette.cardColors[index],
+              }}>
+              <View style={styles.content}>
+                <Label title={title} variant={LabelVariant.Sub1.Extra} />
+                <View style={styles.detailContainer}>
+                  <View style={tool_style.tool}>
+                    {isCompleted ? (
+                      VectorIcons.mark({color: Palette.cardColors[index]})
+                    ) : (
+                      <Image source={toolPath} style={styles.toolImg} />
+                    )}
+                  </View>
+                  <View style={styles.label_container}>
+                    <Label
+                      title={`${completed}/${count}`}
+                      variant={LabelVariant.Sub3.TInterface}
+                    />
+                    <Label
+                      title={count === 1 ? 'Exercise' : 'Exercises'}
+                      variant={LabelVariant.Sub3.TInterface}
+                    />
+                  </View>
                 </View>
-                <View style={styles.label_container}>
-                  <Label title={count} variant={LabelVariant.Sub3.TInterface} />
-                  <Label
-                    title={count === 1 ? 'Exercise' : 'Exercises'}
-                    variant={LabelVariant.Sub3.TInterface}
-                  />
+                <View style={styles.detailContainer}>
+                  <View style={styles.tool}>
+                    <Image source={Icons.calender} style={styles.calenderImg} />
+                  </View>
+                  <View style={styles.label_container}>
+                    <Label
+                      title={`Day ${item.day}`}
+                      variant={LabelVariant.Sub3.TInterface}
+                    />
+                  </View>
                 </View>
               </View>
-              <View style={styles.detailContainer}>
-                <View style={styles.tool}>
-                  <Image source={Icons.calender} style={styles.calenderImg} />
-                </View>
-                <View style={styles.label_container}>
-                  <Label
-                    title={'Day 1'}
-                    variant={LabelVariant.Sub3.TInterface}
-                  />
-                </View>
+              <View style={styles.dropHover}>
+                <Image source={path} style={styles.image} />
               </View>
-            </View>
-            <View style={styles.dropHover}>
-              <Image source={path} style={styles.image} />
             </View>
           </View>
-        </View>
-      </ImageBackground>
-    </TouchableOpacity>
+        </ImageBackground>
+      </TouchableOpacity>
+    </Animated.View>
   );
 };
+
+const toolstyle = (complete: boolean) =>
+  StyleSheet.create({
+    tool: {
+      height: 27,
+      width: 27,
+      borderRadius: 10,
+      backgroundColor: complete
+        ? Palette.background.light[100]
+        : Palette.background.light[120],
+      justifyContent: 'center',
+      alignItems: 'center',
+    },
+  });
 const styles = StyleSheet.create({
   container_image: {
     display: 'flex',
@@ -126,7 +154,6 @@ const styles = StyleSheet.create({
     width: 27,
     borderRadius: 10,
     backgroundColor: Palette.background.light[120],
-
     justifyContent: 'center',
     alignItems: 'center',
   },
@@ -135,8 +162,8 @@ const styles = StyleSheet.create({
     width: 25,
   },
   calenderImg: {
-    resizeMode: 'center',
-    width: 20,
+    resizeMode: 'contain',
+    width: 25,
   },
   image: {
     height: UIResponsive.Card.medium.height,
@@ -150,4 +177,3 @@ const styles = StyleSheet.create({
     gap: 5,
   },
 });
-// @assets/icons/zones/back/female/BarbellDeadlift.webp

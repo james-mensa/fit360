@@ -1,7 +1,6 @@
 import React, {useEffect} from 'react';
 import {StyleProp, View, ViewStyle} from 'react-native';
 import Animated, {
-  FadeOut,
   useSharedValue,
   withDelay,
   withTiming,
@@ -14,20 +13,33 @@ interface AnimateViewProps {
   children: React.ReactNode;
   order: number;
   sx?: StyleProp<ViewStyle>;
+  isScale?: boolean;
 }
 
-export default function AnimateView({children, order, sx}: AnimateViewProps) {
+export default function AnimateView({
+  children,
+  order,
+  sx,
+  isScale,
+}: AnimateViewProps) {
   const opacity = useSharedValue<number>(0);
+  const scale = useSharedValue<number>(0.98); // Start with a smaller scale
 
-  // prettier-ignore
-
-  useEffect(()=>{
-    opacity.value = withDelay( order * DELAY, withTiming(1, { duration: DURATION }));
-},[]);
+  useEffect(() => {
+    opacity.value = withDelay(
+      order * DELAY,
+      withTiming(1, {duration: DURATION}),
+    );
+    scale.value = withDelay(order * DELAY, withTiming(1, {duration: DURATION}));
+  }, [opacity, scale, order]);
 
   return (
     <View style={sx}>
-      <Animated.View exiting={FadeOut} style={{opacity: opacity}}>
+      <Animated.View
+        style={{
+          opacity,
+          transform: [{scale: isScale ? scale : 1}],
+        }}>
         {children}
       </Animated.View>
     </View>

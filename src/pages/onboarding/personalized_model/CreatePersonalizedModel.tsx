@@ -13,7 +13,6 @@ import {UImage} from '@models/Icon';
 import {Icons} from '@assets/register';
 import personalizeDataToDb from '@core/useHooks/PersonalizeDataToDB';
 import {useLocalStore} from '@core/db';
-import {createUserModel} from '@core/db/creatingPersonalizedModel';
 import {useProvider} from '@store/provider';
 export const CreatingPersonalizedModel = () => {
   const navigation = useNavigation<Navigation>();
@@ -48,8 +47,6 @@ export const CreatingPersonalizedModel = () => {
           if (response) {
             setPlans(response);
           }
-          console.log({__user});
-          await createUserModel(MetaData.data);
         }
       }
     }

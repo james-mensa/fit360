@@ -37,27 +37,12 @@ const exercisePlans: {
 };
 
 export function createUserModel(data: PersonalizeModelMetaDataTy): DayTy[] {
-  const {
-    body_type,
-    target_body_type,
-    fitness_level,
-    gender,
-    target_body_zones,
-  } = data;
-  const determinate = {
-    bodyType: body_type,
-    targetBodyType: target_body_type,
-    fitnessLevel: fitness_level,
-    targetBodyZone: target_body_zones,
-    gender,
-  };
-  console.log('Creating user model: ', determinate);
-
+  const {target_body_type, gender, target_body_zones} = data;
+  console.log({starting: target_body_type});
   const genderKey = gender === 'female' ? 'female' : 'male';
   let selectedPlan: DayTy[] = [];
 
   target_body_zones.forEach(zone => {
-    console.log({target_body_zones});
     const plan =
       exercisePlans[zone as keyof typeof BodyZonesTypes]?.[genderKey];
     if (plan) {

@@ -33,6 +33,8 @@ export const Icons = {
   clock: require('./icons/clock.png'),
   play: require('./icons/play.png'),
   calender: require('./icons/calender.png'),
+  congrats: require('./icons/congrats.png'),
+  figure_count_down: require('./icons/figure_count_down.gif'),
 };
 
 // instructions assets

@@ -33,7 +33,6 @@ export function BaseTab() {
         component={Plan}
         options={tabsOption('PlanPage')}
       />
-      
       <Tab.Screen
         name="ProgressPage"
         component={Progress}

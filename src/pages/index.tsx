@@ -3,8 +3,8 @@ import InitializationStage from './fit-plan';
 import {BaseTab} from '@models/bottomTab';
 import {createStackNavigator} from '@react-navigation/stack';
 import {useLocalStore} from '@core/db';
-import {createUserModel} from '@core/db/creatingPersonalizedModel';
-import Player from '@models/Player';
+import {Player__} from '@models/player';
+
 const Stack = createStackNavigator();
 
 const UIScreens = () => {
@@ -17,12 +17,6 @@ const UIScreens = () => {
       const signed_user = LocalStore.getLoginData();
       if (signed_user?.user_id) {
         console.log('signed in');
-        const data = LocalStore.getPersonalizedModel({
-          user_id: signed_user.user_id,
-        });
-        if (data) {
-          await createUserModel(data);
-        }
 
         setLogin(true);
         return;
@@ -46,8 +40,11 @@ const UIScreens = () => {
       />
       <Stack.Screen
         name="Player"
-        options={{headerShown: false, presentation: 'transparentModal'}}
-        component={Player}
+        options={{
+          headerShown: false,
+          presentation: 'transparentModal',
+        }}
+        component={Player__}
       />
     </Stack.Navigator>
   );

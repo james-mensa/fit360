@@ -56,7 +56,6 @@ export const TargetBodyType = () => {
   const retrieveData = async () => {
     try {
       const local_response = await getLocalResponse(LocalStoreKeys.BodyType);
-      console.log({local_respon: local_response});
       if (local_response) {
         setBodyType(local_response);
       }

@@ -7,7 +7,7 @@ import Svg, {Circle, Text as SvgText} from 'react-native-svg';
 interface CircularProgressProps {
   backgroundColor?: string;
   progressColor?: string;
-  Cprogress?: number;
+  cProgress?: number;
   handler?: () => void;
   size?: number;
   textColor?: string;
@@ -20,7 +20,7 @@ interface CircularProgressProps {
 const CircularProgress: React.FC<CircularProgressProps> = ({
   backgroundColor,
   progressColor,
-  Cprogress,
+  cProgress,
   handler,
   size = 80,
   countDown,
@@ -68,10 +68,10 @@ const CircularProgress: React.FC<CircularProgressProps> = ({
   }, [done, handler]);
 
   useEffect(() => {
-    animatedStroke.value = withTiming(Cprogress ?? progress * circumference, {
+    animatedStroke.value = withTiming(cProgress ?? progress * circumference, {
       duration: 100,
     });
-  }, [progress, animatedStroke, circumference, Cprogress]);
+  }, [progress, animatedStroke, circumference, cProgress]);
   return (
     <View
       style={[styles.container, {backgroundColor: backgroundColor ?? 'none'}]}>

@@ -22,6 +22,7 @@ import {
   userLogin,
   AddDayPlan,
   getPlan,
+  completeWorkout,
 } from './common';
 
 export type PersonalizeModelTy = __PersonalizeModelTy;
@@ -57,6 +58,7 @@ function useLocalStore(): LocalStore {
     AddDayPlan: () => AddDayPlan(realm),
     // addPlaylist: (Data: WorkoutModelTy[]) => AddWorkoutToDayPlan(realm, Data),
     getPlan: () => getPlan(realm),
+    complete: (_id: string) => completeWorkout(realm, _id),
   };
 }
 

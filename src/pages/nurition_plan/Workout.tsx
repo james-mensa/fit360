@@ -1,10 +1,19 @@
 import {DayPlan} from '@models/cards';
+import {useFocusEffect} from '@react-navigation/native';
 
 import {useProvider} from '@store/provider';
-import React from 'react';
+import React, {useCallback} from 'react';
 import {StyleSheet, View} from 'react-native';
 export const Workout = () => {
   const {plan} = useProvider();
+  const [_, setRefresh] = React.useState(false);
+
+  useFocusEffect(
+    useCallback(() => {
+      setRefresh(prev => !prev);
+    }, []),
+  );
+
   return (
     <View style={styles.container}>
       {plan.map((item, index) => (
@@ -14,6 +23,9 @@ export const Workout = () => {
           item={item}
           title={item.title}
           count={item.playlist.length}
+          completed={
+            item.playlist.filter(data => data.completed === true).length
+          }
           type={item.playlist[0].type ?? ''}
         />
       ))}
