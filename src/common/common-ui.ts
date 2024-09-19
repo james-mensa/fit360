@@ -1,5 +1,10 @@
 import {Palette} from '@styles/BaseColor';
 import {Platform} from 'react-native';
+import {
+  NavigationProp,
+  ParamListBase,
+  useNavigation,
+} from '@react-navigation/native';
 
 const AppStyles = {
   shadow: {
@@ -17,5 +22,7 @@ const AppStyles = {
     }),
   },
 };
-
-export {AppStyles};
+const useAppNavigation = () => {
+  return useNavigation<NavigationProp<ParamListBase>>();
+};
+export {AppStyles, useAppNavigation};

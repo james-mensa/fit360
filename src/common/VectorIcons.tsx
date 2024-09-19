@@ -3,6 +3,8 @@ import {UIResponsive} from '@layout/ResponsiveUi';
 import {Palette} from '@styles/BaseColor';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import FontAwesome from 'react-native-vector-icons/FontAwesome5';
+import FontAwesomeBase from 'react-native-vector-icons/FontAwesome';
+
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import FeatherIcons from 'react-native-vector-icons/Feather';
@@ -145,6 +147,20 @@ export const VectorIcons = {
       color={Palette.background.light[500]}
     />
   ),
+  secondaryPrevButton: (color: string) => {
+    return <FeatherIcons name={'arrow-left'} size={15} color={color} />;
+  },
+  secondaryNextButton: (color: string) => {
+    return <FeatherIcons name={'arrow-right'} size={15} color={color} />;
+  },
+  fire: (
+    <FontAwesome
+      name={'fire'}
+      size={UIResponsive.Card.icon}
+      color={Palette.background.light[500]}
+    />
+  ),
+
   mark: ({size, color}: {size?: number; color?: string}) => {
     return (
       <MaterialCommunityIcons
@@ -154,5 +170,33 @@ export const VectorIcons = {
       />
     );
   },
+  user: (
+    <FontAwesome
+      name={'user'}
+      size={UIResponsive.Card.icon}
+      color={Palette.background.dark[500]}
+    />
+  ),
+  gender: (
+    <MaterialCommunityIcons
+      name={'gender-male-female'}
+      size={UIResponsive.Card.icon}
+      color={Palette.background.dark[500]}
+    />
+  ),
+  circleDot: (
+    <FontAwesomeBase
+      name={'dot-circle-o'}
+      size={13}
+      color={Palette.background.dark[500]}
+    />
+  ),
+  plan: (
+    <MaterialIcons
+      name={'next-plan'}
+      size={15}
+      color={Palette.background.dark[500]}
+    />
+  ),
 } as const;
 export type VectorIcons = (typeof VectorIcons)[keyof typeof VectorIcons];
