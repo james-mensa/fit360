@@ -51,7 +51,7 @@ export const CardIcons = {
     triceps: require('./icons/cards/female/triceps.png'),
     pecs: require('./icons/cards/male/pecs.png'),
     shoulder: require('./icons/cards/male/shoulder.png'),
-    skinny: require('./icons/skinny/female/high_knee_jacks.gif'),
+    skinny: require('./icons/cards/female/skinny.png'),
   },
   male: {
     back: require('./icons/cards/male/back.png'),
@@ -65,7 +65,7 @@ export const CardIcons = {
     shoulder: require('./icons/cards/male/shoulder.png'),
     triceps: require('./icons/cards/male/triceps.png'),
     thighs: require('./icons/cards/female/thights.png'),
-    skinny: require('./icons/skinny/female/high_knee_jacks.gif'),
+    skinny: require('./icons/cards/male/skinny.png'),
   },
   tools: [
     require('@assets/icons/cards/tool/tool_1.png'),

@@ -11,11 +11,11 @@ export default function App() {
     <GestureHandlerRootView style={{flex: 1}}>
       <SafeAreaProvider>
         <RealmProvider>
-          <AppProvider>
-            <NavigationContainer>
+          <NavigationContainer>
+            <AppProvider>
               <UIScreens />
-            </NavigationContainer>
-          </AppProvider>
+            </AppProvider>
+          </NavigationContainer>
         </RealmProvider>
       </SafeAreaProvider>
     </GestureHandlerRootView>
