@@ -1,6 +1,7 @@
 import {VectorIcons} from '@common/VectorIcons';
 import {UIResponsive} from '@layout/ResponsiveUi';
 import {Status} from '@models/alert';
+import {AnimateView} from '@models/animation';
 import {GapHorizontal} from '@models/gap';
 import {Label, LabelVariant} from '@models/label';
 import {Palette} from '@styles/BaseColor';
@@ -16,6 +17,7 @@ interface statusCardProps {
   unit: string;
   onPress?: () => void;
   status?: string;
+  index: number;
 }
 export const StatusCard: React.FC<statusCardProps> = ({
   title = 'Health',
@@ -25,34 +27,37 @@ export const StatusCard: React.FC<statusCardProps> = ({
   onPress,
   status = 'NORMAL',
   icon,
+  index
 }) => {
   if (!bg) {
     bg = Palette.background.light[550];
   }
   return (
-    <TouchableOpacity onPress={onPress}>
-      <View style={{...styles.container, backgroundColor: bg}}>
-        <View style={styles.top}>
-          <Label variant={LabelVariant.H3_Bold.small.extra} title={title} />
-          {icon}
-        </View>
-        <View style={styles.center}>
-          <View style={styles.centerRow}>
-            <Label variant={LabelVariant.H2.Roboto} title={rate} />
-            <GapHorizontal w={2} />
-            <Label variant={LabelVariant.Sub3.Roboto} title={unit} />
+    <AnimateView order={index}>
+      <TouchableOpacity onPress={onPress}>
+        <View style={{...styles.container, backgroundColor: bg}}>
+          <View style={styles.top}>
+            <Label variant={LabelVariant.H3_Bold.small.extra} title={title} />
+            {icon}
+          </View>
+          <View style={styles.center}>
+            <View style={styles.centerRow}>
+              <Label variant={LabelVariant.H2.Roboto} title={rate} />
+              <GapHorizontal w={2} />
+              <Label variant={LabelVariant.Sub3.Roboto} title={unit} />
+            </View>
+          </View>
+          <View style={styles.bottom}>
+            <Status title={'phase 1'} />
+            <FontAwesome
+              name="location-arrow"
+              size={15}
+              color={Palette.background.dark[100]}
+            />
           </View>
         </View>
-        <View style={styles.bottom}>
-          <Status title={status} />
-          <FontAwesome
-            name="location-arrow"
-            size={15}
-            color={Palette.background.dark[100]}
-          />
-        </View>
-      </View>
-    </TouchableOpacity>
+      </TouchableOpacity>
+    </AnimateView>
   );
 };
 
@@ -64,6 +69,7 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     flexDirection: 'column',
     justifyContent: 'space-between',
+    marginRight: 10,
   },
   top: {
     height: 20,

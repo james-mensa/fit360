@@ -7,7 +7,7 @@ import {
   PersonalizeModel,
   WorkoutModel,
 } from './models';
-import {BodyZonesTypes} from '@core/data-types';
+import {BodyZonesTypes, GeneralProgressTy} from '@core/data-types';
 export const ModelNames = {
   PersonalizeModel: 'PersonalizeModel',
   LoginModel: 'LoginModel',
@@ -38,7 +38,11 @@ export interface LocalStore {
   ) => LoginModelTy;
   AddDayPlan: () => void;
   getPlan: () => DayPlanModelTy[] | undefined;
+  getUniquePlan: (_idx: number) => any;
   complete: (_id: string) => void;
+  getProgressSummary: () => GeneralProgressTy | undefined;
+  getDayProgressSummary: () => void;
+  signOut: () => void;
 }
 export interface WorkoutTy {
   name: string;
@@ -58,7 +62,9 @@ export interface DayTy {
   completed: number;
   title: string;
   description?: string;
+  burn_calories?: number;
   playlist: WorkoutTy[];
+  diet?: {breakfast: string[]; lunch: string[]; dinner: string[]};
 }
 
 export interface PlanTy {

@@ -1,7 +1,8 @@
+import {WorkoutModel} from '@core/db/models';
 export interface PrimaryCardProps {
-  onPress: () => void;
   title: string;
   description?: string;
   image?: string;
-  bgColor: string;
+  items: WorkoutModel[];
+  index: number;
 }

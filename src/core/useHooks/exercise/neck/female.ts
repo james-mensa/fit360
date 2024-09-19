@@ -1,4 +1,6 @@
-import {DayTy} from '@core/db/types';
+import {DayTy, WorkoutTy} from '@core/db/types';
+import {calculateCaloriesBurned} from '../helper';
+import {getDietRecommendationsForFemale} from './diet';
 
 interface PhaseType {
   difficulty: number;
@@ -11,24 +13,27 @@ export const femalePlanFirstPhase = ({
   day,
   phase,
 }: PhaseType): DayTy => {
+  const playlist: WorkoutTy[] = [
+    {
+      name: 'Neck Retraction',
+      description: 'Exercise to improve neck posture and reduce neck pain.',
+      point: 2,
+      link: 'CHIN_TUCK_',
+      duration: difficulty,
+      completed: false,
+      type: 'neck',
+      path: 'neck',
+    },
+  ];
   return {
     day: day,
     total: 1,
     completed: 0,
     title: `Neck Retraction (${difficulty}s) \n Exercise`,
-    phase: phase,
-    playlist: [
-      {
-        name: 'Neck Retraction',
-        description: 'Exercise to improve neck posture and reduce neck pain.',
-        point: 2,
-        link: 'CHIN_TUCK_',
-        duration: difficulty,
-        completed: false,
-        type: 'neck',
-        path: 'neck',
-      },
-    ],
+    phase,
+    playlist,
+    burn_calories: calculateCaloriesBurned(playlist),
+    diet: getDietRecommendationsForFemale(phase),
   };
 };
 
@@ -37,25 +42,27 @@ export const femalePlanSecondPhase = ({
   day,
   phase,
 }: PhaseType): DayTy => {
+  const playlist: WorkoutTy[] = [
+    {
+      name: 'Side-to-Side Neck Turns',
+      description: 'Exercise to enhance neck flexibility and reduce stiffness.',
+      point: 2,
+      link: 'SIDE_TO_SIDE_TURNS',
+      duration: difficulty,
+      completed: false,
+      type: 'neck',
+      path: 'neck',
+    },
+  ];
   return {
     day: day,
     total: 1,
     completed: 0,
     title: `Side-to-Side Neck Turns (${difficulty}s) \n Exercise`,
-    phase: phase,
-    playlist: [
-      {
-        name: 'Side-to-Side Neck Turns',
-        description:
-          'Exercise to enhance neck flexibility and reduce stiffness.',
-        point: 2,
-        link: 'SIDE_TO_SIDE_TURNS',
-        duration: difficulty,
-        completed: false,
-        type: 'neck',
-        path: 'neck',
-      },
-    ],
+    phase,
+    playlist,
+    burn_calories: calculateCaloriesBurned(playlist),
+    diet: getDietRecommendationsForFemale(phase),
   };
 };
 
@@ -64,34 +71,37 @@ export const femalePlanThirdPhase = ({
   day,
   phase,
 }: PhaseType): DayTy => {
+  const playlist: WorkoutTy[] = [
+    {
+      name: 'Superman',
+      description: 'Strengthens the neck and upper back muscles.',
+      point: 2,
+      link: 'Superman',
+      duration: difficulty,
+      completed: false,
+      type: 'neck',
+      path: 'neck',
+    },
+    {
+      name: 'Head Turns',
+      description: 'Exercise to improve neck rotation and reduce tension.',
+      point: 2,
+      link: 'head_turns',
+      duration: difficulty,
+      completed: false,
+      type: 'neck',
+      path: 'neck',
+    },
+  ];
   return {
     day: day,
     total: 2,
     completed: 0,
     title: `Strength and Mobility (${difficulty}s) \n Exercise`,
-    phase: phase,
-    playlist: [
-      {
-        name: 'Superman',
-        description: 'Strengthens the neck and upper back muscles.',
-        point: 2,
-        link: 'Superman',
-        duration: difficulty,
-        completed: false,
-        type: 'neck',
-        path: 'neck',
-      },
-      {
-        name: 'Head Turns',
-        description: 'Exercise to improve neck rotation and reduce tension.',
-        point: 2,
-        link: 'head_turns',
-        duration: difficulty,
-        completed: false,
-        type: 'neck',
-        path: 'neck',
-      },
-    ],
+    phase,
+    playlist,
+    burn_calories: calculateCaloriesBurned(playlist),
+    diet: getDietRecommendationsForFemale(phase),
   };
 };
 
@@ -100,35 +110,37 @@ export const femalePlanFourthPhase = ({
   day,
   phase,
 }: PhaseType): DayTy => {
+  const playlist: WorkoutTy[] = [
+    {
+      name: 'Neck Rotation',
+      description: 'Exercise to improve neck mobility and reduce stiffness.',
+      point: 2,
+      link: 'neck_rotate',
+      duration: difficulty,
+      completed: false,
+      type: 'neck',
+      path: 'neck',
+    },
+    {
+      name: 'Side-to-Side Neck Turns',
+      description: 'Exercise to enhance neck flexibility and reduce stiffness.',
+      point: 2,
+      link: 'SIDE_TO_SIDE_TURNS',
+      duration: difficulty,
+      completed: false,
+      type: 'neck',
+      path: 'neck',
+    },
+  ];
   return {
     day: day,
     total: 2,
     completed: 0,
     title: `Comprehensive Neck Routine (${difficulty}s) \n Exercise`,
     phase: phase,
-    playlist: [
-      {
-        name: 'Neck Rotation',
-        description: 'Exercise to improve neck mobility and reduce stiffness.',
-        point: 2,
-        link: 'neck_rotate',
-        duration: difficulty,
-        completed: false,
-        type: 'neck',
-        path: 'neck',
-      },
-      {
-        name: 'Side-to-Side Neck Turns',
-        description:
-          'Exercise to enhance neck flexibility and reduce stiffness.',
-        point: 2,
-        link: 'SIDE_TO_SIDE_TURNS',
-        duration: difficulty,
-        completed: false,
-        type: 'neck',
-        path: 'neck',
-      },
-    ],
+    playlist,
+    burn_calories: calculateCaloriesBurned(playlist),
+    diet: getDietRecommendationsForFemale(phase),
   };
 };
 

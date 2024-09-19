@@ -1,4 +1,6 @@
 import {DayTy, WorkoutTy} from '@core/db/types';
+import {calculateCaloriesBurned} from '../helper';
+import {getDietRecommendationsForMale} from './diet';
 
 // Define interface for phase configuration
 interface PhaseType {
@@ -27,6 +29,8 @@ const createPhasePlan = ({
     title,
     phase,
     playlist: exercises,
+    burn_calories: calculateCaloriesBurned(exercises),
+    diet: getDietRecommendationsForMale(phase),
   };
 };
 

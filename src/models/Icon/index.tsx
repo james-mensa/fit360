@@ -37,6 +37,7 @@ export const UImage: React.FC<iconProps> = ({
 
 const style = StyleSheet.create({
   image: {
-    borderRadius: 20,
+    borderRadius: 100,
+    backgroundColor: 'rgba(255,255,255,0.4)',
   },
 });

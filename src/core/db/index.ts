@@ -23,7 +23,12 @@ import {
   AddDayPlan,
   getPlan,
   completeWorkout,
+  getUniquePlan,
+  signOut,
 } from './common';
+import {getProgressSummary} from '@core/analysis/general';
+import {useMemo} from 'react';
+import {getDayProgressSummary} from '@core/analysis/daily';
 
 export type PersonalizeModelTy = __PersonalizeModelTy;
 export type LoginModelTy = __LoginModelTy;
@@ -38,28 +43,32 @@ const realmConfig: Realm.Configuration = {
 
 const {RealmProvider, useRealm, useObject, useQuery} =
   createRealmContext(realmConfig);
-
 function useLocalStore(): LocalStore {
   const realm = useRealm();
+  return useMemo(
+    () => ({
+      getPersonalizedModel: (keyParam: {user_id?: string}) =>
+        getPersonalizeModel(realm, keyParam),
+      setPersonalizedModel: (
+        keyParam: {user_id?: string},
+        Data: Omit<PersonalizeModelTy, 'user_id'>,
+      ) => updatePersonalizeModel(realm, keyParam, Data),
 
-  return {
-    getPersonalizedModel: (keyParam: {user_id?: string}) =>
-      getPersonalizeModel(realm, keyParam),
-    setPersonalizedModel: (
-      keyParam: {user_id?: string},
-      Data: Omit<PersonalizeModelTy, 'user_id'>,
-    ) => updatePersonalizeModel(realm, keyParam, Data),
-
-    getLoginData: () => getLoginCredentials(realm),
-    setLoginData: (
-      keyParam: {user_id?: string},
-      Data: Omit<LoginModelTy, 'user_id'>,
-    ) => userLogin(realm, keyParam, Data),
-    AddDayPlan: () => AddDayPlan(realm),
-    // addPlaylist: (Data: WorkoutModelTy[]) => AddWorkoutToDayPlan(realm, Data),
-    getPlan: () => getPlan(realm),
-    complete: (_id: string) => completeWorkout(realm, _id),
-  };
+      getLoginData: () => getLoginCredentials(realm),
+      setLoginData: (
+        keyParam: {user_id?: string},
+        Data: Omit<LoginModelTy, 'user_id'>,
+      ) => userLogin(realm, keyParam, Data),
+      AddDayPlan: () => AddDayPlan(realm),
+      getPlan: () => getPlan(realm),
+      complete: (_id: string) => completeWorkout(realm, _id),
+      getProgressSummary: () => getProgressSummary(realm),
+      getDayProgressSummary: () => getDayProgressSummary(realm),
+      getUniquePlan: (idx: number) => getUniquePlan(realm, idx),
+      signOut: () => signOut(realm),
+    }),
+    [realm],
+  );
 }
 
 export {RealmProvider, useRealm, useQuery, useObject, useLocalStore};

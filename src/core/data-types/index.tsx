@@ -141,3 +141,41 @@ export const BadHabitsTypes = {
 } as const;
 export type BadHabitsType =
   (typeof BadHabitsTypes)[keyof typeof BadHabitsTypes];
+
+export interface PhaseProgress {
+  total: number;
+  completed: number;
+  progress: number;
+  calories: number;
+}
+
+export interface collectTy {
+  workout: {
+    total: number;
+    completed: number;
+  };
+  calories: number;
+}
+export interface DayProgressTy {
+  label: string[];
+  data: Map<string, collectTy>;
+}
+export interface GeneralProgress {
+  phase1: PhaseProgress;
+  phase2: PhaseProgress;
+  phase3: PhaseProgress;
+  phase4: PhaseProgress;
+  phase5: PhaseProgress;
+  phase6: PhaseProgress;
+}
+export interface GeneralProgressTy {
+  general: {
+    phase1: PhaseProgress;
+    phase2: PhaseProgress;
+    phase3: PhaseProgress;
+    phase4: PhaseProgress;
+    phase5: PhaseProgress;
+    phase6: PhaseProgress;
+  };
+  day: DayProgressTy;
+}

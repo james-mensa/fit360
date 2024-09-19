@@ -1,4 +1,6 @@
-import {DayTy} from '@core/db/types';
+import {DayTy, WorkoutTy} from '@core/db/types';
+import {calculateCaloriesBurned} from '../helper';
+import {getDietRecommendations} from './diet';
 
 interface PhaseType {
   difficulty: number;
@@ -13,24 +15,27 @@ export const femalePlanFirstPhase = ({
   title,
   phase,
 }: PhaseType): DayTy => {
+  const playlist: WorkoutTy[] = [
+    {
+      name: 'Tricep Exercise 1',
+      description: 'An exercise targeting the triceps.',
+      point: 2,
+      link: 'HonoredFamousIbex_size_restricted',
+      duration: difficulty,
+      completed: false,
+      type: 'triceps',
+      path: 'triceps',
+    },
+  ];
   return {
     day: day,
-    total: 1,
+    total: playlist.length,
     completed: 0,
     title: title,
-    phase: phase,
-    playlist: [
-      {
-        name: 'Tricep Exercise 1',
-        description: 'An exercise targeting the triceps.',
-        point: 2,
-        link: 'HonoredFamousIbex_size_restricted',
-        duration: difficulty,
-        completed: false,
-        type: 'triceps',
-        path: 'triceps',
-      },
-    ],
+    phase,
+    playlist,
+    burn_calories: calculateCaloriesBurned(playlist),
+    diet: getDietRecommendations(phase),
   };
 };
 
@@ -40,24 +45,27 @@ export const femalePlanSecondPhase = ({
   title,
   phase,
 }: PhaseType): DayTy => {
+  const playlist: WorkoutTy[] = [
+    {
+      name: 'Tricep Exercise 2',
+      description: 'Another tricep-focused exercise.',
+      point: 2,
+      link: 'TricepOverhead',
+      duration: difficulty,
+      completed: false,
+      type: 'triceps',
+      path: 'triceps',
+    },
+  ];
   return {
     day: day,
-    total: 1,
+    total: playlist.length,
     completed: 0,
     title: title,
-    phase: phase,
-    playlist: [
-      {
-        name: 'Tricep Exercise 2',
-        description: 'Another tricep-focused exercise.',
-        point: 2,
-        link: 'TricepOverhead',
-        duration: difficulty,
-        completed: false,
-        type: 'triceps',
-        path: 'triceps',
-      },
-    ],
+    phase,
+    playlist,
+    burn_calories: calculateCaloriesBurned(playlist),
+    diet: getDietRecommendations(phase),
   };
 };
 
@@ -67,24 +75,27 @@ export const femalePlanThirdPhase = ({
   title,
   phase,
 }: PhaseType): DayTy => {
+  const playlist: WorkoutTy[] = [
+    {
+      name: 'Tricep Exercise 3',
+      description: 'An advanced tricep exercise.',
+      point: 2,
+      link: 'dumbbell_bent_over_triceps_kick',
+      duration: difficulty,
+      completed: false,
+      type: 'triceps',
+      path: 'triceps',
+    },
+  ];
   return {
     day: day,
     total: 1,
     completed: 0,
     title: title,
-    phase: phase,
-    playlist: [
-      {
-        name: 'Tricep Exercise 3',
-        description: 'An advanced tricep exercise.',
-        point: 2,
-        link: 'dumbbell_bent_over_triceps_kick',
-        duration: difficulty,
-        completed: false,
-        type: 'triceps',
-        path: 'triceps',
-      },
-    ],
+    phase,
+    playlist,
+    burn_calories: calculateCaloriesBurned(playlist),
+    diet: getDietRecommendations(phase),
   };
 };
 
@@ -94,34 +105,37 @@ export const femalePlanFourthPhase = ({
   title,
   phase,
 }: PhaseType): DayTy => {
+  const playlist: WorkoutTy[] = [
+    {
+      name: 'Tricep Exercise 4',
+      description: 'A basic tricep exercise.',
+      point: 2,
+      link: 'HonoredFamousIbex_size_restricted',
+      duration: difficulty,
+      completed: false,
+      type: 'triceps',
+      path: 'triceps',
+    },
+    {
+      name: 'Tricep Exercise 5',
+      description: 'Another tricep exercise for variety.',
+      point: 2,
+      link: 'dumbbell_bent_over_triceps_kick',
+      duration: difficulty,
+      completed: false,
+      type: 'triceps',
+      path: 'triceps',
+    },
+  ];
   return {
     day: day,
     total: 2,
     completed: 0,
     title: title,
-    phase: phase,
-    playlist: [
-      {
-        name: 'Tricep Exercise 4',
-        description: 'A basic tricep exercise.',
-        point: 2,
-        link: 'HonoredFamousIbex_size_restricted',
-        duration: difficulty,
-        completed: false,
-        type: 'triceps',
-        path: 'triceps',
-      },
-      {
-        name: 'Tricep Exercise 5',
-        description: 'Another tricep exercise for variety.',
-        point: 2,
-        link: 'dumbbell_bent_over_triceps_kick',
-        duration: difficulty,
-        completed: false,
-        type: 'triceps',
-        path: 'triceps',
-      },
-    ],
+    phase,
+    playlist,
+    burn_calories: calculateCaloriesBurned(playlist),
+    diet: getDietRecommendations(phase),
   };
 };
 

@@ -1,4 +1,6 @@
 import {DayTy, WorkoutTy} from '@core/db/types';
+import {calculateCaloriesBurned} from '../helper';
+import {getDietRecommendations} from './diet';
 
 interface PhaseType {
   difficulty: number;
@@ -27,6 +29,8 @@ const createPhasePlan = ({
     title,
     phase,
     playlist: exercises,
+    burn_calories: calculateCaloriesBurned(exercises),
+    diet: getDietRecommendations(phase),
   };
 };
 

@@ -3,7 +3,7 @@ import {StyleSheet, TouchableOpacity, View} from 'react-native';
 interface avaterProps {
   icon?: React.ReactNode;
   bg?: string;
-  onPress: () => void;
+  onPress?: () => void;
 }
 export const Avater: React.FC<avaterProps> = ({icon, bg, onPress}) => {
   return (

@@ -1,4 +1,6 @@
-import {DayTy} from '@core/db/types';
+import {DayTy, WorkoutTy} from '@core/db/types';
+import {calculateCaloriesBurned} from '../helper';
+import {getDietRecommendations} from './diet';
 
 interface PhaseType {
   difficulty: number;
@@ -23,13 +25,8 @@ export const femalePlanFirstPhase = ({
   day,
   title,
   phase,
-}: PhaseType): DayTy => ({
-  day,
-  total: 2,
-  completed: 0,
-  title: title || `Biceps Strength Foundation (${difficulty}s) \n Exercise`,
-  phase,
-  playlist: [
+}: PhaseType): DayTy => {
+  const playlist: WorkoutTy[] = [
     {
       name: 'Wide Grip Biceps Curl',
       description:
@@ -52,21 +49,25 @@ export const femalePlanFirstPhase = ({
       type: 'biceps',
       path: 'biceps',
     },
-  ],
-});
-
+  ];
+  return {
+    day,
+    total: 2,
+    completed: 0,
+    title: title || `Biceps Strength Foundation (${difficulty}s) \n Exercise`,
+    phase,
+    playlist,
+    burn_calories: calculateCaloriesBurned(playlist),
+    diet: getDietRecommendations(phase),
+  };
+};
 export const femalePlanSecondPhase = ({
   difficulty,
   day,
   title,
   phase,
-}: PhaseType): DayTy => ({
-  day,
-  total: 2,
-  completed: 0,
-  title: title || `Upper Body Strength (${difficulty}s) \n Exercise`,
-  phase,
-  playlist: [
+}: PhaseType): DayTy => {
+  const playlist: WorkoutTy[] = [
     {
       name: 'Bent Over Row',
       description:
@@ -89,21 +90,26 @@ export const femalePlanSecondPhase = ({
       type: 'biceps',
       path: 'biceps',
     },
-  ],
-});
+  ];
+  return {
+    day,
+    total: 2,
+    completed: 0,
+    title: title || `Upper Body Strength (${difficulty}s) \n Exercise`,
+    phase,
+    playlist,
+    burn_calories: calculateCaloriesBurned(playlist),
+    diet: getDietRecommendations(phase),
+  };
+};
 
 export const femalePlanThirdPhase = ({
   difficulty,
   day,
   title,
   phase,
-}: PhaseType): DayTy => ({
-  day,
-  total: 2,
-  completed: 0,
-  title: title || `Isolation (${difficulty}s) \n Exercise`,
-  phase,
-  playlist: [
+}: PhaseType): DayTy => {
+  const playlist: WorkoutTy[] = [
     {
       name: 'Wide Lifted Bicep Curl',
       description:
@@ -126,21 +132,25 @@ export const femalePlanThirdPhase = ({
       type: 'biceps',
       path: 'biceps',
     },
-  ],
-});
-
+  ];
+  return {
+    day,
+    total: 2,
+    completed: 0,
+    title: title || `Isolation (${difficulty}s) \n Exercise`,
+    phase,
+    playlist,
+    burn_calories: calculateCaloriesBurned(playlist),
+    diet: getDietRecommendations(phase),
+  };
+};
 export const femalePlanFourthPhase = ({
   difficulty,
   day,
   title,
   phase,
-}: PhaseType): DayTy => ({
-  day,
-  total: 3,
-  completed: 0,
-  title: title || `Comprehensive Conditioning (${difficulty}s) \n Exercise`,
-  phase,
-  playlist: [
+}: PhaseType): DayTy => {
+  const playlist: WorkoutTy[] = [
     {
       name: 'Lateral Raise to Front Raise',
       description:
@@ -174,9 +184,18 @@ export const femalePlanFourthPhase = ({
       type: 'biceps',
       path: 'biceps',
     },
-  ],
-});
-
+  ];
+  return {
+    day,
+    total: 3,
+    completed: 0,
+    title: title || `Comprehensive Conditioning (${difficulty}s) \n Exercise`,
+    phase,
+    playlist,
+    burn_calories: calculateCaloriesBurned(playlist),
+    diet: getDietRecommendations(phase),
+  };
+};
 export const femaleBicepsExercise: DayTy[] = [
   ...createPhase(femalePlanFirstPhase, 120, 1, 14, 1), // Phase 1: 14 days
   ...createPhase(femalePlanSecondPhase, 180, 15, 14, 2), // Phase 2: 14 days

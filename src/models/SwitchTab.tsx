@@ -3,6 +3,7 @@ import {StyleSheet, TouchableOpacity, View} from 'react-native';
 import {Label, LabelVariant} from './label';
 import {Palette} from '@styles/BaseColor';
 import {UIResponsive} from '@layout/ResponsiveUi';
+import {ScrollView} from 'react-native-gesture-handler';
 
 type item = {
   label: string;
@@ -51,7 +52,12 @@ export const SwitchTab: React.FC<TabProps> = ({items}) => {
           );
         })}
       </View>
-      <View>{active.component}</View>
+
+      <View style={styles.component}>
+        <ScrollView showsVerticalScrollIndicator={false}>
+          {active.component}
+        </ScrollView>
+      </View>
     </View>
   );
 };
@@ -60,7 +66,6 @@ const styles = StyleSheet.create({
   container: {
     width: UIResponsive.FullScreen.width / 1.1,
     backgroundColor: Palette.background.light[200],
-    paddingHorizontal: 10,
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
@@ -68,22 +73,32 @@ const styles = StyleSheet.create({
     borderRadius: 30,
     height: 40,
     gap: 10,
+    overflow: 'hidden',
+    position: 'absolute',
+    top: 30,
+    zIndex: 9999,
   },
   button: {
     display: 'flex',
     flexDirection: 'row',
-    justifyContent: 'center',
+    justifyContent: 'flex-start',
     alignItems: 'center',
     gap: 10,
-    paddingVertical: 5,
-    paddingHorizontal: 15,
     borderRadius: 30,
+    width: UIResponsive.FullScreen.width / 1.1 / 2,
+    paddingLeft: 20,
+    height: '100%',
   },
   layout: {
     width: '100%',
     display: 'flex',
     flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: 'flex-start',
+    alignItems: 'flex-start',
+    paddingVertical: 20,
+  },
+  component: {
+    marginTop: 70,
+    width: '100%',
   },
 });

@@ -1,4 +1,6 @@
-import {DayTy} from '@core/db/types';
+import {DayTy, WorkoutTy} from '@core/db/types';
+import {calculateCaloriesBurned} from '../helper';
+import {getDietRecommendations} from './diet';
 
 interface PhaseType {
   difficulty: number;
@@ -12,13 +14,8 @@ export const malePlanFirstPhase = ({
   day,
   title,
   phase,
-}: PhaseType): DayTy => ({
-  day: day,
-  total: 2,
-  completed: 0,
-  title: title || `Biceps Strength Foundation (${difficulty}s) \n Exercise`,
-  phase: phase,
-  playlist: [
+}: PhaseType): DayTy => {
+  const playlist: WorkoutTy[] = [
     {
       name: 'Barbell Bicep Curl',
       description:
@@ -41,21 +38,27 @@ export const malePlanFirstPhase = ({
       type: 'biceps',
       path: 'biceps',
     },
-  ],
-});
+  ];
+
+  return {
+    day: day,
+    total: 2,
+    completed: 0,
+    title: title || `Biceps Strength Foundation (${difficulty}s) \n Exercise`,
+    phase: phase,
+    playlist,
+    burn_calories: calculateCaloriesBurned(playlist),
+    diet: getDietRecommendations(phase),
+  };
+};
 
 export const malePlanSecondPhase = ({
   difficulty,
   day,
   title,
   phase,
-}: PhaseType): DayTy => ({
-  day: day,
-  total: 2,
-  completed: 0,
-  title: `Advanced Curl Techniques (${difficulty}s) \n Exercise`,
-  phase: phase,
-  playlist: [
+}: PhaseType): DayTy => {
+  const playlist: WorkoutTy[] = [
     {
       name: 'Leant Forward EZ Bar Curl',
       description:
@@ -78,21 +81,27 @@ export const malePlanSecondPhase = ({
       type: 'biceps',
       path: 'biceps',
     },
-  ],
-});
+  ];
+
+  return {
+    day: day,
+    total: 2,
+    completed: 0,
+    title: `Advanced Curl Techniques (${difficulty}s) \n Exercise`,
+    phase: phase,
+    playlist,
+    burn_calories: calculateCaloriesBurned(playlist),
+    diet: getDietRecommendations(phase),
+  };
+};
 
 export const malePlanThirdPhase = ({
   difficulty,
   day,
   title,
   phase,
-}: PhaseType): DayTy => ({
-  day: day,
-  total: 2,
-  completed: 0,
-  title: title || `Dynamic Biceps Conditioning (${difficulty}s) \n Exercise`,
-  phase: phase,
-  playlist: [
+}: PhaseType): DayTy => {
+  const playlist: WorkoutTy[] = [
     {
       name: 'Reverse Grip EZ Bar Curl',
       description:
@@ -115,21 +124,27 @@ export const malePlanThirdPhase = ({
       type: 'biceps',
       path: 'biceps',
     },
-  ],
-});
+  ];
+
+  return {
+    day: day,
+    total: 2,
+    completed: 0,
+    title: title || `Dynamic Biceps Conditioning (${difficulty}s) \n Exercise`,
+    phase: phase,
+    playlist,
+    burn_calories: calculateCaloriesBurned(playlist),
+    diet: getDietRecommendations(phase),
+  };
+};
 
 export const malePlanFourthPhase = ({
   difficulty,
   day,
   title,
   phase,
-}: PhaseType): DayTy => ({
-  day: day,
-  total: 2,
-  completed: 0,
-  title: title || `Comprehensive Biceps Workout (${difficulty}s) \n Exercise`,
-  phase: phase,
-  playlist: [
+}: PhaseType): DayTy => {
+  const playlist: WorkoutTy[] = [
     {
       name: 'Reverse Curl',
       description:
@@ -152,8 +167,19 @@ export const malePlanFourthPhase = ({
       type: 'biceps',
       path: 'biceps',
     },
-  ],
-});
+  ];
+
+  return {
+    day: day,
+    total: 2,
+    completed: 0,
+    title: title || `Comprehensive Biceps Workout (${difficulty}s) \n Exercise`,
+    phase: phase,
+    playlist,
+    burn_calories: calculateCaloriesBurned(playlist),
+    diet: getDietRecommendations(phase),
+  };
+};
 
 export const maleBiscepsExercise: DayTy[] = [
   ...Array.from({length: 7}, (_, i) =>

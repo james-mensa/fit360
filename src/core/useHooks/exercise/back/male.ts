@@ -1,4 +1,6 @@
-import {DayTy} from '@core/db/types';
+import {DayTy, WorkoutTy} from '@core/db/types';
+import {calculateCaloriesBurned} from '../helper';
+import {getDietRecommendations} from './diet';
 
 interface PhaseType {
   difficulty: number;
@@ -12,13 +14,8 @@ export const malePlanFirstPhase = ({
   day,
   title,
   phase,
-}: PhaseType): DayTy => ({
-  day,
-  total: 1,
-  completed: 0,
-  title: title || `Phase ${phase}: Back Basics`,
-  phase,
-  playlist: [
+}: PhaseType): DayTy => {
+  const playlist: WorkoutTy[] = [
     {
       name: 'Dumbbell Pullover',
       description:
@@ -30,21 +27,26 @@ export const malePlanFirstPhase = ({
       type: 'back',
       path: 'back',
     },
-  ],
-});
+  ];
+  return {
+    day,
+    total: 1,
+    completed: 0,
+    title: title || `Phase ${phase}: Back Basics`,
+    phase,
+    playlist,
+    burn_calories: calculateCaloriesBurned(playlist),
+    diet: getDietRecommendations(phase),
+  };
+};
 
 export const malePlanSecondPhase = ({
   difficulty,
   day,
   title,
   phase,
-}: PhaseType): DayTy => ({
-  day,
-  total: 1,
-  completed: 0,
-  title: title || `Phase ${phase}: Core Strength`,
-  phase,
-  playlist: [
+}: PhaseType): DayTy => {
+  const playlist: WorkoutTy[] = [
     {
       name: 'Superman',
       description:
@@ -56,21 +58,26 @@ export const malePlanSecondPhase = ({
       type: 'back',
       path: 'back',
     },
-  ],
-});
+  ];
+  return {
+    day,
+    total: 1,
+    completed: 0,
+    title: title || `Phase ${phase}: Core Strength`,
+    phase,
+    playlist,
+    burn_calories: calculateCaloriesBurned(playlist),
+    diet: getDietRecommendations(phase),
+  };
+};
 
 export const malePlanThirdPhase = ({
   difficulty,
   day,
   title,
   phase,
-}: PhaseType): DayTy => ({
-  day,
-  total: 1,
-  completed: 0,
-  title: title || `Phase ${phase}: Rowing Focus`,
-  phase,
-  playlist: [
+}: PhaseType): DayTy => {
+  const playlist: WorkoutTy[] = [
     {
       name: 'Smith Machine Rows',
       description:
@@ -82,21 +89,26 @@ export const malePlanThirdPhase = ({
       type: 'back',
       path: 'back',
     },
-  ],
-});
+  ];
+  return {
+    day,
+    total: 1,
+    completed: 0,
+    title: title || `Phase ${phase}: Rowing Focus`,
+    phase,
+    playlist,
+    burn_calories: calculateCaloriesBurned(playlist),
+    diet: getDietRecommendations(phase),
+  };
+};
 
 export const malePlanFourthPhase = ({
   difficulty,
   day,
   title,
   phase,
-}: PhaseType): DayTy => ({
-  day,
-  total: 5,
-  completed: 0,
-  title: title || `Phase ${phase}: Comprehensive Back Workout`,
-  phase,
-  playlist: [
+}: PhaseType): DayTy => {
+  const playlist: WorkoutTy[] = [
     {
       name: 'Dumbbell Pullover',
       description:
@@ -108,8 +120,18 @@ export const malePlanFourthPhase = ({
       type: 'back',
       path: 'back',
     },
-  ],
-});
+  ];
+  return {
+    day,
+    total: 5,
+    completed: 0,
+    title: title || `Phase ${phase}: Comprehensive Back Workout`,
+    phase,
+    playlist,
+    burn_calories: calculateCaloriesBurned(playlist),
+    diet: getDietRecommendations(phase),
+  };
+};
 
 export const maleBackExercise: DayTy[] = [
   // Phase 1

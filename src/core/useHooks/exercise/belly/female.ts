@@ -1,4 +1,6 @@
 import {DayTy} from '@core/db/types';
+import {calculateCaloriesBurned} from '../helper';
+import {getDietRecommendations} from './diet';
 
 interface PhaseType {
   difficulty: number;
@@ -13,19 +15,23 @@ const createPhase = ({
   phase,
   title,
   exercises,
-}: PhaseType & {exercises: any[]}): DayTy => ({
-  day,
-  total: exercises.length,
-  completed: 0,
-  title: title || `Phase ${phase}`,
-  phase,
-  playlist: exercises.map(exercise => ({
+}: PhaseType & {exercises: any[]}): DayTy => {
+  const playlist = exercises.map(exercise => ({
     ...exercise,
     duration: difficulty,
     completed: false,
-  })),
-});
-
+  }));
+  return {
+    day,
+    total: exercises.length,
+    completed: 0,
+    title: title || `Phase ${phase}`,
+    phase,
+    playlist,
+    burn_calories: calculateCaloriesBurned(playlist),
+    diet: getDietRecommendations(phase),
+  };
+};
 export const femalePlanFirstPhase = (params: PhaseType): DayTy =>
   createPhase({
     ...params,

@@ -4,8 +4,8 @@ const windowHeight = Dimensions.get('window').height;
 const LARGE_DIMENSION_MIN_WIDTH = 900;
 export const isLargeDevice = windowWidth > LARGE_DIMENSION_MIN_WIDTH;
 const Tab = {
-  active: 28,
-  inactive: 20,
+  active: 25,
+  inactive: 16,
 };
 const TopNav = {
   height: 50,
@@ -27,7 +27,7 @@ const Card = {
       windowWidth > LARGE_DIMENSION_MIN_WIDTH
         ? windowWidth - 300
         : windowWidth - 50,
-    height: windowWidth > LARGE_DIMENSION_MIN_WIDTH ? 250 : 180,
+    height: windowWidth > LARGE_DIMENSION_MIN_WIDTH ? 250 : 160,
   },
   medium: {
     width:

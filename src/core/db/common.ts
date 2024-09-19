@@ -27,15 +27,7 @@ export function updatePersonalizeModel(
   profile: Omit<PersonalizeModelTy, 'user_id'>,
 ) {
   const _user_id = user_id;
-  const {user_name} = profile;
   const personlizedData = {...profile};
-
-  console.log(
-    '\n Profile created for  :  ',
-    '\nURI         :',
-    _user_id,
-    `${user_name}`,
-  );
 
   realm.write(() => {
     realm.create<PersonalizeModel>(
@@ -47,13 +39,10 @@ export function updatePersonalizeModel(
       UpdateMode.Modified,
     );
   });
-  console.log('workss', user_id);
+
   const dbRecord = getPersonalizeModel(realm, {
     user_id: _user_id,
   }) as PersonalizeModelTy;
-
-  console.log('\nUpdate Personalized data :  DB Record');
-
   return dbRecord;
 }
 
@@ -74,10 +63,7 @@ export function userLogin(
   profile: Omit<LoginModelTy, 'user_id'>,
 ) {
   const _user_id = user_id;
-  const {user_name} = profile;
   const personlizedData = {...profile};
-
-  console.log('\n User:', `${user_name}`, 'signed in successfully');
 
   realm.write(() => {
     realm.create<LoginModel>(
@@ -91,9 +77,6 @@ export function userLogin(
   });
 
   const dbRecord = getLoginCredentials(realm) as LoginModelTy;
-
-  console.log('\n LOGIN details', JSON.stringify(dbRecord));
-
   return dbRecord;
 }
 
@@ -101,6 +84,41 @@ export function getLoginCredentials(realm: Realm) {
   return realm.objects<LoginModel>(ModelNames.LoginModel).at(0);
 }
 
+//handle user sign out
+
+export function signOut(realm: Realm) {
+  try {
+    realm.write(() => {
+      // Delete login record
+      const loginRecord = getLoginCredentials(realm);
+      if (loginRecord) {
+        realm.delete(loginRecord);
+        console.log('User signed out successfully');
+      } else {
+        console.log('No user found to sign out');
+      }
+
+      // Clear all user-related records
+      const modelsToDelete = [
+        ModelNames.DayPlanModel,
+        ModelNames.WorkoutModel,
+        ModelNames.PersonalizeModel,
+      ];
+
+      modelsToDelete.forEach(modelName => {
+        const records = realm.objects(modelName);
+        if (records.length > 0) {
+          realm.delete(records);
+          console.log(`All records deleted successfully for ${modelName}`);
+        } else {
+          console.log(`No records found to delete for ${modelName}`);
+        }
+      });
+    });
+  } catch (error) {
+    console.error('Error signing out:', error);
+  }
+}
 export function generateUserId(user_name: string): string {
   const randomNumber = Math.floor(10000 + Math.random() * 90000);
   const userId = `${user_name}${randomNumber}`;
@@ -112,16 +130,11 @@ export function AddDayPlan(realm: Realm) {
   if (!signed_user) {
     return;
   }
-
   const userData = getPersonalizeModel(realm, {user_id: signed_user.user_id});
   const personalizeDataToDb = createUserModel(
     userData as PersonalizeModelMetaDataTy,
   );
-  console.log({datasss: personalizeDataToDb});
   for (const exercise of personalizeDataToDb) {
-    console.log('Creating skin', {
-      planLength: personalizeDataToDb.length,
-    });
     const _data: DayPlanModelTy = {
       day: exercise.day,
       total: exercise.total,
@@ -129,6 +142,10 @@ export function AddDayPlan(realm: Realm) {
       title: exercise.title,
       phase: exercise.phase,
       description: exercise.description,
+      diet: JSON.stringify(exercise.diet),
+      burn_calories: exercise.burn_calories
+        ? Math.round(exercise.burn_calories)
+        : 20,
       playlist: [] as unknown as Realm.List<WorkoutModel>,
       _id: generateId(),
     };
@@ -142,7 +159,6 @@ export function AddDayPlan(realm: Realm) {
         UpdateMode.Modified,
       );
     });
-    console.log('add playlist');
     AddWorkoutToDayPlan(realm, _id, exercise.playlist);
   }
 }
@@ -170,9 +186,7 @@ function AddWorkoutToDayPlan(
           UpdateMode.Modified,
         );
       });
-    } catch (err) {
-      console.log('add workout to playlist', err);
-    }
+    } catch (err) {}
     const _WorkoutModel = getWorkOutModel(realm, _id);
     const _planModel = getDayPlanModel(realm, model_id);
     if (_WorkoutModel && _planModel) {
@@ -191,12 +205,6 @@ export function getDayPlan(realm: Realm, {_id}: {_id: string}) {
 }
 export function getPlan(realm: Realm) {
   const response = realm.objects<DayPlanModel>(ModelNames.DayPlanModel);
-
-  const day1 = response.filter(d => d.day === 1);
-  console.log({coutssss: day1.length});
-  day1.map(d => {
-    console.log(d);
-  });
   const incompleteTasks = response.filter(
     task => task.completed < task.playlist.length,
   );
@@ -207,8 +215,15 @@ export function getPlan(realm: Realm) {
 
   // Step 4: Filter the tasks to include only those with the minimum day value
   const smallestDayTasks = incompleteTasks.filter(task => task.day === minDay);
-  const day = smallestDayTasks[0].day;
+  const day = smallestDayTasks[0]?.day;
   return response.filter(task => task.day === day);
+}
+
+export function getUniquePlan(realm: Realm, idx: number) {
+  const response = realm
+    .objects<DayPlanModel>(ModelNames.DayPlanModel)
+    .filtered('day == $0', idx);
+  return response;
 }
 
 export function getWorkOut(realm: Realm, {_id}: {_id: string}) {
@@ -228,7 +243,6 @@ function getDayPlanModel(realm: Realm, _id: string): DayPlanModel | null {
 
 export function completeWorkout(realm: Realm, _id: string) {
   const _WorkoutModel = getWorkOutModel(realm, _id);
-  console.log('updating', _id);
   if (_WorkoutModel) {
     realm.write(() => {
       _WorkoutModel.completed = true;
@@ -250,6 +264,4 @@ export function completeWorkout(realm: Realm, _id: string) {
       console.log('No dayPlan associated with this workout');
     }
   }
-
-  console.log('workoutUpdated');
 }

@@ -118,9 +118,9 @@ const styles = StyleSheet.create({
   },
   image: {
     width: 160,
-    height: 130,
+    height: 80,
     paddingRight: 40,
-    objectFit: 'contain',
+    resizeMode: 'contain',
   },
   check: {
     width: 30,

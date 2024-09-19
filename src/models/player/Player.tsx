@@ -53,7 +53,6 @@ const Player = () => {
   const handleOnPress = () => {
     PageNav.goBack();
   };
-
   if (!workout) {
     return;
   }

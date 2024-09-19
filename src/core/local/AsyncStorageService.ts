@@ -31,11 +31,9 @@ class AsyncStorageService {
   async saveData(key: string, value: string | undefined): Promise<string> {
     try {
       await AsyncStorage.setItem(key, value ?? '');
-      console.log('Data successfully saved');
       const savedData = await AsyncStorage.getItem(key);
       return savedData ?? '';
     } catch (error) {
-      console.log('Error saving data:', error);
       throw error;
     }
   }

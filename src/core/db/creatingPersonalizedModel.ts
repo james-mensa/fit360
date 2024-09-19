@@ -38,10 +38,8 @@ const exercisePlans: {
 
 export function createUserModel(data: PersonalizeModelMetaDataTy): DayTy[] {
   const {target_body_type, gender, target_body_zones} = data;
-  console.log({starting: target_body_type});
   const genderKey = gender === 'female' ? 'female' : 'male';
   let selectedPlan: DayTy[] = [];
-
   target_body_zones.forEach(zone => {
     const plan =
       exercisePlans[zone as keyof typeof BodyZonesTypes]?.[genderKey];
@@ -53,7 +51,9 @@ export function createUserModel(data: PersonalizeModelMetaDataTy): DayTy[] {
   // Ensure Skinny plan is prioritized if selected
   if (target_body_type === BodyZonesTypes.skinny) {
     selectedPlan =
-      gender === 'female' ? femaleSkinnyExercise : maleSkinnyExercise;
+      gender === 'female'
+        ? selectedPlan.concat(femaleSkinnyExercise)
+        : selectedPlan.concat(maleSkinnyExercise);
   }
 
   return selectedPlan;

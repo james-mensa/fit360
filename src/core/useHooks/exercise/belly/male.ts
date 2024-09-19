@@ -1,4 +1,6 @@
-import {DayTy} from '@core/db/types';
+import {DayTy, WorkoutTy} from '@core/db/types';
+import {calculateCaloriesBurned} from '../helper';
+import {getDietRecommendations} from './diet';
 interface PhaseType {
   difficulty: number;
   day: number;
@@ -11,13 +13,8 @@ export const malePlanFirstPhase = ({
   day,
   title,
   phase,
-}: PhaseType): DayTy => ({
-  day,
-  total: 2,
-  completed: 0,
-  title: title || `Core Strength Foundation \n Exercise`,
-  phase,
-  playlist: [
+}: PhaseType): DayTy => {
+  const playlist: WorkoutTy[] = [
     {
       name: 'Ab Contractions',
       description:
@@ -40,21 +37,26 @@ export const malePlanFirstPhase = ({
       type: 'belly',
       path: 'belly',
     },
-  ],
-});
+  ];
+  return {
+    day,
+    total: 2,
+    completed: 0,
+    title: title || `Core Strength Foundation \n Exercise`,
+    phase,
+    playlist,
+    burn_calories: calculateCaloriesBurned(playlist),
+    diet: getDietRecommendations(phase),
+  };
+};
 
 export const malePlanSecondPhase = ({
   difficulty,
   day,
   title,
   phase,
-}: PhaseType): DayTy => ({
-  day,
-  total: 2,
-  completed: 0,
-  title: title || `Core Stability and Balance \n Exercise`,
-  phase,
-  playlist: [
+}: PhaseType): DayTy => {
+  const playlist: WorkoutTy[] = [
     {
       name: 'Boat Pose',
       description:
@@ -77,21 +79,26 @@ export const malePlanSecondPhase = ({
       type: 'belly',
       path: 'belly',
     },
-  ],
-});
+  ];
+  return {
+    day,
+    total: 2,
+    completed: 0,
+    title: title || `Core Stability and Balance \n Exercise`,
+    phase,
+    playlist,
+    burn_calories: calculateCaloriesBurned(playlist),
+    diet: getDietRecommendations(phase),
+  };
+};
 
 export const malePlanThirdPhase = ({
   difficulty,
   day,
   title,
   phase,
-}: PhaseType): DayTy => ({
-  day,
-  total: 2,
-  completed: 0,
-  title: title || `Advanced Core Challenges \n Exercise`,
-  phase,
-  playlist: [
+}: PhaseType): DayTy => {
+  const playlist: WorkoutTy[] = [
     {
       name: 'Russian Twist with Legs Crossed',
       description:
@@ -114,21 +121,25 @@ export const malePlanThirdPhase = ({
       type: 'belly',
       path: 'belly',
     },
-  ],
-});
-
+  ];
+  return {
+    day,
+    total: 2,
+    completed: 0,
+    title: title || `Advanced Core Challenges \n Exercise`,
+    phase,
+    burn_calories: calculateCaloriesBurned(playlist),
+    playlist,
+    diet: getDietRecommendations(phase),
+  };
+};
 export const malePlanFourthPhase = ({
   difficulty,
   day,
   title,
   phase,
-}: PhaseType): DayTy => ({
-  day,
-  total: 3,
-  completed: 0,
-  title: title || `Comprehensive Core Conditioning \n Exercise`,
-  phase,
-  playlist: [
+}: PhaseType): DayTy => {
+  const playlist: WorkoutTy[] = [
     {
       name: 'The Hundred',
       description:
@@ -162,8 +173,18 @@ export const malePlanFourthPhase = ({
       type: 'belly',
       path: 'belly',
     },
-  ],
-});
+  ];
+  return {
+    day,
+    total: 3,
+    completed: 0,
+    title: title || `Comprehensive Core Conditioning \n Exercise`,
+    phase,
+    playlist,
+    burn_calories: calculateCaloriesBurned(playlist),
+    diet: getDietRecommendations(phase),
+  };
+};
 
 export const maleBellyExercise: DayTy[] = [
   // Phase 1: 14 days

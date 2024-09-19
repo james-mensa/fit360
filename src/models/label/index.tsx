@@ -217,6 +217,12 @@ export const LabelVariant = {
       fontFamily: FONTS.RMedium,
       fontSize: 12,
     },
+    Bold: {
+      color: Palette.text.dark[100],
+      fontFamily: FONTS.TBold,
+      fontSize: 12,
+      fontWeight: 700,
+    },
   },
   Sub4: {
     TInterface: {
@@ -228,6 +234,12 @@ export const LabelVariant = {
       color: Palette.text.dark[200],
       fontFamily: FONTS.RMedium,
       fontSize: 10,
+    },
+    Bold: {
+      color: Palette.text.dark[100],
+      fontFamily: FONTS.TBold,
+      fontSize: 10,
+      fontWeight: 700,
     },
   },
 } as const;

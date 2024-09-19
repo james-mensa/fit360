@@ -106,6 +106,8 @@ export class DayPlanModel extends Realm.Object<DayPlanModel> {
   description?: string;
   _id!: string;
   playlist!: Realm.List<WorkoutModel>;
+  diet!: string;
+  burn_calories!: number;
   static schema: Realm.ObjectSchema = {
     name: 'DayPlanModel',
     primaryKey: '_id',
@@ -118,6 +120,8 @@ export class DayPlanModel extends Realm.Object<DayPlanModel> {
       title: 'string',
       description: 'string?',
       playlist: 'WorkoutModel[]',
+      diet: 'string',
+      burn_calories: 'int',
     },
   };
 }

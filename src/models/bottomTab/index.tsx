@@ -7,13 +7,12 @@ import {
 import FontAwesome from 'react-native-vector-icons/FontAwesome5';
 import Feather from 'react-native-vector-icons/Feather';
 import Octicons from 'react-native-vector-icons/Octicons';
-import Ionicons from 'react-native-vector-icons/Ionicons';
-import Settings from '@pages/settings';
+import ProfilePage from '@pages/profile';
 import Plan from '@pages/nurition_plan';
-import Progress from '@pages/progress';
 import {StyleSheet} from 'react-native';
 import {isLargeDevice, UIResponsive} from '@layout/ResponsiveUi';
 import {Palette} from '@styles/BaseColor';
+import {Progress} from '@pages/progress';
 const Tab = createBottomTabNavigator();
 
 export function BaseTab() {
@@ -39,9 +38,9 @@ export function BaseTab() {
         options={tabsOption('ProgressPage')}
       />
       <Tab.Screen
-        name="SettingsPage"
-        component={Settings}
-        options={tabsOption('SettingsPage')}
+        name="ProfilePage"
+        component={ProfilePage}
+        options={tabsOption('ProfilePage')}
       />
     </Tab.Navigator>
   );
@@ -54,47 +53,23 @@ const tabsOption = (page: string): BottomTabNavigationOptions => {
       backgroundColor: 'blue',
     },
     tabBarIcon: ({focused}) => {
+      const tabColor = focused
+        ? Palette.text.light[100]
+        : Palette.text.dark[500];
+      const tabSize = focused
+        ? UIResponsive.Tab.active
+        : UIResponsive.Tab.inactive;
       switch (page) {
         case 'HomePage':
-          return (
-            <Feather
-              name={'home'}
-              size={
-                focused ? UIResponsive.Tab.active : UIResponsive.Tab.inactive
-              }
-              color={focused ? Palette.text.dark[100] : Palette.text.dark[300]}
-            />
-          );
+          return <Feather name={'home'} size={tabSize} color={tabColor} />;
         case 'PlanPage':
           return (
-            <FontAwesome
-              name={'dumbbell'}
-              size={
-                focused ? UIResponsive.Tab.active : UIResponsive.Tab.inactive
-              }
-              color={focused ? Palette.text.dark[100] : Palette.text.dark[300]}
-            />
+            <FontAwesome name={'dumbbell'} size={tabSize} color={tabColor} />
           );
         case 'ProgressPage':
-          return (
-            <Octicons
-              name={'graph'}
-              size={
-                focused ? UIResponsive.Tab.active : UIResponsive.Tab.inactive
-              }
-              color={focused ? Palette.text.dark[100] : Palette.text.dark[300]}
-            />
-          );
-        case 'SettingsPage':
-          return (
-            <Ionicons
-              name={'settings'}
-              size={
-                focused ? UIResponsive.Tab.active : UIResponsive.Tab.inactive
-              }
-              color={focused ? Palette.text.dark[100] : Palette.text.dark[300]}
-            />
-          );
+          return <Octicons name={'graph'} size={tabSize} color={tabColor} />;
+        case 'ProfilePage':
+          return <FontAwesome name={'user'} size={tabSize} color={tabColor} />;
       }
     },
   };
@@ -102,7 +77,6 @@ const tabsOption = (page: string): BottomTabNavigationOptions => {
 const styles = StyleSheet.create({
   container: {
     backgroundColor: Palette.background.dark[100],
-
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
@@ -113,7 +87,7 @@ const styles = StyleSheet.create({
     bottom: 15,
     justifyContent: 'space-between',
     alignItems: 'center',
-    backgroundColor: 'rgba(255, 255, 255,0.9)',
+    backgroundColor: Palette.ColorsFromImage.muscle_1,
     marginHorizontal: isLargeDevice ? 200 : 50,
     borderRadius: 25,
     borderCurve: 'continuous',

@@ -1,12 +1,11 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {StyleSheet, Text, View, TouchableOpacity} from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import Feather from 'react-native-vector-icons/Feather';
 import {UIResponsive} from '@layout/ResponsiveUi';
 import {Palette} from '@styles/BaseColor';
 import {FONTS} from '@common/fonts';
+import {useProvider} from '@store/provider';
 import {UImage} from '@models/Icon';
-import {Icons} from '@assets/register';
 interface TopNavProps {
   left?: {
     icon?: React.ReactNode;
@@ -28,6 +27,12 @@ interface PageBaseProps {
 }
 
 export const PageBase: React.FC<PageBaseProps> = ({topNav, children}) => {
+  const {user, refreshUser} = useProvider();
+  const userImage = user?.user_image_url;
+
+  useEffect(() => {
+    refreshUser();
+  }, []);
   return (
     <View style={styles.base}>
       <View style={styles.layout}>
@@ -51,20 +56,9 @@ export const PageBase: React.FC<PageBaseProps> = ({topNav, children}) => {
 
           {topNav.right && (
             <View style={styles.navRight}>
-              {topNav.right.children ?? (
-                <TouchableOpacity onPress={topNav.right.profile?.onPress}>
-                  <View style={styles.calenderCotainer}>
-                    <Feather
-                      name={'calendar'}
-                      size={UIResponsive.Icons.small}
-                      color={Palette.Icons.default.dark}
-                    />
-                  </View>
-                </TouchableOpacity>
-              )}
-              {topNav.right.profile && (
+              {topNav.right.profile && userImage && (
                 <TouchableOpacity>
-                  <UImage source={Icons.profile} resizeMode="cover" />
+                  <UImage source={{uri: userImage}} resizeMode="cover" />
                 </TouchableOpacity>
               )}
             </View>

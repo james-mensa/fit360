@@ -1,3 +1,4 @@
 import RotationView from './rotate';
-import AnimateView from './text';
-export {AnimateView, RotationView};
+import AnimateView from './AnimateView';
+import BaseAnimationView from './BaseAnimationView';
+export {AnimateView, RotationView, BaseAnimationView};

@@ -1,4 +1,6 @@
-import {DayTy} from '@core/db/types';
+import {DayTy, WorkoutTy} from '@core/db/types';
+import {calculateCaloriesBurned} from '../helper';
+import {getDietRecommendationsForMale} from './diet';
 
 interface PhaseType {
   difficulty: number;
@@ -11,24 +13,27 @@ export const malePlanFirstPhase = ({
   day,
   phase,
 }: PhaseType): DayTy => {
+  const playlist: WorkoutTy[] = [
+    {
+      name: 'Neck Flexibility Exercise 1',
+      description: 'Basic neck stretch to improve flexibility and posture.',
+      point: 2,
+      link: 'neck_1',
+      duration: difficulty,
+      completed: false,
+      type: 'neck',
+      path: 'neck',
+    },
+  ];
   return {
     day: day,
     total: 1,
     completed: 0,
     title: `Basic Neck Flexibility Exercise (${difficulty}s) \n Exercise`,
-    phase: phase,
-    playlist: [
-      {
-        name: 'Neck Flexibility Exercise 1',
-        description: 'Basic neck stretch to improve flexibility and posture.',
-        point: 2,
-        link: 'neck_1',
-        duration: difficulty,
-        completed: false,
-        type: 'neck',
-        path: 'neck',
-      },
-    ],
+    phase,
+    playlist,
+    burn_calories: calculateCaloriesBurned(playlist),
+    diet: getDietRecommendationsForMale(phase),
   };
 };
 
@@ -37,25 +42,27 @@ export const malePlanSecondPhase = ({
   day,
   phase,
 }: PhaseType): DayTy => {
+  const playlist: WorkoutTy[] = [
+    {
+      name: 'Neck Stiffness Relief',
+      description: 'Exercise to alleviate stiffness and improve neck mobility.',
+      point: 2,
+      link: 'stiff_neck',
+      duration: difficulty,
+      completed: false,
+      type: 'neck',
+      path: 'neck',
+    },
+  ];
   return {
     day: day,
     total: 1,
     completed: 0,
     title: `Stiff Neck Relief (${difficulty}s) \n Exercise`,
-    phase: phase,
-    playlist: [
-      {
-        name: 'Neck Stiffness Relief',
-        description:
-          'Exercise to alleviate stiffness and improve neck mobility.',
-        point: 2,
-        link: 'stiff_neck',
-        duration: difficulty,
-        completed: false,
-        type: 'neck',
-        path: 'neck',
-      },
-    ],
+    phase,
+    playlist,
+    burn_calories: calculateCaloriesBurned(playlist),
+    diet: getDietRecommendationsForMale(phase),
   };
 };
 
@@ -64,25 +71,27 @@ export const malePlanThirdPhase = ({
   day,
   phase,
 }: PhaseType): DayTy => {
+  const playlist: WorkoutTy[] = [
+    {
+      name: 'Neck Stiffness Relief',
+      description: 'Exercise to alleviate stiffness and improve neck mobility.',
+      point: 2,
+      link: 'stiff_neck',
+      duration: difficulty,
+      completed: false,
+      type: 'neck',
+      path: 'neck',
+    },
+  ];
   return {
     day: day,
     total: 1,
     completed: 0,
     title: `Advanced Neck Relief Exercises (${difficulty}s) \n Exercise`,
-    phase: phase,
-    playlist: [
-      {
-        name: 'Neck Stiffness Relief',
-        description:
-          'Exercise to alleviate stiffness and improve neck mobility.',
-        point: 2,
-        link: 'stiff_neck',
-        duration: difficulty,
-        completed: false,
-        type: 'neck',
-        path: 'neck',
-      },
-    ],
+    phase,
+    playlist,
+    burn_calories: calculateCaloriesBurned(playlist),
+    diet: getDietRecommendationsForMale(phase),
   };
 };
 
@@ -91,35 +100,37 @@ export const malePlanFourthPhase = ({
   day,
   phase,
 }: PhaseType): DayTy => {
+  const playlist: WorkoutTy[] = [
+    {
+      name: 'Neck Stiffness Relief',
+      description: 'Exercise to alleviate stiffness and improve neck mobility.',
+      point: 2,
+      link: 'stiff_neck',
+      duration: difficulty,
+      completed: false,
+      type: 'neck',
+      path: 'neck',
+    },
+    {
+      name: 'Neck Flexibility Exercise 1',
+      description: 'Basic neck stretch to improve flexibility and posture.',
+      point: 2,
+      link: 'neck_1',
+      duration: difficulty,
+      completed: false,
+      type: 'neck',
+      path: 'neck',
+    },
+  ];
   return {
     day: day,
     total: 2,
     completed: 0,
     title: `Comprehensive Neck Routine (${difficulty}s) \n Exercise`,
-    phase: phase,
-    playlist: [
-      {
-        name: 'Neck Stiffness Relief',
-        description:
-          'Exercise to alleviate stiffness and improve neck mobility.',
-        point: 2,
-        link: 'stiff_neck',
-        duration: difficulty,
-        completed: false,
-        type: 'neck',
-        path: 'neck',
-      },
-      {
-        name: 'Neck Flexibility Exercise 1',
-        description: 'Basic neck stretch to improve flexibility and posture.',
-        point: 2,
-        link: 'neck_1',
-        duration: difficulty,
-        completed: false,
-        type: 'neck',
-        path: 'neck',
-      },
-    ],
+    phase,
+    playlist,
+    burn_calories: calculateCaloriesBurned(playlist),
+    diet: getDietRecommendationsForMale(phase),
   };
 };
 

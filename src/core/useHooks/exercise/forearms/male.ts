@@ -1,4 +1,6 @@
-import {DayTy} from '@core/db/types';
+import {DayTy, WorkoutTy} from '@core/db/types';
+import {calculateCaloriesBurned} from '../helper';
+import {getDietRecommendationsForForearms} from './diet';
 
 interface PhaseType {
   difficulty: number;
@@ -11,21 +13,26 @@ const createPlan = (
   phase: number,
   exercises: Array<{name: string; description: string; link: string}>,
   {difficulty, day}: PhaseType,
-): DayTy => ({
-  day: day,
-  total: exercises.length,
-  completed: 5,
-  title: `Phase ${phase} Routine (${difficulty}s)`,
-  phase: phase,
-  playlist: exercises.map(exercise => ({
+): DayTy => {
+  const playlist: WorkoutTy[] = exercises.map(exercise => ({
     ...exercise,
     point: 2,
     duration: difficulty,
     completed: false,
     type: 'forearms',
     path: 'forearms',
-  })),
-});
+  }));
+  return {
+    day: day,
+    total: exercises.length,
+    completed: 5,
+    title: `Phase ${phase} Routine (${difficulty}s)`,
+    phase: phase,
+    playlist,
+    burn_calories: calculateCaloriesBurned(playlist),
+    diet: getDietRecommendationsForForearms(phase),
+  };
+};
 
 export const malePlanFirstPhase = (params: PhaseType): DayTy =>
   createPlan(
@@ -144,34 +151,34 @@ export const malePlanFourthPhase = (params: PhaseType): DayTy =>
   );
 
 export const maleForearmsExercise: DayTy[] = [
-  // ...Array.from({length: 7}, (_, i) =>
-  //   malePlanFirstPhase({difficulty: 120, day: i + 1, phase: 1}),
-  // ),
-  // ...Array.from({length: 7}, (_, i) =>
-  //   malePlanFirstPhase({difficulty: 180, day: i + 8, phase: 1}),
-  // ),
-  // ...Array.from({length: 15}, (_, i) =>
-  //   malePlanSecondPhase({difficulty: 180, day: i + 15, phase: 2}),
-  // ),
-  // ...Array.from({length: 15}, (_, i) =>
-  //   malePlanThirdPhase({difficulty: 180, day: i + 30, phase: 3}),
-  // ),
-  // ...Array.from({length: 14}, (_, i) =>
-  //   malePlanFourthPhase({difficulty: 180, day: i + 45, phase: 4}),
-  // ),
-  // ...Array.from({length: 6}, (_, i) =>
-  //   malePlanFourthPhase({difficulty: 210, day: i + 59, phase: 4}),
-  // ),
-  // ...Array.from({length: 7}, (_, i) =>
-  //   malePlanFourthPhase({difficulty: 210, day: i + 65, phase: 5}),
-  // ),
-  // ...Array.from({length: 7}, (_, i) =>
-  //   malePlanFourthPhase({difficulty: 240, day: i + 72, phase: 5}),
-  // ),
-  // ...Array.from({length: 14}, (_, i) =>
-  //   malePlanSecondPhase({difficulty: 210, day: i + 79, phase: 6}),
-  // ),
-  // ...Array.from({length: 7}, (_, i) =>
-  //   malePlanSecondPhase({difficulty: 240, day: i + 93, phase: 6}),
-  // ),
+  ...Array.from({length: 7}, (_, i) =>
+    malePlanFirstPhase({difficulty: 120, day: i + 1, phase: 1}),
+  ),
+  ...Array.from({length: 7}, (_, i) =>
+    malePlanFirstPhase({difficulty: 180, day: i + 8, phase: 1}),
+  ),
+  ...Array.from({length: 15}, (_, i) =>
+    malePlanSecondPhase({difficulty: 180, day: i + 15, phase: 2}),
+  ),
+  ...Array.from({length: 15}, (_, i) =>
+    malePlanThirdPhase({difficulty: 180, day: i + 30, phase: 3}),
+  ),
+  ...Array.from({length: 14}, (_, i) =>
+    malePlanFourthPhase({difficulty: 180, day: i + 45, phase: 4}),
+  ),
+  ...Array.from({length: 6}, (_, i) =>
+    malePlanFourthPhase({difficulty: 210, day: i + 59, phase: 4}),
+  ),
+  ...Array.from({length: 7}, (_, i) =>
+    malePlanFourthPhase({difficulty: 210, day: i + 65, phase: 5}),
+  ),
+  ...Array.from({length: 7}, (_, i) =>
+    malePlanFourthPhase({difficulty: 240, day: i + 72, phase: 5}),
+  ),
+  ...Array.from({length: 14}, (_, i) =>
+    malePlanSecondPhase({difficulty: 210, day: i + 79, phase: 6}),
+  ),
+  ...Array.from({length: 7}, (_, i) =>
+    malePlanSecondPhase({difficulty: 240, day: i + 93, phase: 6}),
+  ),
 ];

@@ -1,4 +1,6 @@
-import {DayTy} from '@core/db/types';
+import {DayTy, WorkoutTy} from '@core/db/types';
+import {calculateCaloriesBurned} from '../helper';
+import {getDietRecommendations} from './diet';
 
 // Helper function to create workout plans
 const createWorkoutPlan = ({
@@ -14,22 +16,25 @@ const createWorkoutPlan = ({
   phase: number;
   exercises: Array<{name: string; link: string; description: string}>;
 }): DayTy => {
+  const playlist: WorkoutTy[] = exercises.map(exercise => ({
+    name: exercise.name,
+    description: exercise.description,
+    point: 2,
+    link: exercise.link,
+    duration: difficulty,
+    completed: false,
+    type: 'thighs',
+    path: 'thighs',
+  }));
   return {
     day,
     total: exercises.length,
     completed: 0,
     title,
     phase,
-    playlist: exercises.map(exercise => ({
-      name: exercise.name,
-      description: exercise.description,
-      point: 2,
-      link: exercise.link,
-      duration: difficulty,
-      completed: false,
-      type: 'thighs',
-      path: 'thighs',
-    })),
+    playlist,
+    burn_calories: calculateCaloriesBurned(playlist),
+    diet: getDietRecommendations(phase),
   };
 };
 

@@ -1,4 +1,6 @@
-import {DayTy} from '@core/db/types';
+import {DayTy, WorkoutTy} from '@core/db/types';
+import {calculateCaloriesBurned} from '../helper';
+import {getDietRecommendationsForForearms} from './diet';
 
 interface PhaseType {
   difficulty: number;
@@ -12,13 +14,8 @@ export const femalePlanFirstPhase = ({
   day,
   title,
   phase,
-}: PhaseType): DayTy => ({
-  day: day,
-  total: 1,
-  completed: 0,
-  title: title || `Foundation Building (${difficulty}s) \n Exercise`,
-  phase: phase,
-  playlist: [
+}: PhaseType): DayTy => {
+  const playlist: WorkoutTy[] = [
     {
       name: 'Inner Wrist Curls',
       description: 'Strengthens forearm flexors by curling wrists inward.',
@@ -29,21 +26,27 @@ export const femalePlanFirstPhase = ({
       type: 'forearms',
       path: 'forearms',
     },
-  ],
-});
+  ];
+
+  return {
+    day: day,
+    total: 1,
+    completed: 0,
+    title: title || `Foundation Building (${difficulty}s) \n Exercise`,
+    phase: phase,
+    playlist,
+    burn_calories: calculateCaloriesBurned(playlist),
+    diet: getDietRecommendationsForForearms(phase),
+  };
+};
 
 export const femalePlanSecondPhase = ({
   difficulty,
   day,
   title,
   phase,
-}: PhaseType): DayTy => ({
-  day: day,
-  total: 1,
-  completed: 0,
-  title: title || `Strength Enhancement (${difficulty}s) \n Exercise`,
-  phase: phase,
-  playlist: [
+}: PhaseType): DayTy => {
+  const playlist: WorkoutTy[] = [
     {
       name: 'Tricep Dips',
       description: 'Targets triceps and strengthens upper arms.',
@@ -54,21 +57,27 @@ export const femalePlanSecondPhase = ({
       type: 'forearms',
       path: 'forearms',
     },
-  ],
-});
+  ];
+
+  return {
+    day: day,
+    total: 1,
+    completed: 0,
+    title: title || `Strength Enhancement (${difficulty}s) \n Exercise`,
+    phase: phase,
+    playlist,
+    burn_calories: calculateCaloriesBurned(playlist),
+    diet: getDietRecommendationsForForearms(phase),
+  };
+};
 
 export const femalePlanThirdPhase = ({
   difficulty,
   day,
   title,
   phase,
-}: PhaseType): DayTy => ({
-  day: day,
-  total: 1,
-  completed: 0,
-  title: title || `Flexor Focus (${difficulty}s) \n Exercise`,
-  phase: phase,
-  playlist: [
+}: PhaseType): DayTy => {
+  const playlist: WorkoutTy[] = [
     {
       name: 'Inner Wrist Curls',
       description: 'Strengthens forearm flexors by curling wrists inward.',
@@ -79,21 +88,27 @@ export const femalePlanThirdPhase = ({
       type: 'forearms',
       path: 'forearms',
     },
-  ],
-});
+  ];
+
+  return {
+    day: day,
+    total: 1,
+    completed: 0,
+    title: title || `Flexor Focus (${difficulty}s) \n Exercise`,
+    phase: phase,
+    playlist,
+    burn_calories: calculateCaloriesBurned(playlist),
+    diet: getDietRecommendationsForForearms(phase),
+  };
+};
 
 export const femalePlanFourthPhase = ({
   difficulty,
   day,
   title,
   phase,
-}: PhaseType): DayTy => ({
-  day: day,
-  total: 1,
-  completed: 0,
-  title: title || `Upper Arm Conditioning (${difficulty}s) \n Exercise`,
-  phase: phase,
-  playlist: [
+}: PhaseType): DayTy => {
+  const playlist: WorkoutTy[] = [
     {
       name: 'Tricep Dips',
       description: 'Targets triceps and strengthens upper arms.',
@@ -104,8 +119,19 @@ export const femalePlanFourthPhase = ({
       type: 'forearms',
       path: 'forearms',
     },
-  ],
-});
+  ];
+
+  return {
+    day: day,
+    total: 1,
+    completed: 0,
+    title: title || `Upper Arm Conditioning (${difficulty}s) \n Exercise`,
+    phase: phase,
+    playlist,
+    burn_calories: calculateCaloriesBurned(playlist),
+    diet: getDietRecommendationsForForearms(phase),
+  };
+};
 
 export const femaleForearmsExercise: DayTy[] = [
   ...Array.from({length: 7}, (_, i) =>
