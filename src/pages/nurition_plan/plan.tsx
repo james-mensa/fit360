@@ -1,4 +1,4 @@
-import {ScrollView, StyleSheet, View} from 'react-native';
+import {StyleSheet, View} from 'react-native';
 import {PageBase} from '@models/pageBase';
 import {UIResponsive} from '@layout/ResponsiveUi';
 import React from 'react';
@@ -8,6 +8,8 @@ import {SwitchTab} from '@models/SwitchTab';
 import {VectorIcons} from '@common/VectorIcons';
 import {GapVertical} from '@models/gap';
 import {Workout} from './Workout';
+import {MealRecommandation} from './MealRecommandation';
+import {Label, LabelVariant} from '@models/label';
 export const Plan = () => {
   const category = [
     {
@@ -19,25 +21,22 @@ export const Plan = () => {
     },
     {
       label: 'Recommanded meal',
-      icon: VectorIcons.Dumbell,
+      icon: <Label title={'🍓'} variant={LabelVariant.Sub3.TInterface} />,
       onPress: () => {},
       id: 2,
-      component: <View></View>,
+      component: <MealRecommandation />,
     },
   ];
   return (
     <PageBase
       topNav={{
-        // left: {onPress: () => {}},
         right: {profile: {onPress: () => {}}},
       }}>
       <View style={styles.container}>
-        <ScrollView showsVerticalScrollIndicator={false}>
-          <View style={styles.layout}>
-            <SwitchTab items={category} />
-          </View>
-          <GapVertical h={70} />
-        </ScrollView>
+        <View style={styles.layout}>
+          <SwitchTab items={category} />
+        </View>
+        <GapVertical h={70} />
       </View>
     </PageBase>
   );
@@ -56,6 +55,9 @@ const styles = StyleSheet.create({
   },
   layout: {
     flexDirection: 'column',
+    justifyContent: 'flex-start',
+    alignItems: 'flex-start',
+    flex: 1,
     gap: 20,
   },
   scrollView: {

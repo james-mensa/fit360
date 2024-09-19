@@ -73,12 +73,12 @@ export const GetStarted = () => {
           onPress={getStartOnClick}
         />
       </AnimateView>
-      <AnimateView order={0.5}>
+      {/* <AnimateView order={0.5}>
         <PrimaryButton
           title="I already have an account"
           theme={ButtonThemes.Primary}
         />
-      </AnimateView>
+      </AnimateView> */}
     </LinearGradient>
   );
 };

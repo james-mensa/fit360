@@ -84,7 +84,7 @@ const RenderTermsCheckBox = ({
         style={{
           width: UIResponsive.Body.width - UIResponsive.Body.width * (1 / 4),
         }}>
-        <Label title={content.detail} variant={LabelVariant.H3_Bold.extra} />
+        <Label title={content.detail} variant={LabelVariant.Sub1.Extra} />
       </View>
     </View>
   );

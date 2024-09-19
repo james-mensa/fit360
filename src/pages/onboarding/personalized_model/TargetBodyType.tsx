@@ -16,7 +16,7 @@ const pageContent = {
   title: 'Please Choose your target Body Type',
   Cards: [
     {
-      title: 'skinny',
+      title: 'slim fit',
       description: '',
       icon: Icons.skinny_1,
       type: 'skinny' as BodyType,
@@ -60,7 +60,6 @@ export const TargetBodyType = () => {
         setBodyType(local_response);
       }
     } catch (error) {
-      console.log('Failed to retrieve data');
     }
   };
 

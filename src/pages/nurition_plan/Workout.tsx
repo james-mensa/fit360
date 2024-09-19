@@ -13,7 +13,6 @@ export const Workout = () => {
       setRefresh(prev => !prev);
     }, []),
   );
-
   return (
     <View style={styles.container}>
       {plan.map((item, index) => (

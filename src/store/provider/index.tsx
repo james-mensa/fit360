@@ -1,14 +1,21 @@
-import {useLocalStore, WorkoutModelTy} from '@core/db';
-import {DayPlanModelTy, PersonalizeModelTy} from '@core/db/types';
 import React, {
   createContext,
   useState,
   useContext,
-  ReactNode,
   useEffect,
+  ReactNode,
   Dispatch,
   SetStateAction,
 } from 'react';
+import {GeneralProgressTy} from '@core/data-types';
+import {useLocalStore, WorkoutModelTy} from '@core/db';
+import {DayPlanModelTy, PersonalizeModelTy} from '@core/db/types';
+import {
+  NavigationProp,
+  ParamListBase,
+  useNavigation,
+} from '@react-navigation/native';
+
 interface ProviderProps {
   plan: DayPlanModelTy[];
   user: PersonalizeModelTy | undefined;
@@ -22,59 +29,142 @@ interface ProviderProps {
   hasNextIncompleteExercise: () => boolean;
   hasNextExercise: (_id: string) => boolean;
   hasPreviousExercise: (_id: string) => boolean;
+  progressSummary: GeneralProgressTy | undefined;
+  setProgressSummary: Dispatch<
+    React.SetStateAction<GeneralProgressTy | undefined>
+  >;
+  getDayChallenge: (_idx: number) => DayPlanModelTy[] | undefined;
+  refreshUser: () => void;
+  isLogin: boolean | null;
+  login: () => void;
+  logout: () => void;
+  setLogin: () => void;
 }
+
 const ProviderContext = createContext<ProviderProps | undefined>(undefined);
+
 export const AppProvider: React.FC<{children: ReactNode}> = ({children}) => {
-  const LocalStore = useLocalStore();
+  const localStore = useLocalStore();
   const [user, setUser] = useState<PersonalizeModelTy>();
   const [plan, setPlans] = useState<DayPlanModelTy[]>([]);
   const [playList, setPlayList] = useState<WorkoutModelTy[]>([]);
+  const [isLogin, setIsLogin] = useState<boolean | null>(null);
+  const navigation = useNavigation<NavigationProp<ParamListBase>>();
+
+  const [progressSummary, setProgressSummary] = useState<
+    GeneralProgressTy | undefined
+  >();
 
   useEffect(() => {
-    const response = LocalStore.getPlan();
-    if (response) {
-      setPlans(response);
+    const savedPlan = localStore.getPlan();
+    if (savedPlan) {
+      setPlans(savedPlan);
     }
-    const __user = LocalStore.getLoginData();
-    if (__user) {
-      const userData = LocalStore.getPersonalizedModel(__user);
-      if (userData) {
-        setUser(userData);
+    const savedUser = localStore.getLoginData();
+    if (savedUser) {
+      const personalizedData = localStore.getPersonalizedModel(savedUser);
+      if (personalizedData) {
+        setUser(personalizedData);
       }
     }
-  }, []);
-  function getFirstIncompleteExercise(): WorkoutModelTy | undefined {
-    return playList.find(exercise => !exercise.completed);
-  }
+  }, [localStore]);
 
-  function isLastExercise(exerciseId: string): boolean {
+  const refreshUser = () => {
+    const savedPlan = localStore.getPlan();
+    if (savedPlan) {
+      setPlans(savedPlan);
+    }
+    const savedUser = localStore.getLoginData();
+    if (savedUser) {
+      const personalizedData = localStore.getPersonalizedModel(savedUser);
+      if (personalizedData) {
+        setUser(personalizedData);
+      }
+    }
+  };
+
+  useEffect(() => {
+    async function saveToStorage() {
+      const signed_user = localStore.getLoginData();
+      if (signed_user?.user_id) {
+        setIsLogin(true);
+        return;
+      } else {
+        setIsLogin(false);
+      }
+    }
+    saveToStorage();
+  }, [isLogin, localStore]);
+
+  const setLogin = () => {
+    const signed_user = localStore.getLoginData();
+    if (signed_user?.user_id) {
+      setIsLogin(true);
+      return;
+    } else {
+      setIsLogin(false);
+    }
+  };
+  const login = () => {
+    setIsLogin(true);
+  };
+  const logout = () => {
+    setIsLogin(false);
+
+    // Navigate to onboarding screen and reset navigation stack
+    setTimeout(() => {
+      navigation.reset({
+        index: 0,
+        routes: [{name: 'onboarding'}],
+      });
+      localStore.signOut();
+    }, 2000);
+  };
+
+  useEffect(() => {
+    const savedProgress = localStore.getProgressSummary();
+    if (savedProgress) {
+      setProgressSummary(savedProgress);
+    }
+  }, [localStore, plan]);
+
+  const getFirstIncompleteExercise = (): WorkoutModelTy | undefined => {
+    return playList.find(exercise => !exercise.completed);
+  };
+
+  const isLastExercise = (exerciseId: string): boolean => {
     const lastExercise = playList[playList.length - 1];
     return lastExercise._id === exerciseId;
-  }
-  function isFirstExercise(exerciseId: string): boolean {
-    const index = playList.findIndex(exercise => exercise._id === exerciseId);
-    // Check if the exercise is found and if it is the first exercise
-    return index === 0;
-  }
+  };
 
-  function hasNextIncompleteExercise(): boolean {
-    const __playList = playList.find(exercise => !exercise.completed);
-    return __playList !== undefined;
-  }
-  function hasNextExercise(exerciseId: string): boolean {
+  const isFirstExercise = (exerciseId: string): boolean => {
+    return playList.findIndex(exercise => exercise._id === exerciseId) === 0;
+  };
+
+  const hasNextIncompleteExercise = (): boolean => {
+    return playList.some(exercise => !exercise.completed);
+  };
+
+  const hasNextExercise = (exerciseId: string): boolean => {
     const index = playList.findIndex(exercise => exercise._id === exerciseId);
     return index !== -1 && index < playList.length - 1;
-  }
-  function hasPreviousExercise(exerciseId: string): boolean {
-    const index = playList.findIndex(exercise => exercise._id === exerciseId);
-    // Check if the exercise is found and if there is an exercise before it
-    return index > 0;
-  }
+  };
 
-  function complete(_id: string) {
-    LocalStore.complete(_id);
-  }
+  const hasPreviousExercise = (exerciseId: string): boolean => {
+    return playList.findIndex(exercise => exercise._id === exerciseId) > 0;
+  };
 
+  const complete = (_id: string) => {
+    localStore.complete(_id);
+    const savedProgress = localStore.getProgressSummary();
+    if (savedProgress) {
+      setProgressSummary(savedProgress);
+    }
+  };
+
+  const getDayChallenge = (idx: number) => {
+    return localStore.getUniquePlan(idx);
+  };
   return (
     <ProviderContext.Provider
       value={{
@@ -90,6 +180,14 @@ export const AppProvider: React.FC<{children: ReactNode}> = ({children}) => {
         hasNextIncompleteExercise,
         hasNextExercise,
         hasPreviousExercise,
+        progressSummary,
+        setProgressSummary,
+        getDayChallenge,
+        refreshUser,
+        isLogin,
+        login,
+        logout,
+        setLogin,
       }}>
       {children}
     </ProviderContext.Provider>
@@ -100,14 +198,12 @@ export const AppProvider: React.FC<{children: ReactNode}> = ({children}) => {
  * Custom hook to use the AppProvider.
  *
  * @returns {ProviderProps} The context value.
- * @throws {Error} If the hook is used outside of a FaucetProvider.
+ * @throws {Error} If the hook is used outside of a AppProvider.
  */
 export const useProvider = (): ProviderProps => {
   const context = useContext(ProviderContext);
-
-  if (context === undefined) {
-    throw new Error('useFaucetContext must be used within a FaucetProvider');
+  if (!context) {
+    throw new Error('useProvider must be used within an AppProvider');
   }
-
   return context;
 };

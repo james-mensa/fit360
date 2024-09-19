@@ -1,11 +1,7 @@
 import React, {useEffect} from 'react';
 import {StyleSheet, View} from 'react-native';
-
 import {Label, LabelVariant} from '@models/label';
-
 import {AnimateView} from '@models/animation';
-import {useNavigation} from '@react-navigation/native';
-import {Navigation} from '@common/type';
 import {UIResponsive} from '@layout/ResponsiveUi';
 import {Palette} from '@styles/BaseColor';
 import CircularProgress from '@models/progress/CircularProgress';
@@ -14,44 +10,55 @@ import {Icons} from '@assets/register';
 import personalizeDataToDb from '@core/useHooks/PersonalizeDataToDB';
 import {useLocalStore} from '@core/db';
 import {useProvider} from '@store/provider';
+import {useAppNavigation} from '@common/common-ui';
 export const CreatingPersonalizedModel = () => {
-  const navigation = useNavigation<Navigation>();
-  const {setPlans} = useProvider();
+  const navigation = useAppNavigation();
+  const {setPlans, setProgressSummary, setLogin} = useProvider();
   const goNext = () => {
     setTimeout(() => {
-      navigation.navigate('PageBase');
+      setLogin();
+      navigation.reset({
+        index: 0,
+        routes: [{name: 'PageBase'}],
+      });
     }, 100);
   };
 
-  const LocalStore = useLocalStore();
+  const localStore = useLocalStore();
   useEffect(() => {
     async function saveToStorage() {
-      const signed_user = LocalStore.getLoginData();
+      const signed_user = localStore.getLoginData();
       if (signed_user?.user_id) {
         return;
       }
       const MetaData = await personalizeDataToDb();
-      const response = LocalStore.setPersonalizedModel(
+      const response = localStore.setPersonalizedModel(
         {user_id: MetaData.user_id},
         MetaData.data,
       );
 
       if (response) {
-        const __user = LocalStore.setLoginData(
+        const __user = localStore.setLoginData(
           {user_id: MetaData.user_id},
           {user_name: response.user_name},
         );
         if (__user) {
-          LocalStore.AddDayPlan();
-          const response = LocalStore.getPlan();
-          if (response) {
-            setPlans(response);
+          localStore.AddDayPlan();
+          const _res = localStore.getPlan();
+          if (_res) {
+            setPlans(_res);
+            setTimeout(() => {
+              const savedProgress = localStore.getProgressSummary();
+              if (savedProgress) {
+                setProgressSummary(savedProgress);
+              }
+            }, 1000);
           }
         }
       }
     }
     saveToStorage();
-  }, []);
+  }, [localStore, setPlans, setProgressSummary]);
   return (
     <View style={styles.container}>
       <UImage

@@ -1,38 +1,28 @@
-import React, {useEffect} from 'react';
-import InitializationStage from './fit-plan';
+import React, {useEffect, useState} from 'react';
 import {BaseTab} from '@models/bottomTab';
 import {createStackNavigator} from '@react-navigation/stack';
-import {useLocalStore} from '@core/db';
+
 import {Player__} from '@models/player';
+import {useProvider} from '@store/provider';
+import Onboarding from './onboarding';
 
 const Stack = createStackNavigator();
 
 const UIScreens = () => {
-  const [isLogin, setLogin] = React.useState<boolean>(false);
-
-  const LocalStore = useLocalStore();
-
+  const {refreshUser, isLogin} = useProvider();
   useEffect(() => {
-    async function saveToStorage() {
-      const signed_user = LocalStore.getLoginData();
-      if (signed_user?.user_id) {
-        console.log('signed in');
-
-        setLogin(true);
-        return;
-      }
-    }
-    saveToStorage();
-  }, [isLogin, LocalStore]);
+    refreshUser();
+  }, []);
+  if (isLogin === null) {
+    return null;
+  }
   return (
-    <Stack.Navigator>
-      {!isLogin && (
-        <Stack.Screen
-          name="onboarding"
-          options={{headerShown: false}}
-          component={InitializationStage}
-        />
-      )}
+    <Stack.Navigator initialRouteName={isLogin ? 'PageBase' : 'onboarding'}>
+      <Stack.Screen
+        name="onboarding"
+        options={{headerShown: false}}
+        component={Onboarding}
+      />
       <Stack.Screen
         name="PageBase"
         options={{headerShown: false}}

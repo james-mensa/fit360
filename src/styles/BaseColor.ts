@@ -49,6 +49,7 @@ const text = {
     200: '#1A2130',
     300: '#070F2B',
     400: '#030637',
+    500: '#959aa1',
   },
   light: {
     100: '#ffffff',
@@ -74,6 +75,7 @@ const ColorsFromImage = {
   view1: {
     100: 'rgba(209, 158, 105,1)',
     150: 'rgba(216, 173, 131,0.4)',
+    120: 'rgba(216, 173, 131,0.3)',
     200: 'rgba(216, 173, 131,1)',
     250: 'rgba(216, 173, 131,0.6)',
   },
@@ -83,8 +85,18 @@ const cardColors = [
   'rgba(216, 123, 130,0.7)',
   'rgba(250, 217, 177,0.7)',
   'rgba(223, 209, 251,0.6)',
+  'rgba(150, 250, 195,0.6)',
+  'rgba(250, 210, 249,0.6)',
 ];
 
+const PieColors = [
+  'rgba(120, 94, 218,1)',
+  'rgba(216, 123, 130,1)',
+  'rgba(250, 217, 177,1)',
+  'rgba(223, 209, 251,1)',
+  '#7919ff',
+  '#5ae99b',
+];
 export const Palette = {
   tab,
   tabContainer,
@@ -95,4 +107,5 @@ export const Palette = {
   Button,
   Card,
   cardColors,
+  PieColors,
 };

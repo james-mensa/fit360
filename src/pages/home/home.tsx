@@ -1,20 +1,80 @@
-import {ScrollView, StyleSheet, Text, View} from 'react-native';
+import {ScrollView, StyleSheet, View} from 'react-native';
 import {PageBase} from '@models/pageBase';
 import {UIResponsive} from '@layout/ResponsiveUi';
 import React from 'react';
 import {Palette} from '@styles/BaseColor';
 import {Label, LabelVariant} from '@models/label';
 import {PrimaryCard} from '@models/cards/primary';
-import {Icons} from '@assets/register';
+import {CardIcons} from '@assets/register';
 import {StatusCard} from '@models/cards/status';
-import {GapHorizontal, GapVertical} from '@models/gap';
-import {statusData} from '@store/dummy';
+import {GapVertical} from '@models/gap';
 import {TabNav} from '@models/tabnav';
+import {useProvider} from '@store/provider';
+import {VectorIcons} from '@common/VectorIcons';
+import {
+  calculateWeightLoss,
+  dailyChallenge,
+  generateKeyId,
+} from '@common/utils';
+import {BodyZonesTypes, GenderType} from '@core/data-types';
+import {WorkoutModel} from '@core/db/models';
 export const Home = () => {
+  const {plan, user, getDayChallenge} = useProvider();
+  const {progressSummary} = useProvider();
+  if (!progressSummary || !progressSummary.general) {
+    return null; //
+  }
+
+  const day = plan[0].day;
+  const progress = progressSummary?.day;
+  const bodyZones = progress.label;
+  const collection = progress.data;
+  const tabItems = bodyZones.map((item, index) => ({
+    label: item || 'Jumping', // Adjust according to the actual structure of `item`
+    active: index === 0, // Assuming the first tab should be active
+    component: (
+      <ScrollView
+        key={generateKeyId()}
+        style={styles.horizontalScrollContainer}
+        horizontal
+        showsHorizontalScrollIndicator={false}
+        directionalLockEnabled
+        alwaysBounceVertical={false}>
+        {[0, 1].map((_status, _index) => {
+          const calories = collection.get(item)?.calories || 5;
+          const value =
+            _status === 0 ? calories : calculateWeightLoss(calories);
+          const unit = _status === 0 ? 'kcal' : 'pound';
+          const icon = _status === 0 ? VectorIcons.fire : VectorIcons.weight;
+
+          return (
+            <StatusCard
+              key={generateKeyId()}
+              index={0.6}
+              title={_status === 0 ? 'Calories' : 'Weight'}
+              rate={value}
+              unit={unit}
+              icon={icon}
+              onPress={() => {}}
+            />
+          );
+        })}
+      </ScrollView>
+    ),
+  }));
+
+  const gender = user ? user.gender : 'female';
+
+  const randomChallenge = dailyChallenge(bodyZones);
+  const cardIcon = (index: number) =>
+    CardIcons[gender as GenderType][
+      randomChallenge.items[index] as BodyZonesTypes
+    ];
+  const ChallengeData = getDayChallenge(randomChallenge.uniqueId);
   return (
     <PageBase
       topNav={{
-        left: {onPress: () => {}},
+        // left: {onPress: () => {}},
         right: {profile: {onPress: () => {}}},
       }}>
       <View style={styles.container}>
@@ -24,78 +84,28 @@ export const Home = () => {
               title="Today Challenges"
               variant={LabelVariant.H3_Bold.large.TInterface}
             />
-            <PrimaryCard
-              title="Upper body"
-              description="Simple Chect Workout only 5 mins"
-              onPress={() => {}}
-              bgColor={Palette.ColorsFromImage.fitness_1}
-            />
-            <PrimaryCard
-              title="Hand muscle"
-              description="4 Ways To Improve your Hand Muscle "
-              onPress={() => {}}
-              image={Icons.muscle_1}
-              bgColor={Palette.ColorsFromImage.muscle_1}
-            />
+            {randomChallenge.items.map((item, index) => {
+              const filteredChallengeData = ChallengeData?.filter(
+                planItem => planItem.playlist[0].type === item,
+              );
+              return filteredChallengeData?.map((target, __index) => (
+                <PrimaryCard
+                  key={generateKeyId()}
+                  index={index}
+                  items={target.playlist as unknown as WorkoutModel[]}
+                  title={`${target.playlist[0].type || ''}`}
+                  description={target.title}
+                  image={cardIcon(index)}
+                />
+              ));
+            })}
+            <GapVertical h={10} />
+            {/* <VerticalDivider /> */}
             <Label
-              title="All Workouts"
-              variant={LabelVariant.H3_Bold.small.Roboto}
+              title={`Day ${day}`}
+              variant={LabelVariant.H3_Bold.large.TInterface}
             />
-            <TabNav
-              items={[
-                {
-                  label: 'All Workouts',
-                  active: true,
-                  component: (
-                    <ScrollView
-                      style={styles.horizontalScrollContainer}
-                      horizontal
-                      showsHorizontalScrollIndicator={false}
-                      directionalLockEnabled={true}
-                      alwaysBounceVertical={false}>
-                      {statusData.map((item, index) => (
-                        <View key={index} style={styles.status_container}>
-                          <StatusCard
-                            title={item.title}
-                            rate={item.rate}
-                            unit={item.unit}
-                            icon={item.icon}
-                            onPress={() => {}}
-                            status={item.status}
-                          />
-                          {index !== statusData.length - 1 && <GapHorizontal />}
-                        </View>
-                      ))}
-                    </ScrollView>
-                  ),
-                },
-                {
-                  label: 'Jumping',
-                  active: true,
-                  component: (
-                    <View>
-                      <Text>2</Text>
-                    </View>
-                  ),
-                },
-                {
-                  label: 'Chest',
-                  active: true,
-                  component: (
-                    <View>
-                      <Text>3</Text>
-                    </View>
-                  ),
-                },
-              ]}
-            />
-            <PrimaryCard
-              title="Hand muscle"
-              description="4 Ways To Improve your Hand Muscle "
-              onPress={() => {}}
-              image={Icons.muscle_1}
-              bgColor={Palette.ColorsFromImage.muscle_1}
-            />
+            <TabNav items={tabItems} />
           </View>
           <GapVertical h={70} />
         </ScrollView>
@@ -127,7 +137,7 @@ const styles = StyleSheet.create({
     fontSize: 42,
   },
   horizontalScrollContainer: {
-    gap: 10,
+    gap: 20,
     flexDirection: 'row',
   },
   status_container: {
