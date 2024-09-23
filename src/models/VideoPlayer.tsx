@@ -92,7 +92,7 @@ export const VideoPlayer = ({
         useNativeDriver: true,
       }).start();
     }
-  }, [progress, state.play]);
+  }, [fadeAnim, progress, state.play]);
 
   return (
     <View style={styles.container}>

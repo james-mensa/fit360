@@ -5,7 +5,6 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
  */
 class AsyncStorageService {
   private static instance: AsyncStorageService;
-
   private constructor() {}
 
   /**
@@ -51,6 +50,15 @@ class AsyncStorageService {
       return value;
     } catch (error) {
       console.log('Error retrieving data:', error);
+      throw error;
+    }
+  }
+
+  async removeAllData(): Promise<void> {
+    try {
+      await AsyncStorage.clear();
+    } catch (error) {
+      console.log('Error clearing AsyncStorage:', error);
       throw error;
     }
   }

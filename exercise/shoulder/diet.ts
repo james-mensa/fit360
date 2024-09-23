@@ -24,10 +24,7 @@ export const getDietRecommendationsForMale = (
           'Smoothie with spinach, banana, and protein powder 🍌🥬',
           'Avocado toast with poached eggs 🥑🍳',
         ],
-        lunch: [
-          'Banku with Okro stew and fish',
-          'Gari fortor with fried fish',
-        ],
+        lunch: ['Banku with Okro stew and fish', 'Gari fortor with fried fish'],
         dinner: [
           'Lean beef steak with sweet potatoes 🥩🍠',
           'Vegetable Stir-fry with Grilled Chicken and rice 🍲🍛',
