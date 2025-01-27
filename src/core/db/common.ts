@@ -18,6 +18,7 @@ import {DayPlanModelTy} from '.';
 import {generateId} from '@core/utils';
 
 import {createUserModel} from './creatingPersonalizedModel';
+import AsyncStorageService from '@core/local/AsyncStorageService';
 
 // add/update personalized model
 
@@ -86,7 +87,7 @@ export function getLoginCredentials(realm: Realm) {
 
 //handle user sign out
 
-export function signOut(realm: Realm) {
+export async function signOut(realm: Realm) {
   try {
     realm.write(() => {
       // Delete login record
@@ -115,6 +116,7 @@ export function signOut(realm: Realm) {
         }
       });
     });
+    await AsyncStorageService.removeAllData();
   } catch (error) {
     console.error('Error signing out:', error);
   }

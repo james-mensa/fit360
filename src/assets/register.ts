@@ -198,7 +198,7 @@ export const bodyZones = {
     },
     male: {
       Exercises_to_Do_at_the_Gym_or_at_Home_Grip_Crush: require('@assets/icons/zones/forearms/male/400x400_Forearm-Exercises_to_Do_at_the_Gym_or_at_Home_Grip_Crush.webp'),
-      bent_over_row: require('@assets/icons/zones/forearms/male/bent-over-row-1590133418.jpg'),
+      bent_over_row: require('@assets/icons/zones/forearms/male/curlszottman.gif'),
       big_arms_2: require('@assets/icons/zones/forearms/male/big-arms_2.webp'),
       big_arms_3: require('@assets/icons/zones/forearms/male/big-arms_3.webp'),
       big_arms: require('@assets/icons/zones/forearms/male/big_arms.webp'),
